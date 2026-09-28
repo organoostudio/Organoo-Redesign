@@ -1,0 +1,44 @@
+---
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// The Motion prototype is the current main direction. We read its self-contained
+// HTML at build time and lift its <style>, markup and <script> into this Astro
+// page, so the <head> (SEO, canonical, sitemap, OG) is owned by BaseLayout.
+// Assets stay in public/previews/motion, so relative refs are rewritten to root.
+const src = readFileSync(
+  fileURLToPath(new URL('../../public/previews/motion/index.html', import.meta.url)),
+  'utf8',
+);
+
+const css = (src.match(/<style>([\s\S]*?)<\/style>/) || [, ''])[1];
+
+// External scripts (e.g. Lenis) and the one inline app script.
+const externalScripts = [...src.matchAll(/<script[^>]*\ssrc="([^"]+)"[^>]*><\/script>/g)].map((m) => m[1]);
+const inlineScript = (src.match(/<script>([\s\S]*?)<\/script>/) || [, ''])[1];
+
+// Markup between </style> and the first <script>, with the trailing </html> gone.
+let body = src.slice(src.indexOf('</style>') + '</style>'.length);
+body = body.slice(0, body.search(/<script/)).replace(/<\/(body|html)>/gi, '').trim();
+
+// Rewrite the prototype's own relative asset paths to their served location.
+const toRoot = (s: string) =>
+  s
+    .replaceAll('studio-poster.jpg', '/previews/motion/studio-poster.jpg')
+    .replaceAll('studio.mp4', '/previews/motion/studio.mp4')
+    .replaceAll('img/', '/previews/motion/img/');
+
+const bodyHtml = toRoot(body);
+const appScript = toRoot(inlineScript);
+---
+<BaseLayout
+  title="Organoo Studio — Digital Agency in Malang"
+  description="Organoo Studio is a Malang-based digital agency crafting websites, product design and campaigns that drive growth — UI/UX, web development, Google & Meta Ads, graphic design and social media."
+  path="/"
+>
+  <style is:global set:html={css}></style>
+  <Fragment set:html={bodyHtml} />
+  {externalScripts.map((s) => <script is:inline src={s}></script>)}
+  <script is:inline set:html={appScript}></script>
+</BaseLayout>
