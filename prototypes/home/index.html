@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Organoo Studio Home</title>
+<meta name="description" content="Organoo Studio — digital agency in Malang for UI/UX, websites, Google &amp; Meta Ads and design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="preload" as="image" href="studio-poster.jpg">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0A0A0A; --bg-2:#050505; --surface:#121212; --surface-2:#1A1C1B;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#FFFFFF; --muted:#A3AAA6; --dim:#6E7571;
+  --accent:#2AA36B; --accent-ink:#04140C; --accent-soft:#0B2A1B;
+  --gutter:clamp(16px,6vw,120px);
+  --display:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --footer-h:560px;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--display);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 8px 0 24px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:700;font-size:15px;transition:transform .35s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn .ico{width:36px;height:36px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .35s var(--ease)}
+.btn:hover .ico{transform:rotate(45deg)}
+.btn.green{background:var(--accent);color:var(--accent-ink)}
+.btn.green .ico{background:var(--accent-ink)}
+.btn.green .ico svg{stroke:#fff}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(env(safe-area-inset-top,0px) + 18px) var(--gutter) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:transparent;isolation:isolate;pointer-events:none}
+.nav::before{content:"";position:absolute;left:0;right:0;top:0;bottom:-36px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,10,.62) 0%,rgba(10,10,10,.34) 55%,rgba(10,10,10,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%)}
+.nav>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brand img{width:36px;height:36px;border-radius:50%}
+.nav-links{display:flex;gap:32px;font-size:14px;font-weight:500;color:#C9CECB}
+.nav-links a:hover{color:var(--accent)}
+.nav .btn{height:44px;font-size:14px;padding-left:20px}
+.nav .btn .ico{width:32px;height:32px}
+@media (max-width:900px){.nav-links{display:none}}
+@media (max-width:520px){.nav .btn span.lbl{display:none}.nav .btn{padding-left:6px}}
+
+/* SCENES */
+main{position:relative;z-index:2;background:var(--bg);margin-bottom:var(--footer-h);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.scene{position:relative}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+
+/* HERO */
+.hero{height:420vh}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0A0A;transform-origin:34% 30%;will-change:transform}
+.hero-shade{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,rgba(5,5,5,.65) 100%),linear-gradient(180deg,rgba(10,10,10,.55) 0%,transparent 22%,transparent 70%,rgba(10,10,10,.7) 100%)}
+.words{position:absolute;inset:0;pointer-events:none}
+.cw{position:absolute;font-size:clamp(44px,9.4vw,156px);line-height:.95;font-weight:700;letter-spacing:-.055em;white-space:nowrap;text-shadow:0 10px 40px rgba(0,0,0,.35)}
+.cw.serif{font-weight:400;letter-spacing:-.02em;color:var(--accent)}
+.cw.tl{top:clamp(90px,14vh,150px);left:var(--gutter)}
+.cw.tr{top:clamp(90px,14vh,150px);right:var(--gutter)}
+.cw.bl{bottom:clamp(90px,14vh,140px);left:var(--gutter)}
+.cw.br{bottom:clamp(90px,14vh,140px);right:var(--gutter)}
+.split span{display:inline-block;transition:opacity .7s var(--ease),filter .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i) * 38ms)}
+.words:not(.on) .split span{opacity:0;filter:blur(16px);transform:translateY(.22em)}
+.words.intro .split span{animation:blurIn 1s var(--ease) backwards;animation-delay:calc(var(--i) * 55ms + .25s)}
+@keyframes blurIn{from{opacity:0;filter:blur(16px);transform:translateY(.22em)}}
+.hero-meta{position:absolute;left:50%;bottom:clamp(28px,5vh,48px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center}
+.track{width:160px;height:2px;background:var(--line-2);border-radius:2px;overflow:hidden}
+.track i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+.hero-end{position:absolute;left:50%;bottom:clamp(80px,14vh,130px);transform:translate(-50%,20px);opacity:0;transition:opacity .6s var(--ease),transform .6s var(--ease);display:flex;align-items:center;gap:16px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(10,10,10,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line-2);white-space:nowrap;font-size:14px}
+.hero-end.show{opacity:1;transform:translate(-50%,0)}
+.hero-end b{font-weight:700}
+.hero-end a{height:40px;padding:0 16px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;display:flex;align-items:center}
+
+/* CLIENTS */
+.clients{padding-block:64px;background:var(--bg-2);border-block:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:30px;overflow:hidden}
+.clients p{margin:0;font-size:14px;color:var(--muted);padding-inline:var(--gutter);text-align:center}
+.marquee{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.marquee-track{display:flex;gap:64px;width:max-content;align-items:center;font-size:24px;color:#8E9591;white-space:nowrap;animation:marquee 38s linear infinite}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ABOUT / FROST */
+.about{height:240vh}
+.about .pin{display:grid;place-items:center}
+.about-img{position:absolute;left:50%;top:50%;width:min(1100px,92vw);aspect-ratio:1/1;max-width:100%;border-radius:32px;overflow:hidden;transform:translate(-50%,-10%);will-change:transform}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.frost{position:relative;z-index:2;width:min(980px,calc(100vw - 32px));padding:clamp(28px,5vw,64px);border-radius:32px;background:rgba(10,10,10,.5);backdrop-filter:blur(26px) saturate(1.2);-webkit-backdrop-filter:blur(26px) saturate(1.2);border:1px solid var(--line-2);display:flex;flex-direction:column;gap:28px}
+.frost p{margin:0;font-size:clamp(22px,3.1vw,42px);line-height:1.28;font-weight:500;letter-spacing:-.03em}
+.frost p .w{transition:opacity .4s}
+.frost p .w.dim{opacity:.34}
+
+/* STATS */
+.stats{padding:clamp(80px,12vw,150px) var(--gutter);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.stats{grid-template-columns:1fr}}
+.stat{border-top:1px solid var(--line-2);padding-top:24px;display:flex;flex-direction:column;gap:10px}
+.odo{display:flex;align-items:flex-end;font-size:clamp(56px,7vw,104px);line-height:1;font-weight:700;letter-spacing:-.05em;font-variant-numeric:tabular-nums;height:1em;overflow:hidden}
+.odo .col{display:flex;flex-direction:column;transition:transform 1.6s var(--ease),filter 1.6s var(--ease);transform:translateY(calc(var(--d) * -1em))}
+.odo .col span{height:1em;line-height:1}
+.odo.rolling .col{filter:blur(0)}
+.odo.prep .col{transition:none;transform:translateY(0);filter:blur(6px)}
+.odo .fix{height:1em}
+.stat.hl .odo{color:var(--accent)}
+.stat small{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* WARP */
+.warp{height:320vh}
+.warp .pin{background:var(--bg);display:grid;place-items:center;transition:background-color .2s}
+.warp .pin.filled{background:var(--accent)}
+.mark{position:absolute;left:calc(50% - 157px);top:calc(50% - 152px);width:240px;height:240px;transform-origin:157px 152px;will-change:transform}
+.mark .c{transition:opacity .3s}
+.warp-copy{position:absolute;left:0;right:0;bottom:clamp(60px,14vh,140px);text-align:center;padding-inline:var(--gutter);font-size:clamp(28px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1.05}
+
+/* SERVICES (green) */
+.services{background:var(--accent);color:var(--accent-ink);padding:clamp(60px,9vw,120px) var(--gutter) clamp(80px,10vw,140px)}
+.services .eyebrow{color:var(--accent-soft)}
+.services .eyebrow::before{background:var(--accent-ink)}
+.services h2{margin-top:20px;font-size:clamp(44px,6.4vw,92px);line-height:.98;letter-spacing:-.05em;font-weight:700}
+.svc-list{margin-top:56px;border-top:1px solid rgba(4,20,12,.25)}
+.svc{position:relative;display:grid;grid-template-columns:48px minmax(0,1.2fr) minmax(0,1fr) 44px;align-items:center;gap:24px;padding:28px 8px;border-bottom:1px solid rgba(4,20,12,.25);transition:background-color .3s,padding .35s var(--ease)}
+.svc:hover{background:rgba(4,20,12,.07);padding-left:20px}
+.svc .n{font-size:14px;font-weight:700;opacity:.6}
+.svc .t{font-size:clamp(24px,2.6vw,36px);font-weight:700;letter-spacing:-.03em}
+.svc .d{font-size:15px;line-height:1.55;color:var(--accent-soft)}
+.svc .go{width:44px;height:44px;border-radius:50%;border:1px solid rgba(4,20,12,.35);display:grid;place-items:center;transition:background-color .25s,transform .35s var(--ease)}
+.svc:hover .go{background:var(--accent-ink);transform:rotate(-45deg)}
+.svc:hover .go svg{stroke:#fff}
+.svc .prev{position:absolute;left:44%;top:50%;width:240px;aspect-ratio:1.4;border-radius:14px;overflow:hidden;opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(.9);transition:opacity .3s,transform .45s var(--ease);pointer-events:none;box-shadow:0 30px 60px rgba(4,20,12,.35);z-index:3;background:#000}
+.svc:hover .prev{opacity:1;transform:translate(-50%,-50%) rotate(-3deg) scale(1)}
+.svc .prev img{width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.svc{grid-template-columns:32px minmax(0,1fr) 44px}.svc .d{grid-column:2/4}.svc .prev{display:none}}
+
+/* SHOWREEL */
+.reel{height:300vh}
+.reel .pin{display:grid;place-items:center;background:var(--bg)}
+.reel-head{position:absolute;top:clamp(90px,13vh,130px);left:0;right:0;text-align:center;padding-inline:var(--gutter);transition:opacity .3s}
+.reel-head h2{margin-top:16px;font-size:clamp(40px,5.6vw,80px);letter-spacing:-.05em;line-height:1}
+.reel-card{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) scale(.4);width:min(1200px,calc(100vw - 32px));aspect-ratio:1.4;max-height:calc(100svh - 40px);border-radius:28px;overflow:hidden;background:#000;border:1px solid var(--line);will-change:transform,opacity}
+.reel-card img{width:100%;height:100%;object-fit:cover}
+.reel-cap{position:absolute;left:var(--gutter);bottom:clamp(28px,6vh,56px);display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease);z-index:5}
+.reel-cap.show{opacity:1;transform:none}
+.reel-cap span{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.reel-cap b{font-size:clamp(26px,3.4vw,48px);letter-spacing:-.04em;line-height:1.05}
+
+/* RESULTS */
+.results{padding:clamp(80px,10vw,130px) var(--gutter);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:860px){.results{grid-template-columns:1fr}}
+.res{position:relative;overflow:hidden;border-radius:28px;background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-height:420px}
+.res .glow{position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(42,163,107,.35),transparent 70%)}
+.res .tag{position:relative;align-self:flex-start;height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--line-2);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+.res .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.res .client{position:relative;font-size:15px;color:var(--muted)}
+.res .big{position:relative;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.res .big b{font-size:clamp(64px,7vw,96px);line-height:1;letter-spacing:-.05em;color:var(--accent)}
+.res .big span{font-size:18px;font-weight:600;color:#D4D9D6}
+.res .mini{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;font-variant-numeric:tabular-nums}
+.res .mini div{border-top:1px solid var(--line-2);padding-top:10px}
+.res .mini strong{display:block;font-size:22px}
+.res .mini em{font-style:normal;font-size:12px;color:var(--muted)}
+.res .shot{position:relative;margin:auto calc(-1 * clamp(24px,3vw,36px)) calc(-1 * clamp(24px,3vw,36px));height:130px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent);mask-image:linear-gradient(180deg,#000 30%,transparent);opacity:.85}
+.res .shot img{width:100%}
+
+/* CTA */
+.cta{position:relative;overflow:hidden;padding:clamp(90px,12vw,150px) var(--gutter);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:28px}
+.cta .glow{position:absolute;left:50%;bottom:-420px;width:1600px;height:700px;margin-left:-800px;border-radius:50%;background:radial-gradient(ellipse,rgba(42,163,107,.55),rgba(42,163,107,.12) 45%,transparent 70%);pointer-events:none}
+.cta h2{position:relative;font-size:clamp(52px,8vw,120px);line-height:.96;letter-spacing:-.055em}
+.cta p{position:relative;margin:0;max-width:520px;color:#BFC5C1;font-size:17px}
+.cta-row{position:relative;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.contact{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#CFD4D1;user-select:all}
+
+/* FOOTER CURTAIN */
+.curtain{position:fixed;left:0;right:0;bottom:0;height:var(--footer-h);z-index:1;background:var(--bg-2);padding:clamp(48px,7vw,90px) var(--gutter) 0;display:flex;flex-direction:column;overflow:hidden}
+.foot-top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between}
+.foot-top p{margin:12px 0 0;max-width:340px;color:var(--muted);font-size:15px}
+.foot-cols{display:flex;gap:clamp(32px,6vw,96px);flex-wrap:wrap;font-size:14px}
+.foot-cols div{display:flex;flex-direction:column;gap:12px}
+.foot-cols span{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--dim)}
+.foot-cols a:hover{color:var(--accent)}
+.foot-legal{margin-top:40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+.wordmark{margin-top:auto;margin-bottom:-.2em;font-size:clamp(56px,12.4vw,178px);line-height:1;font-weight:800;letter-spacing:-.06em;white-space:nowrap;text-align:center}
+.wordmark .split span{transition:transform .9s var(--ease),opacity .9s var(--ease);transition-delay:calc(var(--i) * 45ms)}
+.curtain:not(.up) .wordmark .split span{transform:translateY(100%);opacity:0}
+.wordmark .serif{color:var(--accent);font-weight:400}
+@media (max-width:760px){
+  :root{--footer-h:0px}
+  main{margin-bottom:0}
+  .curtain{position:relative;height:auto;padding-bottom:0}
+  .curtain:not(.up) .wordmark .split span{transform:none;opacity:1}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .words:not(.on) .split span{opacity:0}
+  .hero,.about,.warp,.reel{height:auto}
+  .pin{position:relative;height:auto;min-height:100vh}
+}
+</style>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="Organoo Studio home"><img src="img/logo.png" alt="" width="36" height="36">Organoo Studio</a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#results">Results</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn" href="#contact"><span class="lbl">Book a 15-min call</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
+</header>
+
+<main id="top">
+  <!-- HERO: scroll-scrubbed fly-through -->
+  <section class="scene hero" data-scene="hero" aria-label="Intro">
+    <div class="pin">
+      <video id="heroVideo" class="hero-video" muted playsinline preload="none" poster="studio-poster.jpg" aria-hidden="true"></video>
+      <div class="hero-shade"></div>
+      <h1 class="words on intro" id="wordsA">
+        <span class="cw tl split">We</span>
+        <span class="cw tr split">build</span>
+        <span class="cw bl split">brands</span>
+        <span class="cw br serif split">that grow</span>
+      </h1>
+      <div class="words" id="wordsB" aria-hidden="true">
+        <span class="cw tl split">From</span>
+        <span class="cw tr split">idea</span>
+        <span class="cw bl split">to</span>
+        <span class="cw br serif split">impact.</span>
+      </div>
+      <div class="hero-end" id="heroEnd"><span id="heroEndText"><b>Data-driven</b> · every decision backed by numbers</span><a href="#results" id="heroEndLink">See results</a></div>
+      <div class="hero-meta"><span id="heroHint">Scroll to step inside the data</span><div class="track"><i id="heroBar"></i></div></div>
+    </div>
+  </section>
+
+  <section class="clients" aria-label="Clients">
+    <p>Trusted by growing brands and institutions across Indonesia</p>
+    <div class="marquee"><div class="marquee-track">
+      <span style="font-weight:800;letter-spacing:.08em">PUPR</span><span style="font-weight:700">Pintara</span><span class="serif" style="font-size:28px">Cazmilk</span><span style="font-weight:800;letter-spacing:.2em;font-size:19px">JWAHER</span><span style="font-weight:600">WP Malang</span><span style="font-weight:800">PT PELNI</span><span style="font-weight:700;letter-spacing:.04em">SANIS</span><span style="font-weight:600">Dasindo Media</span><span class="serif" style="font-size:28px">Artiland Group</span><span style="font-weight:700">Srengenge</span>
+      <span style="font-weight:800;letter-spacing:.08em" aria-hidden="true">PUPR</span><span style="font-weight:700" aria-hidden="true">Pintara</span><span class="serif" style="font-size:28px" aria-hidden="true">Cazmilk</span><span style="font-weight:800;letter-spacing:.2em;font-size:19px" aria-hidden="true">JWAHER</span><span style="font-weight:600" aria-hidden="true">WP Malang</span><span style="font-weight:800" aria-hidden="true">PT PELNI</span><span style="font-weight:700;letter-spacing:.04em" aria-hidden="true">SANIS</span><span style="font-weight:600" aria-hidden="true">Dasindo Media</span><span class="serif" style="font-size:28px" aria-hidden="true">Artiland Group</span><span style="font-weight:700" aria-hidden="true">Srengenge</span>
+    </div></div>
+  </section>
+
+  <!-- ABOUT: image rising behind a frosted panel -->
+  <section class="scene about" id="about" data-scene="about">
+    <div class="pin">
+      <div class="about-img" id="aboutImg"><img src="img/organoo-web.webp" alt="Organoo Studio website shown on a laptop" loading="lazy"></div>
+      <div class="frost">
+        <span class="eyebrow">About us</span>
+        <p id="aboutText">We're not just a vendor. We're a growth partner working side by side with your team, blending strategy, design and data. Great design only matters when it moves the numbers: more leads, lower cost per result and a brand people remember.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS: odometer -->
+  <section class="stats" aria-label="Results in numbers">
+    <div class="stat"><div class="odo" data-value="11×" aria-label="11×"></div><small>ROAS on Google Ads for PT. Dasindo Media</small></div>
+    <div class="stat"><div class="odo" data-value="1,200+" aria-label="1,200+"></div><small>Conversions from Meta Ads for Batu Panorama Residence</small></div>
+    <div class="stat hl"><div class="odo" data-value="+97.8%" aria-label="+97.8%"></div><small>Growth in website leads after campaign optimization</small></div>
+  </section>
+
+  <!-- WARP: the Organoo mark swallows the screen -->
+  <section class="scene warp" data-scene="warp" aria-label="Brand transition">
+    <div class="pin" id="warpPin">
+      <svg class="mark" id="mark" viewBox="0 0 200 200" aria-hidden="true">
+        <path class="c" id="markC" d="M131 66.3 A50 50 0 1 0 102.9 143.3" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>
+        <path d="M18 0 H82 Q100 0 100 18 Q100 36 82 36 H52 V82 Q52 100 34 100 H18 Q0 100 0 82 V18 Q0 0 18 0 Z" transform="translate(122 118) scale(.46)" fill="#2AA36B"/>
+      </svg>
+      <p class="warp-copy" id="warpCopy">Every brand we grow<br>starts with <span class="serif" style="color:var(--accent)">one bold idea.</span></p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <span class="eyebrow">Our services</span>
+    <h2>Solutions built for<br><span class="serif">modern</span> brands</h2>
+    <div class="svc-list">
+      <a class="svc" href="#contact"><span class="n">01</span><span class="t">UI/UX Design</span><span class="d">Intuitive interfaces for mobile apps, websites and dashboards.</span><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span class="prev"><img src="img/pintara.webp" alt="" loading="lazy"></span></a>
+      <a class="svc" href="#contact"><span class="n">02</span><span class="t">Website Development</span><span class="d">Landing pages, company profiles and e-commerce — fast and SEO-ready.</span><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span class="prev"><img src="img/sanis.webp" alt="" loading="lazy"></span></a>
+      <a class="svc" href="#contact"><span class="n">03</span><span class="t">Google &amp; Meta Ads</span><span class="d">Performance campaigns that turn clicks into qualified leads.</span><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span class="prev" style="background:#fff"><img src="img/google-charts.webp" alt="" loading="lazy"></span></a>
+      <a class="svc" href="#contact"><span class="n">04</span><span class="t">Graphic Design</span><span class="d">Brand identities and creatives that keep your look consistent.</span><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span class="prev"><img src="img/designskuy.webp" alt="" loading="lazy"></span></a>
+      <a class="svc" href="#contact"><span class="n">05</span><span class="t">Social Media Management</span><span class="d">Content planning and management for Instagram and TikTok.</span><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span class="prev"><img src="img/organoo-web.webp" alt="" loading="lazy"></span></a>
+    </div>
+  </section>
+
+  <!-- SHOWREEL: project zooms to full screen -->
+  <section class="scene reel" id="work" data-scene="reel">
+    <div class="pin">
+      <div class="reel-head" id="reelHead"><span class="eyebrow" style="justify-content:center">Featured work</span><h2>Work that drives <span class="serif" style="color:var(--accent)">growth</span></h2></div>
+      <div class="reel-card" data-off="-2"><img src="img/merteyasa.webp" alt="Merteyasa Adventure website" loading="lazy"></div>
+      <div class="reel-card" data-off="-1"><img src="img/pintara-med.webp" alt="Pintara website" loading="lazy"></div>
+      <div class="reel-card" data-off="1"><img src="img/designskuy.webp" alt="Designskuy website" loading="lazy"></div>
+      <div class="reel-card" data-off="2"><img src="img/pintara.webp" alt="Pintara landing page" loading="lazy"></div>
+      <div class="reel-card" data-off="0"><img src="img/srengenge.webp" alt="Srengenge Engineering website" loading="lazy"></div>
+      <div class="reel-cap" id="reelCap"><span>Website Development</span><b>CV. Srengenge Engineering</b></div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results" id="results" aria-label="Campaign results">
+    <article class="res"><div class="glow"></div><span class="tag">Meta Ads · Case study</span><span class="client">PT. Artiland Group — Batu Panorama Residence</span><div class="big"><b>1,200+</b><span>conversions</span></div><div class="mini"><div><strong>+97.8%</strong><em>Website leads</em></div><div><strong>609K</strong><em>Accounts reached</em></div><div><strong>1.02%</strong><em>Average CTR</em></div></div><div class="shot"><img src="img/meta-table.webp" alt="Meta Ads Manager results table" loading="lazy"></div></article>
+    <article class="res"><div class="glow" style="left:-140px;right:auto;top:auto;bottom:-200px"></div><span class="tag">Google Ads · Case study</span><span class="client">PT. Dasindo Media — Dale Carnegie Training</span><div class="big"><b>11×</b><span>return on ad spend</span></div><div class="mini"><div><strong>100+</strong><em>Lead forms</em></div><div><strong>68.6K</strong><em>Impressions</em></div><div><strong>6.54%</strong><em>Peak CTR</em></div></div><div class="shot"><img src="img/google-charts.webp" alt="Google Ads performance charts" loading="lazy"></div></article>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="glow"></div>
+    <span class="eyebrow" style="position:relative">Let's work together</span>
+    <h2>Ready to grow<br>your <span class="serif" style="color:var(--accent)">brand?</span></h2>
+    <p>Tell us about your goals. We'll come back with a clear, free plan built to grow your business.</p>
+    <div class="cta-row">
+      <a class="btn" href="#contact"><span>Book a 15-min call</span><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#04140C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
+      <div class="contact"><span>[hello@organoostudio.com]</span><span>[WhatsApp +62 …]</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="curtain" id="curtain">
+  <div class="foot-top">
+    <div><a class="brand" href="#top"><img src="img/logo.png" alt="" width="36" height="36">Organoo Studio</a><p>A Malang-based digital agency crafting websites, product design and campaigns that drive growth.</p></div>
+    <div class="foot-cols">
+      <div><span>STUDIO</span><a href="#about">About</a><a href="#work">Work</a><a href="#results">Results</a></div>
+      <div><span>SERVICES</span><a href="#services">UI/UX Design</a><a href="#services">Websites</a><a href="#services">Google &amp; Meta Ads</a></div>
+      <div><span>CONNECT</span><a href="https://www.instagram.com/organoo.studio/">Instagram</a><a href="https://www.linkedin.com/company/organoo-studio">LinkedIn</a></div>
+    </div>
+  </div>
+  <div class="foot-legal"><span>© 2026 Organoo Studio</span><span>Malang, East Java, Indonesia</span></div>
+  <div class="wordmark" aria-label="Organoo Studio"><span class="split" aria-hidden="true">Organoo </span><span class="split serif" aria-hidden="true">Studio</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const small = matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  // split text into letters
+  document.querySelectorAll('.split').forEach(el => {
+    const txt = el.textContent; el.textContent = '';
+    [...txt].forEach((ch, i) => { const s = document.createElement('span'); s.textContent = ch === ' ' ? ' ' : ch; s.style.setProperty('--i', i); el.appendChild(s); });
+  });
+  // wrap about words
+  const about = document.getElementById('aboutText');
+  const words = about.textContent.split(' ');
+  about.innerHTML = words.map(w => '<span class="w dim">' + w + '</span>').join(' ');
+  const aboutWords = [...about.querySelectorAll('.w')];
+
+  // odometers
+  const odos = [...document.querySelectorAll('.odo')];
+  odos.forEach(o => {
+    const v = o.dataset.value;
+    [...v].forEach(ch => {
+      if (/\d/.test(ch)) {
+        const col = document.createElement('span'); col.className = 'col'; col.style.setProperty('--d', ch); col.setAttribute('aria-hidden', 'true');
+        for (let n = 0; n <= 9; n++) { const s = document.createElement('span'); s.textContent = n; col.appendChild(s); }
+        o.appendChild(col);
+      } else { const s = document.createElement('span'); s.className = 'fix'; s.textContent = ch; s.setAttribute('aria-hidden', 'true'); o.appendChild(s); }
+    });
+  });
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const o = e.target; io.unobserve(o);
+      o.classList.add('prep');
+      requestAnimationFrame(() => requestAnimationFrame(() => { o.classList.remove('prep'); }));
+    }), { threshold: .6 });
+    odos.forEach(o => io.observe(o));
+  }
+
+  // hero video: poster first, then the clip is driven only by scroll (never autoplays)
+  const video = document.getElementById('heroVideo');
+  const MODES = {
+    studio: { src: 'studio.mp4', poster: 'studio-poster.jpg', zoom: true, end: '<b>Data-driven</b> · every decision backed by numbers', link: ['#results', 'See results'], hint: 'Scroll to step inside the data' },
+    fly: { src: 'flythrough.mp4', poster: 'poster.jpg', zoom: false, end: '<b>CV. Sanis Panca Abadi</b> · Company website', link: ['#work', 'See project'], hint: 'Scroll to fly through our work' }
+  };
+  let mode = 'studio', vReady = false, vCur = 0, blobUrl = null, loadToken = 0;
+  function loadVideo() {
+    const m = MODES[mode], token = ++loadToken;
+    vReady = false; vCur = 0;
+    video.poster = m.poster;
+    document.getElementById('heroEndText').innerHTML = m.end;
+    const l = document.getElementById('heroEndLink'); l.href = m.link[0]; l.textContent = m.link[1];
+    document.getElementById('heroHint').textContent = m.hint;
+    if (reduce || saveData) return;
+    video.addEventListener('loadedmetadata', () => { if (token !== loadToken) return; video.loop = false; const p = video.play(); if (p && p.then) p.then(() => { video.pause(); video.currentTime = 0; vReady = true; }).catch(() => { vReady = true; }); else { video.pause(); vReady = true; } }, { once: true });
+    fetch(m.src).then(r => { if (!r.ok) throw 0; return r.blob(); })
+      .then(b => { if (token !== loadToken) return; if (blobUrl) URL.revokeObjectURL(blobUrl); blobUrl = URL.createObjectURL(b); video.src = blobUrl; })
+      .catch(() => { if (token === loadToken) { video.preload = 'auto'; video.src = m.src; } });
+  }
+  if (document.readyState === 'complete') setTimeout(loadVideo, 150); else addEventListener('load', () => setTimeout(loadVideo, 150));
+
+  // smooth scroll
+  if (!reduce && !small && window.Lenis) {
+    const lenis = new Lenis({ lerp: .1 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href'); const el = id === '#top' ? document.body : document.querySelector(id);
+      if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: 0 }); }
+    }));
+  }
+
+  const scene = name => document.querySelector('[data-scene="' + name + '"]');
+  const hero = scene('hero'), aboutS = scene('about'), warp = scene('warp'), reel = scene('reel');
+  const wA = document.getElementById('wordsA'), wB = document.getElementById('wordsB');
+  const bar = document.getElementById('heroBar'), heroEnd = document.getElementById('heroEnd');
+  const aboutImg = document.getElementById('aboutImg');
+  const mark = document.getElementById('mark'), markC = document.getElementById('markC'), warpCopy = document.getElementById('warpCopy'), warpPin = document.getElementById('warpPin');
+  const cards = [...reel.querySelectorAll('.reel-card')], reelHead = document.getElementById('reelHead'), reelCap = document.getElementById('reelCap');
+  const curtain = document.getElementById('curtain'), main = document.querySelector('main');
+  setTimeout(() => wA.classList.remove('intro'), 2200);
+
+  function prog(el) {
+    const r = el.getBoundingClientRect(); const total = r.height - innerHeight;
+    return total <= 0 ? 0 : clamp(-r.top / total);
+  }
+
+  function tick() {
+    if (!reduce) {
+      // HERO
+      const hp = prog(hero);
+      bar.style.transform = 'scaleX(' + hp + ')';
+      wA.classList.toggle('on', hp < .36);
+      wB.classList.toggle('on', hp > .44 && hp < .8);
+      heroEnd.classList.toggle('show', hp > .86);
+      if (vReady && video.duration) {
+        const target = hp * (video.duration - .05);
+        vCur += (target - vCur) * .2;
+        if (!video.seeking && Math.abs(video.currentTime - vCur) > .015) video.currentTime = vCur;
+      }
+      if (MODES[mode].zoom) {
+        const z = ease(clamp((hp - .7) / .3));
+        video.style.transform = z > 0 ? 'scale(' + (1 + z * 1.7) + ')' : '';
+      }
+      // ABOUT
+      const ap = prog(aboutS);
+      aboutImg.style.transform = 'translate(-50%,' + (-10 - ap * 80) + '%)';
+      const lit = Math.floor(clamp((ap - .08) / .7) * aboutWords.length);
+      aboutWords.forEach((w, i) => w.classList.toggle('dim', i >= lit));
+      // WARP
+      const wp = prog(warp);
+      const k = clamp((wp - .18) / .55);
+      const s = 1 + Math.pow(k, 3.2) * 150;
+      mark.style.transform = 'scale(' + s + ')';
+      markC.style.opacity = 1 - clamp(k * 3);
+      warpCopy.style.opacity = 1 - clamp((wp - .12) / .15);
+      warpPin.classList.toggle('filled', k >= .985);
+      // REEL
+      const rp = prog(reel);
+      const rk = ease(clamp((rp - .1) / .7));
+      const vw = innerWidth;
+      cards.forEach(c => {
+        const off = +c.dataset.off;
+        if (off === 0) {
+          const sc = .4 + .6 * rk;
+          c.style.transform = 'translate(-50%,-50%) translateY(' + (-6 * rk) + '%) scale(' + sc + ')';
+          c.style.borderRadius = (28 - 14 * rk) + 'px';
+        } else {
+          const base = off * vw * .3;
+          c.style.transform = 'translate(-50%,-50%) translateX(' + (base * (1 + rk * 1.6)) + 'px) scale(' + (.32 - Math.abs(off) * .03) + ') rotate(' + (off * 3) + 'deg)';
+          c.style.opacity = (1 - rk * 1.4) * (Math.abs(off) === 2 ? .55 : .85);
+        }
+      });
+      reelHead.style.opacity = 1 - clamp(rk * 2.5);
+      reelCap.classList.toggle('show', rp > .8);
+      // CURTAIN
+      const mb = main.getBoundingClientRect().bottom;
+      curtain.classList.toggle('up', innerHeight - mb > curtain.offsetHeight * .35);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (reduce) { wB.classList.add('on'); curtain.classList.add('up'); aboutWords.forEach(w => w.classList.remove('dim')); }
+  requestAnimationFrame(tick);
+})();
+</script>

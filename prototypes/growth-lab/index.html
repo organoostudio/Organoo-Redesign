@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Organoo Growth Lab</title>
+<meta name="description" content="Organoo Studio — digital growth lab in Malang for UI/UX, websites, Google &amp; Meta Ads, graphic design and social media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Organoo Growth Lab — single deliberate look: sage paper + forest ink, emerald growth, marigold highlighter */
+:root{
+  color-scheme: light;
+  --paper:#E6EEE8; --paper-2:#DAE5DD; --card:#F3F7F4;
+  --forest:#0F2E20; --forest-2:#16402D; --forest-3:#1E5039;
+  --emerald:#2AA36B; --emerald-deep:#1F8A57; --leaf:#8FE0B5; --sun:#F2B33D; --sun-soft:#F8DB94;
+  --ink:#0E1F17;
+  /* role tokens (re-themed inside dark sections) */
+  --bg:var(--paper); --bg-2:var(--paper-2); --surface:var(--card); --surface-2:#EAF1EC;
+  --text:var(--ink); --soft:#2C4136; --muted:#53675C; --dim:#7C8E84;
+  --line:rgba(14,31,23,.12); --line-2:rgba(14,31,23,.24);
+  --accent:var(--emerald-deep); --accent-2:var(--emerald); --accent-ink:#06140D; --accent-soft:#0C3A24;
+  --hi:var(--sun);
+  --gutter:clamp(16px,5vw,96px);
+  --display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+.alt,.dark{
+  --bg:var(--forest); --bg-2:var(--forest); --surface:var(--forest-2); --surface-2:var(--forest-3);
+  --text:#EAF3ED; --soft:#CFE0D5; --muted:#9DB7A8; --dim:#6F8C7C;
+  --line:rgba(234,243,237,.12); --line-2:rgba(234,243,237,.24);
+  --accent:var(--leaf); --accent-soft:#0C3A24;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%;display:block}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--emerald);outline-offset:3px;border-radius:6px}
+h1,h2,h3{text-wrap:balance;margin:0;font-family:var(--display);font-variation-settings:"wdth" 88,"opsz" 96}
+p{margin:0}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+em.s{font-style:normal;color:inherit;background-image:linear-gradient(var(--hi),var(--hi));background-repeat:no-repeat;background-position:0 86%;background-size:0% 34%;transition:background-size 1.1s var(--ease) .25s;padding:0 .04em}
+em.s.lit{background-size:100% 34%}
+.alt em.s,.dark em.s{background:none;color:var(--sun)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.eyebrow{font-family:var(--mono);display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--sun);transform:rotate(45deg);flex-shrink:0}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 8px 0 24px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:700;font-size:15px;border:0;cursor:pointer;white-space:nowrap;overflow:hidden;isolation:isolate;transition:translate .3s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--emerald);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:none}
+.btn:hover{color:var(--accent-ink)}
+.btn .ico{width:38px;height:38px;border-radius:50%;background:var(--emerald);display:grid;place-items:center;transition:transform .4s var(--ease),background-color .3s}
+.btn .ico svg{stroke:var(--accent-ink)}
+.btn:hover .ico{transform:rotate(45deg);background:var(--sun)}
+.btn.green{background:var(--emerald);color:var(--accent-ink)}
+.btn.green::before{background:var(--sun)}
+.btn.green .ico{background:var(--accent-ink)}.btn.green .ico svg{stroke:#fff}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--text);padding:0 24px}
+.wrap{padding-inline:var(--gutter)}
+.sec{padding-block:clamp(80px,10vw,140px)}
+.alt{background:var(--forest);color:var(--text)}
+.h2{font-size:clamp(40px,5.4vw,76px);line-height:.95;letter-spacing:-.035em;font-weight:700}
+.lead{font-size:18px;line-height:1.6;color:var(--muted);max-width:560px}
+.row-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:56px}
+.row-head p{max-width:400px;color:var(--muted)}
+.more{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid currentColor;padding-bottom:2px}
+.more:hover{color:var(--accent)}
+.g2,.g3,.g4{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1000px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:681px){.g-uneq{grid-template-columns:5fr 4fr 3fr}.g-21{grid-template-columns:2fr 1fr}}
+@media (max-width:680px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:26px;transition:transform .4s var(--ease),box-shadow .4s var(--ease);will-change:transform}
+.card:hover{box-shadow:6px 6px 0 var(--text)}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid var(--line-2);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.ph{border:1.5px dashed var(--line-2);background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(14,31,23,.035) 12px 13px);border-radius:8px;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);font-size:12px;text-transform:uppercase;text-align:center;padding:16px}
+.num{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);letter-spacing:.04em}
+.rv{transition:transform 1s var(--ease),opacity 1s var(--ease),clip-path 1.1s var(--ease)}
+.js .rv:not(.in){transform:translateY(34px);opacity:.25}
+
+/* NAV */
+.nav{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:var(--gutter);right:var(--gutter);z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;pointer-events:none}
+.nav>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:10px;height:52px;padding:0 18px 0 8px;border-radius:999px;background:rgba(230,238,232,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,31,23,.14);font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink)}
+.brand img{width:36px;height:36px;border-radius:50%}
+.nav-links{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(230,238,232,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,31,23,.14)}
+.nav-links a{height:42px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px;font-weight:600;color:var(--ink);transition:background-color .25s}
+.nav-links a:hover{background:rgba(14,31,23,.07)}
+.nav-links a.on{background:var(--ink);color:var(--paper)}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav .btn{height:52px;font-size:14px;--text:var(--ink);--bg:var(--paper)}
+.burger{display:none;width:52px;height:52px;border-radius:50%;border:1px solid rgba(14,31,23,.14);background:rgba(230,238,232,.9);cursor:pointer;place-items:center}
+.menu{position:fixed;inset:0;z-index:55;background:var(--forest);color:#EAF3ED;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:100px var(--gutter) 40px;clip-path:circle(0% at calc(100% - 50px) 40px);transition:clip-path .6s var(--ease)}
+.menu a{font-family:var(--display);font-size:clamp(44px,12vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.menu a.on{color:var(--sun)}
+body.menu-open .menu{clip-path:circle(150% at calc(100% - 50px) 40px)}
+@media (max-width:1000px){.nav-links{display:none}.burger{display:grid}.nav .btn .lbl{display:none}.nav .btn{padding-left:8px}}
+
+/* CURSOR + WIPE + PROGRESS */
+.cur,.cur-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:95;border-radius:50%;translate:-50% -50%}
+.cur{width:8px;height:8px;background:var(--ink);mix-blend-mode:difference;background:#fff}
+.cur-ring{width:38px;height:38px;border:1.5px solid rgba(255,255,255,.9);mix-blend-mode:difference;display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),background-color .35s}
+.cur-ring span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#000;opacity:0;transition:opacity .2s}
+.cur-ring.big{width:92px;height:92px;background:#fff}
+.cur-ring.big span{opacity:1}
+.cur-ring.hov{width:58px;height:58px}
+@media (hover:none),(pointer:coarse){.cur,.cur-ring{display:none}}
+.wipe{position:fixed;inset:0;z-index:80;background:var(--emerald);transform:translateY(101%);pointer-events:none;display:grid;place-items:center}
+.wipe svg{width:90px;height:90px}
+.wipe.cover{transition:transform .5s cubic-bezier(.7,0,.3,1);transform:none}
+.wipe.leave{transition:transform .55s cubic-bezier(.7,0,.3,1);transform:translateY(-101%)}
+.vine{position:fixed;right:12px;top:18vh;bottom:18vh;width:2px;background:rgba(14,31,23,.12);z-index:50;border-radius:2px;mix-blend-mode:multiply}
+.vine i{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--emerald);transform-origin:top;transform:scaleY(0);border-radius:2px}
+.vine b{position:absolute;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:12px 0 12px 0;background:var(--emerald);top:0;transform:rotate(-45deg)}
+@media (max-width:760px){.vine{display:none}}
+
+main{position:relative;min-height:100vh}
+
+/* PAGE HERO (inner pages) */
+.phero{position:relative;overflow:hidden;padding:calc(110px + clamp(40px,6vw,90px)) var(--gutter) clamp(48px,6vw,80px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:40px;border-bottom:1px solid var(--line-2)}
+.glow-bg{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(42,163,107,.22),transparent 64%);right:-200px;top:-280px;width:820px;height:820px}
+.phero h1{font-size:clamp(56px,8.4vw,132px);line-height:.9;letter-spacing:-.045em;font-weight:700}
+.phero .l{position:relative;display:flex;flex-direction:column;gap:26px;max-width:900px}
+.phero .r{position:relative;max-width:420px}
+.crumb{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;display:flex;flex-wrap:wrap;align-items:center;gap:10px;color:var(--muted)}
+.crumb a:hover{color:var(--text)}
+.crumb b{color:var(--accent);font-weight:500}
+.meta{display:flex;flex-direction:column;width:min(420px,100%);font-size:14px}
+.meta div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--line-2)}
+.meta div:last-child{border-bottom:1px solid var(--line-2)}
+.meta span{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+.meta b{font-weight:600;text-align:right}
+.intro-anim>*{animation:riseIn 1s var(--ease) both}
+.intro-anim>*:nth-child(2){animation-delay:.1s}.intro-anim>*:nth-child(3){animation-delay:.2s}.intro-anim>*:nth-child(4){animation-delay:.3s}
+@keyframes riseIn{from{opacity:0;transform:translateY(34px)}}
+
+/* WORK CARDS */
+.wcard{display:flex;flex-direction:column;gap:14px;transition:transform .4s var(--ease)}
+.wcard .img{position:relative;aspect-ratio:1.35;border-radius:8px;overflow:hidden;background:#000;border:1px solid var(--line-2)}
+.wcard.rv .img{transition:clip-path 1.2s var(--ease)}
+.js .wcard.rv:not(.in) .img{clip-path:inset(18% 0 0 0 round 8px)}
+.wcard .img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s}
+.wcard:hover .img img{transform:scale(1.06)}
+.wcard .tag{position:absolute;top:12px;left:12px;height:28px;padding:0 10px;border-radius:4px;background:var(--sun);color:var(--ink);display:flex;align-items:center;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.wcard .foot{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-top:4px}
+.wcard .foot b{display:block;font-family:var(--display);font-size:24px;line-height:1.1;letter-spacing:-.02em}
+.wcard .foot small{font-size:14px;color:var(--muted)}
+.arrow{width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--ink);display:grid;place-items:center;transition:transform .35s var(--ease),background-color .25s}
+.alt .arrow{background:var(--forest-3)}
+.wcard:hover .arrow,.next:hover .arrow{transform:rotate(45deg);background:var(--emerald)}
+.wcard .ph{width:100%;height:100%;border-radius:0;border:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px}
+.filters button{height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--text);background:transparent;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background-color .25s,color .25s}
+.filters button span{font-family:var(--mono);font-size:11px;opacity:.6}
+.filters button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+
+/* SERVICE PAGE */
+.svc-hero{min-height:680px;align-items:center}
+.svc-hero .r{max-width:520px;width:100%}
+.svc-vis{position:relative;width:min(500px,100%);height:460px}
+.svc-vis .a,.svc-vis .b{position:absolute;overflow:hidden;box-shadow:10px 10px 0 var(--ink)}
+.svc-vis .a{right:0;top:0;width:86%;aspect-ratio:1.4;transform:rotate(4deg);border-radius:200px 200px 8px 8px;border:1.5px solid var(--ink)}
+.svc-vis .b{left:0;bottom:0;width:80%;aspect-ratio:1.4;transform:rotate(-3deg);border-radius:8px;border:1.5px solid var(--ink)}
+.svc-vis img{width:100%;height:100%;object-fit:cover}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.floaty{animation:floaty 7s ease-in-out infinite}.floaty.f2{animation-duration:9s;animation-delay:-3s}
+.tile{border-radius:8px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:8px 8px 0 var(--ink)}
+@media (max-width:760px){.svc-vis{height:360px}}
+.deliv{min-height:220px;display:flex;flex-direction:column}
+.deliv .n{width:auto;align-self:flex-start;font-family:var(--mono);font-size:12px;color:var(--accent);background:none}
+.deliv .n::before{content:"No. "}
+.deliv b{margin-top:auto;padding-top:28px;font-family:var(--display);font-size:24px;line-height:1.1;letter-spacing:-.02em}
+.deliv p{margin-top:8px;font-size:14px;color:var(--muted)}
+.step{border-top:1.5px solid var(--line-2);padding-top:22px;display:flex;flex-direction:column;gap:10px;position:relative}
+.step::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text)}
+.step:first-child::before{background:var(--emerald);border-color:var(--emerald)}
+.step span{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.step b{font-family:var(--display);font-size:24px;letter-spacing:-.02em}
+.step p{font-size:14px;color:var(--muted)}
+.plan{display:flex;flex-direction:column;padding:32px;border-radius:8px;background:var(--surface);border:1.5px solid var(--text);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.plan:hover{box-shadow:8px 8px 0 var(--text)}
+.plan.hot{background:var(--sun);color:var(--ink);--muted:#4B4222;--line:rgba(14,31,23,.2)}
+.plan .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.plan .top b{font-family:var(--display);font-size:24px}
+.plan .badge{height:26px;padding:0 10px;border-radius:4px;background:var(--ink);color:var(--sun);display:flex;align-items:center;font-family:var(--mono);font-size:11px;text-transform:uppercase}
+.plan .desc{margin-top:8px;font-size:14px;color:var(--muted)}
+.plan .from{margin-top:26px;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted)}
+.plan .price{font-family:var(--display);font-size:46px;font-weight:700;letter-spacing:-.04em}
+.plan .price small{font-size:16px;font-weight:600;letter-spacing:0}
+.plan ul{list-style:none;margin:24px 0 32px;padding:22px 0 0;border-top:1px dashed var(--line-2);display:flex;flex-direction:column;gap:12px;font-size:14px}
+.plan li{display:flex;gap:10px}
+.plan li svg{flex-shrink:0;margin-top:2px;stroke:var(--emerald-deep)}
+.plan.hot li svg{stroke:var(--ink)}
+.plan .btn{margin-top:auto;justify-content:center;padding:0 24px}
+.plan.hot .btn{--text:var(--ink);--bg:var(--sun)}
+.faqwrap{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:clamp(32px,6vw,80px)}
+@media (max-width:860px){.faqwrap{grid-template-columns:1fr}}
+details{border-top:1px solid var(--line-2)}
+details:last-child{border-bottom:1px solid var(--line-2)}
+summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary i{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;font-style:normal;font-size:20px;transition:transform .4s var(--ease)}
+details[open] summary i{transform:rotate(135deg)}
+details p{padding:0 60px 24px 0;color:var(--muted);font-size:16px;line-height:1.7}
+
+/* SERVICES OVERVIEW */
+.svc-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:40px;padding:28px;border-radius:8px;background:var(--surface);border:1.5px solid var(--text);transition:box-shadow .4s var(--ease),transform .4s var(--ease)}
+.svc-card:hover{box-shadow:10px 10px 0 var(--text)}
+.svc-card .txt{display:flex;flex-direction:column;gap:12px}
+.svc-card .txt b{margin-top:auto;font-family:var(--display);font-size:clamp(36px,4vw,56px);line-height:.95;letter-spacing:-.04em}
+.svc-card .txt p{color:var(--muted);max-width:480px}
+.svc-card .pic{position:relative;border-radius:240px 240px 8px 8px;overflow:hidden;aspect-ratio:1.3;background:#000;border:1.5px solid var(--text)}
+.svc-card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.svc-card:hover .pic img{transform:scale(1.05)}
+.svc-card .pic .arrow{position:absolute;right:14px;bottom:14px}
+@media (max-width:900px){.svc-card{grid-template-columns:1fr;padding:20px}}
+
+/* PROJECT PAGE */
+.cover{border-radius:8px;overflow:hidden;background:#000;border:1.5px solid var(--ink);aspect-ratio:16/9}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover.light{background:#F2F2F2;display:grid;place-items:center}
+.cover.light img{width:auto;height:72%;object-fit:contain;border-radius:8px}
+.ov{border-top:1.5px solid var(--text);padding-top:22px;display:flex;flex-direction:column;gap:14px}
+.ov span{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--accent)}
+.ov p{font-size:17px;line-height:1.7;color:var(--soft)}
+.metric{min-height:200px;border-radius:8px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;background:var(--surface);border:1.5px solid var(--text)}
+.metric span{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+.metric b{font-family:var(--display);font-size:clamp(44px,4.8vw,68px);line-height:.95;letter-spacing:-.045em}
+.metric.hl{background:var(--sun);color:var(--ink);border-color:var(--ink)}
+.metric.hl span,.metric.hl p{color:#4B4222!important}
+.story-row{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:clamp(24px,5vw,80px);padding:44px 0;border-top:1px solid var(--line-2)}
+.story-row:last-child{border-bottom:1px solid var(--line-2)}
+.story-row h3{font-size:36px;letter-spacing:-.03em;display:flex;gap:16px;align-items:baseline}
+.story-row h3 span{font-family:var(--mono);font-size:12px;color:var(--sun)}
+.story-row>p{font-size:20px;line-height:1.6;color:var(--soft)}
+@media (max-width:760px){.story-row{grid-template-columns:1fr}}
+.panel{border-radius:8px;background:var(--surface);border:1.5px solid var(--text);padding:clamp(20px,3vw,36px)}
+.panel-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-bottom:24px}
+.panel-head b{font-family:var(--display);font-size:22px}
+.panel-head span{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+.shotbox{border-radius:6px;overflow:hidden;background:#fff;border:1px solid var(--line-2)}
+.shotbox img{width:100%}
+.period{padding:22px;border-radius:6px;background:var(--bg);border:1px solid var(--line-2);display:flex;flex-direction:column;gap:18px}
+.period .g4 b{display:block;font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums}
+.period .g4 small{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted)}
+.quote{text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px}
+.quote svg{fill:var(--sun)!important}
+.quote svg path{fill:var(--sun)}
+.quote p{max-width:900px;font-family:var(--display);font-size:clamp(26px,2.8vw,38px);line-height:1.25;letter-spacing:-.02em}
+.quote small{color:var(--muted);font-size:14px}
+.next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:32px;align-items:center;padding:36px;border-radius:8px;background:var(--surface);border:1.5px solid var(--text);transition:box-shadow .4s var(--ease)}
+.next:hover{box-shadow:10px 10px 0 var(--text)}
+.next .l{display:flex;flex-direction:column;gap:40px}
+.next .l span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.next .l b{font-family:var(--display);font-size:clamp(34px,4vw,56px);line-height:.95;letter-spacing:-.04em}
+.next .l small{display:block;margin-top:10px;font-size:15px;color:var(--muted)}
+.next .pic{aspect-ratio:1.8;border-radius:200px 200px 8px 8px;overflow:hidden;background:#000;border:1.5px solid var(--text)}
+.next .pic img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.next{grid-template-columns:1fr;padding:22px}}
+.swatch{display:flex;flex-direction:column;gap:10px}
+.swatch i{display:block;height:170px;border-radius:8px;border:1px solid var(--line-2)}
+.swatch b{font-size:15px}
+.swatch small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;overflow-x:auto}
+.cal div{display:flex;flex-direction:column;gap:8px;min-width:90px}
+.cal span{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.cal i{font-style:normal;padding:12px;border-radius:6px;font-size:13px;font-weight:600;background:var(--surface-2);color:var(--text)}
+.cal i.r{background:var(--emerald);color:var(--ink)}
+.cal i.c{background:var(--sun);color:var(--ink)}
+
+/* BLOG */
+.post{display:flex;flex-direction:column;gap:0;border-radius:8px;background:var(--surface);border:1.5px solid var(--text);overflow:hidden;transition:box-shadow .4s var(--ease),transform .4s var(--ease)}
+.post:hover{box-shadow:8px 8px 0 var(--text)}
+.post .cv{position:relative;aspect-ratio:1.7;overflow:hidden;background:var(--forest);color:#EAF3ED;display:grid;place-items:center;border-bottom:1.5px solid var(--text)}
+.post .cv::before{content:"";position:absolute;inset:0;background:var(--g);transition:transform .8s var(--ease)}
+.post:hover .cv::before{transform:scale(1.1)}
+.post .cv span{position:relative;font-family:var(--display);font-weight:700;letter-spacing:-.04em;font-size:clamp(34px,3.6vw,52px);text-align:center;line-height:.95}
+.post .tx{padding:22px;display:flex;flex-direction:column;gap:10px;flex-grow:1}
+.post .tx span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent)}
+.post .tx b{font-family:var(--display);font-size:23px;line-height:1.15;letter-spacing:-.02em}
+.post .tx small{margin-top:auto;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted)}
+.post.feat{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.post.feat .cv{aspect-ratio:auto;min-height:440px;border-bottom:0;border-right:1.5px solid var(--text)}
+.post.feat .tx{padding:32px;justify-content:flex-end}
+.post.feat .tx b{font-size:clamp(30px,3.2vw,46px);line-height:1.02}
+@media (max-width:860px){.post.feat{grid-template-columns:1fr}.post.feat .cv{min-height:260px;border-right:0;border-bottom:1.5px solid var(--text)}}
+.article{display:grid;grid-template-columns:260px minmax(0,760px);gap:clamp(32px,6vw,100px);justify-content:center}
+.toc{position:sticky;top:120px;align-self:start;display:flex;flex-direction:column;gap:14px;padding-left:18px;border-left:1.5px solid var(--text);font-size:14px}
+.toc span{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.toc a{color:var(--muted)}.toc a:hover{color:var(--accent)}
+@media (max-width:980px){.article{grid-template-columns:1fr}.toc{display:none}}
+.prose p{margin:0 0 22px;font-size:18px;line-height:1.8;color:var(--soft)}
+.prose h2{margin:56px 0 18px;font-size:36px;line-height:1.05;letter-spacing:-.03em;scroll-margin-top:110px}
+.prose ul{margin:0 0 22px;padding-left:22px}
+.prose li{margin-bottom:10px;font-size:18px;line-height:1.7;color:var(--soft)}
+.prose li::marker{color:var(--emerald-deep)}
+.prose strong{background:linear-gradient(transparent 60%,var(--sun-soft) 60%)}
+.tbl{margin:0 0 22px;border-radius:6px;overflow:hidden;border:1.5px solid var(--text);font-size:15px}
+.tbl div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.tbl div:first-child{border-top:0;background:var(--ink);color:var(--paper);font-weight:700}
+.tbl div:first-child span{color:var(--paper)}
+.tbl span{padding:14px 18px;color:var(--soft)}
+.tbl span:first-child{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+.callout{margin:40px 0;padding:28px 30px;border-radius:8px;background:var(--sun);color:var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.callout span{font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+.callout p{margin:10px 0 0!important;color:var(--ink)!important}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:clamp(32px,6vw,80px)}
+@media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
+.clist a,.clist div{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid var(--line-2)}
+.clist>*:last-child{border-bottom:1px solid var(--line-2)}
+.clist small{display:block;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.clist b{font-size:18px;font-weight:600;user-select:all}
+.form{padding:clamp(24px,3.5vw,44px);border-radius:8px;background:var(--surface);border:1.5px solid var(--text);box-shadow:10px 10px 0 var(--text);display:flex;flex-direction:column;gap:26px}
+.form h2{font-size:32px;letter-spacing:-.03em}
+.field{display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.field input,.field textarea{height:52px;padding:0 16px;border-radius:6px;background:var(--bg);border:1.5px solid var(--line-2);color:var(--text);font-family:var(--body);font-size:15px;text-transform:none;letter-spacing:0;transition:border-color .2s,box-shadow .2s}
+.field textarea{height:auto;padding:14px 16px;line-height:1.6;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--text);box-shadow:4px 4px 0 var(--emerald);outline:none}
+.field.bad input{border-color:#C0482F}
+.err{font-family:var(--body);font-size:12px;color:#B23E27;font-weight:600;text-transform:none;letter-spacing:0}
+fieldset{margin:0;padding:0;border:0}
+legend{padding:0;margin-bottom:12px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.pick button{height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--text);background:transparent;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s}
+.pick button[aria-pressed="true"]{background:var(--emerald);border-color:var(--emerald);color:var(--ink)}
+.sent{padding:28px;border-radius:8px;background:var(--sun);color:var(--ink);display:flex;flex-direction:column;gap:10px}
+.sent b{font-family:var(--display);font-size:28px}
+.sent p{color:var(--ink)!important}
+
+/* ============ HOME (Growth Lab) ============ */
+.hx{position:relative;min-height:100svh;padding:120px var(--gutter) 40px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden}
+.hx-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);border-bottom:1px solid var(--line-2);padding-bottom:14px}
+.hx-title{font-size:clamp(46px,11vw,190px);line-height:.84;letter-spacing:-.05em;font-weight:700;display:flex;flex-direction:column;position:relative;z-index:2}
+.hx-title .ln{display:flex;align-items:center;gap:.12em;flex-wrap:nowrap;white-space:nowrap}
+.hx-title .ln:nth-child(2){justify-content:flex-end}
+.px span{display:inline-block;transition:font-variation-settings .25s linear}
+.pill-vid{display:inline-block;width:.1em;height:.72em;border-radius:999px;overflow:hidden;background:var(--forest);border:.02em solid var(--ink);vertical-align:middle;animation:pillOpen 1.3s var(--ease) .5s forwards}
+.pill-vid video{width:100%;height:100%;object-fit:cover}
+@keyframes pillOpen{to{width:1.9em}}
+.hx-title .dot{color:var(--emerald)}
+.hx-tag{font-family:var(--mono);font-size:13px;letter-spacing:.04em;line-height:1.5;text-transform:uppercase;align-self:flex-end;margin-bottom:.4em;color:var(--muted);white-space:normal;max-width:220px;margin-right:.6em}
+.hx-bottom{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px;position:relative;z-index:2}
+.hx-bottom p{max-width:460px;font-size:19px;line-height:1.55;color:var(--soft)}
+.hx-bottom .acts{display:flex;flex-wrap:wrap;gap:12px}
+.badge-rot{position:absolute;left:var(--gutter);top:54%;width:150px;height:150px;z-index:3}
+.badge-rot svg{width:100%;height:100%}
+.badge-rot text{font-family:var(--mono);font-size:10.4px;letter-spacing:.18em;fill:var(--ink);text-transform:uppercase}
+.seed{position:absolute;border-radius:50%;z-index:1;will-change:transform;pointer-events:none}
+@media (max-width:760px){.hx-title .ln{flex-wrap:wrap}.badge-rot{display:none}.hx-title .ln:nth-child(2){justify-content:flex-start}.hx-tag{display:none}}
+
+.window{height:230vh;position:relative}
+.window .pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.win{position:absolute;inset:0;background:var(--forest);will-change:clip-path;clip-path:inset(22vh 33vw round 999px 999px 8px 8px)}
+.win video{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.win::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,46,32,.2),rgba(15,46,32,.55))}
+.win-label{position:absolute;z-index:3;color:#EAF3ED;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;transition:opacity .4s}
+.win-big{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:3;text-align:center;color:#EAF3ED;font-family:var(--display);font-weight:700;font-size:clamp(44px,8vw,128px);line-height:.9;letter-spacing:-.045em;padding-inline:var(--gutter);will-change:transform,opacity}
+.win-big em{font-style:normal;color:var(--sun)}
+
+.vm{padding-block:34px;overflow:hidden;border-block:1.5px solid var(--ink);background:var(--paper);display:flex;flex-direction:column;gap:10px}
+.vm-row{display:flex;width:max-content;gap:48px;white-space:nowrap;font-family:var(--display);font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-.03em;will-change:transform}
+.vm-row span{display:inline-flex;align-items:center;gap:48px}
+.vm-row span::after{content:"";width:.36em;height:.36em;background:var(--emerald);border-radius:.36em 0 .36em 0;transform:rotate(-45deg)}
+.vm-row.b{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.vm-row.b span::after{background:var(--sun)}
+
+.about-b{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:center}
+.about-b p.big{font-family:var(--display);font-size:clamp(28px,3.4vw,50px);line-height:1.08;letter-spacing:-.03em;font-weight:600}
+.about-b .w{transition:opacity .35s,color .35s}
+.about-b .w.dim{opacity:.25}
+.about-b mark{background:none;color:var(--sun)}
+.arch{position:relative;aspect-ratio:.78;border-radius:999px 999px 10px 10px;overflow:hidden;border:1.5px solid rgba(234,243,237,.4)}
+.arch img{width:100%;height:120%;object-fit:cover;will-change:transform}
+@media (max-width:860px){.about-b{grid-template-columns:1fr}.arch{max-width:420px}}
+
+.curve-wrap{position:relative;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding-block:40px}
+.curve{width:100%;height:auto;overflow:visible}
+.curve .grid line{stroke:rgba(14,31,23,.12);stroke-dasharray:3 6}
+.curve .path{fill:none;stroke:var(--emerald-deep);stroke-width:3;stroke-linecap:round}
+.curve .area{fill:url(#cg);opacity:.5}
+.pt{position:absolute;display:flex;flex-direction:column;gap:6px;transform:translate(-50%,-100%);opacity:0;transition:opacity .5s,translate .5s var(--ease);translate:0 12px;pointer-events:none}
+.pt.on{opacity:1;translate:0 0}
+.pt b{font-family:var(--display);font-size:clamp(36px,4.8vw,72px);line-height:.9;letter-spacing:-.04em;white-space:nowrap}
+.pt small{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.pt i{display:block;width:14px;height:14px;border-radius:50%;background:var(--sun);border:2px solid var(--ink);margin:4px auto 0}
+@media (max-width:760px){.pt b{font-size:30px}.pt small{display:none}}
+
+.stack{position:relative}
+.scard{position:sticky;top:calc(96px + var(--i) * 26px);min-height:min(78vh,640px);border-radius:10px;border:1.5px solid var(--ink);padding:clamp(22px,3.4vw,44px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);margin-bottom:32px;transform-origin:50% 0;will-change:transform;box-shadow:0 -10px 40px rgba(14,31,23,.12)}
+.scard .t{display:flex;flex-direction:column;gap:16px}
+.scard .t .mono{opacity:.75}
+.scard h3{font-size:clamp(44px,6vw,96px);line-height:.88;letter-spacing:-.045em;margin-top:auto}
+.scard p{font-size:18px;max-width:460px;opacity:.85}
+.scard .chip{border-color:currentColor;color:inherit}
+.scard .pic{border-radius:999px 999px 8px 8px;overflow:hidden;border:1.5px solid var(--ink);background:#000;align-self:stretch;min-height:280px}
+.scard .pic img{width:100%;height:100%;object-fit:cover}
+.scard .go{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;text-transform:uppercase;border-bottom:1.5px solid currentColor;padding-bottom:3px}
+@media (max-width:860px){.scard{grid-template-columns:1fr}.scard .pic{min-height:220px;max-height:260px}}
+
+.hscroll .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:34px}
+.htrack{display:flex;gap:28px;padding-inline:var(--gutter);width:max-content;will-change:transform}
+.hcard{width:clamp(300px,34vw,520px);flex-shrink:0;display:flex;flex-direction:column;gap:14px}
+.hcard .img{aspect-ratio:1.2;border-radius:8px;overflow:hidden;border:1.5px solid var(--text);background:#000}
+.hcard:nth-child(3n+2) .img{border-radius:999px 999px 8px 8px}
+.hcard .img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.hcard:hover .img img{transform:scale(1.06)}
+.hcard .mono{color:var(--muted)}
+.hcard b{font-family:var(--display);font-size:28px;letter-spacing:-.02em;line-height:1.05}
+.hhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding-inline:var(--gutter);flex-wrap:wrap}
+.hprog{height:2px;background:var(--line-2);margin-inline:var(--gutter);position:relative}
+.hprog i{position:absolute;inset:0;background:var(--sun);transform-origin:left;transform:scaleX(0)}
+@media (max-width:760px){.hscroll{height:auto!important}.hscroll .pin{position:relative;height:auto;padding-block:80px}.htrack{overflow-x:auto;width:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.hcard{scroll-snap-align:start;width:78vw}}
+
+.grow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,90px);align-items:start}
+.grow .pin2{position:sticky;top:120px}
+.plant{width:100%;max-width:420px;height:auto;overflow:visible}
+.plant .stem{fill:none;stroke:var(--emerald-deep);stroke-width:6;stroke-linecap:round}
+.plant .lf{transform-box:fill-box;transform-origin:0% 100%;transition:transform .8s var(--ease);transform:scale(0)}
+.plant .lf.on{transform:scale(1)}
+.plant .seedc{transition:fill .5s}
+.gsteps{display:flex;flex-direction:column}
+.gstep{padding:48px 0;border-top:1px solid var(--line-2);display:flex;gap:24px;opacity:.35;transition:opacity .5s}
+.gstep.on{opacity:1}
+.gstep .k{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:10px;min-width:64px}
+.gstep b{display:block;font-family:var(--display);font-size:clamp(34px,3.6vw,52px);letter-spacing:-.035em;line-height:1}
+.gstep p{margin-top:12px;font-size:17px;color:var(--muted);max-width:440px}
+@media (max-width:860px){.grow{grid-template-columns:1fr}.grow .pin2{position:relative;top:0;max-width:260px}}
+
+.report{position:relative;border:1.5px solid var(--ink);border-radius:8px;background:var(--card);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .4s var(--ease)}
+.report:hover{box-shadow:10px 10px 0 var(--ink)}
+.report .rh{display:flex;justify-content:space-between;gap:10px;padding:14px 20px;border-bottom:1.5px solid var(--ink);background:var(--ink);color:var(--paper)}
+.report .rb{padding:26px 22px;display:flex;flex-direction:column;gap:18px;flex-grow:1}
+.report .big{font-family:var(--display);font-size:clamp(72px,9vw,140px);line-height:.85;letter-spacing:-.055em;font-weight:700}
+.report .big small{font-size:.22em;letter-spacing:0;font-weight:600;margin-left:.2em;color:var(--muted)}
+.report .mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px dashed var(--line-2)}
+.report .mini div{padding:14px 12px 0 0}
+.report .mini strong{display:block;font-family:var(--display);font-size:24px}
+.report .mini em{font-style:normal;font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--muted)}
+.report .shot{height:120px;overflow:hidden;border-top:1.5px solid var(--ink);background:#fff}
+.report .shot img{width:100%;opacity:.9}
+
+.ctab{position:relative;overflow:hidden;background:var(--forest);color:#EAF3ED;padding:clamp(100px,12vw,170px) var(--gutter);--mx:50%;--my:50%}
+.ctab::before{content:"";position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx) var(--my),rgba(42,163,107,.45),transparent 60%);pointer-events:none}
+.ctab h2{position:relative;font-size:clamp(60px,11vw,190px);line-height:.84;letter-spacing:-.055em}
+.ctab h2 em{font-style:normal;color:var(--sun)}
+.ctab .row{position:relative;margin-top:48px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.ctab p{max-width:440px;color:#B9D0C2;font-size:18px}
+.orb{position:relative;width:190px;height:190px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:700;font-size:20px;line-height:1.05;letter-spacing:-.01em;transition:background-color .3s,transform .3s var(--ease);will-change:transform}
+.orb:hover{background:var(--emerald)}
+.ctab .contact{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:#B9D0C2;display:flex;flex-direction:column;gap:6px;user-select:all}
+
+.footb{background:var(--paper-2);border-top:1.5px solid var(--ink);padding:clamp(60px,7vw,90px) var(--gutter) 0;overflow:hidden}
+.footb .cols{display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px}
+.footb .cols p{max-width:320px;color:var(--muted);margin-top:14px}
+.footb .links{display:flex;flex-wrap:wrap;gap:clamp(32px,6vw,90px)}
+.footb .links div{display:flex;flex-direction:column;gap:10px;font-size:15px}
+.footb .links span{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.footb .links a:hover{color:var(--emerald-deep)}
+.footb .legal{margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted)}
+.wm{margin-top:30px;display:flex;justify-content:center;font-family:var(--display);font-weight:800;font-size:clamp(80px,21vw,330px);line-height:.8;letter-spacing:-.065em;font-variation-settings:"wdth" 80;margin-bottom:-.06em;user-select:none}
+.wm span{display:inline-block;transition:transform .6s var(--ease),color .3s;transform:translateY(0)}
+.wm span:hover{transform:translateY(-.14em) rotate(-4deg);color:var(--emerald)}
+.wm.pre span{transform:translateY(90%)}
+.wm .o2{color:var(--emerald)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .pill-vid{width:1.9em}
+  .js .rv:not(.in){transform:none;opacity:1}
+  .js .wcard.rv:not(.in) .img{clip-path:none}
+  .window{height:auto}.window .pin{position:relative}
+  .wm.pre span{transform:none}
+}
+</style>
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"><span id="curLabel">View</span></div>
+<div class="wipe" id="wipe" aria-hidden="true"><svg viewBox="0 0 200 200"><path d="M131 66.3 A50 50 0 1 0 102.9 143.3" fill="none" stroke="#0E1F17" stroke-width="34" stroke-linecap="round"/><path d="M18 0 H82 Q100 0 100 18 Q100 36 82 36 H52 V82 Q52 100 34 100 H18 Q0 100 0 82 V18 Q0 0 18 0 Z" transform="translate(122 118) scale(.46)" fill="#F2B33D"/></svg></div>
+<div class="vine" aria-hidden="true"><i id="vineFill"></i><b id="vineLeaf"></b></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#home" aria-label="Organoo Studio home"><img src="img/logo.png" alt="" width="36" height="36">organoo</a>
+  <nav class="nav-links" aria-label="Main"><a href="#about" data-nav="about">About</a><a href="#services" data-nav="services">Services</a><a href="#work" data-nav="work">Work</a><a href="#blog" data-nav="blog">Blog</a><a href="#contact" data-nav="contact">Contact</a></nav>
+  <div class="nav-right">
+    <a class="btn" href="#contact"><span class="lbl">Start a project</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E1F17" stroke-width="2" stroke-linecap="round"><path d="M4 8h16"/><path d="M4 16h10"/></svg></button>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="Mobile"><a href="#home" data-nav="home">Home</a><a href="#about" data-nav="about">About</a><a href="#services" data-nav="services">Services</a><a href="#work" data-nav="work">Work</a><a href="#blog" data-nav="blog">Blog</a><a href="#contact" data-nav="contact">Contact</a></nav>
+
+<main id="app"></main>
+
+<footer class="footb">
+  <div class="cols">
+    <div><a class="brand" href="#home" style="display:inline-flex"><img src="img/logo.png" alt="" width="36" height="36">organoo</a><p>A digital growth lab in Malang. Websites, product design and campaigns that make brands grow.</p></div>
+    <div class="links">
+      <div><span>STUDIO</span><a href="#about">About</a><a href="#work">Work</a><a href="#blog">Blog</a><a href="#contact">Contact</a></div>
+      <div><span>SERVICES</span><a href="#service-uiux">UI/UX Design</a><a href="#service-web">Websites</a><a href="#service-ads">Google &amp; Meta Ads</a><a href="#service-graphic">Graphic Design</a><a href="#service-social">Social Media</a></div>
+      <div><span>ELSEWHERE</span><a href="https://www.instagram.com/organoo.studio/">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio">LinkedIn ↗</a></div>
+    </div>
+  </div>
+  <div class="legal"><span>© 2026 Organoo Studio</span><span>Malang, East Java — 7.98° S, 112.63° E</span><span>Grown, not generated</span></div>
+  <div class="wm pre" id="wm" aria-label="organoo"><span>o</span><span>r</span><span>g</span><span>a</span><span>n</span><span>o</span><span class="o2">o</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const small = matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  /* ---------- icons ---------- */
+  const UR = (c = '#fff', s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>`;
+  const RT = (c = '#fff') => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>`;
+  const CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>';
+  const QUOTE = '<svg width="40" height="40" viewBox="0 0 24 24" fill="#2AA36B" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7.2c.2-1.8 1.4-3 3.3-3V6h-1zm9 0c-3 0-5.5 2.5-5.5 5.5V18h6v-6h-2.8c.2-1.8 1.4-3 3.3-3V6h-1z"/></svg>';
+  const btn = (label, href, cls = '') => `<a class="btn ${cls}" href="${href}"><span>${label}</span><span class="ico">${UR(cls.includes('green') ? '#fff' : '#04140C', 15)}</span></a>`;
+  const I = n => 'img/' + n;
+
+  /* ---------- content ---------- */
+  const SERVICES = [
+    { slug: 'uiux', n: '01', name: 'UI/UX Design', short: 'Intuitive interfaces for mobile apps, websites and dashboards that keep users coming back.',
+      chips: ['Mobile & web UI', 'Dashboards', 'Design system', 'Prototype'], pic: 'uiux.webp', picBg: '#EDEDED',
+      h1: 'Interfaces people<br><em class="s">love</em> to use', lead: 'Intuitive, user-friendly design for mobile apps, websites and dashboards — so users stay longer and get things done faster.', cta: 'Start a design project',
+      vis: { type: 'pair', a: ['banksampah.webp', '#F2F2F2'], b: ['pelni.webp', '#F2F2F2'] },
+      delivTitle: 'What we <em class="s">design</em>', delivNote: 'From the first sitemap to a clickable prototype your developers can build from.',
+      deliv: [['Mobile app UI', 'iOS and Android screens designed around real user tasks.'], ['Website UI', 'Marketing sites and web pages that guide visitors to act.'], ['Dashboard & web app', 'Data-heavy tools made clear, fast and easy to learn.'], ['Information architecture', 'Sitemaps and user flows that make navigation obvious.'], ['Design system', 'Reusable components and styles that keep products consistent.'], ['Interactive prototype', 'Clickable flows to test with users before any code.']],
+      steps: [['Research', 'We learn your users, their tasks and where they get stuck today.'], ['Wireframe', 'Low-fidelity layouts and flows to agree on structure fast.'], ['UI design', 'Polished, on-brand screens for every state and device.'], ['Prototype & handoff', 'A clickable prototype plus specs your developers can build from.']],
+      projects: ['pelni', 'bank-sampah'], projTitle: 'Recent <em class="s">designs</em>', priceNote: 'Clear starting prices. Final quote depends on the number of screens and flows.', per: '',
+      plans: [['Starter', 'For a landing page or a single user flow.', 'Rp [price]', ['Up to [N] screens', 'Wireframe + UI design', 'Mobile & desktop layouts', '[N] revision rounds', 'Design files handoff']], ['Product', 'For a full app or dashboard.', 'Rp [price]', ['Up to [N] screens', 'User flows & sitemap', 'Clickable prototype', 'Component library', 'Developer handoff & specs'], true], ['Design System', 'For teams scaling a product.', 'Rp [price]', ['UI audit of your product', 'Tokens: color, type, spacing', 'Documented component library', 'Usage guidelines', 'Team onboarding session']]],
+      faqs: [['What do I receive at the end?', 'Organized design files for every screen, a clickable prototype and handoff specs for your developers.'], ['Can you also build what you design?', 'For websites and web apps, our development team can take it from design to launch. For native apps we hand off to your developers.'], ['How many revisions are included?', 'Each package includes set revision rounds per stage, so feedback stays focused and the timeline stays on track.'], ['Can you redesign our existing app?', 'Yes. We start with a UX audit of your current product, then prioritize the changes with the biggest impact.']],
+      ctaWords: ["Let's design", 'something', 'intuitive.'] },
+    { slug: 'web', n: '02', name: 'Website Development', short: 'Fast, SEO-ready websites — from a single landing page to full e-commerce.',
+      chips: ['Landing page', 'Company profile', 'E-commerce', 'SEO setup'], pic: 'sanis.webp', picBg: '#000',
+      h1: 'Websites that<br><em class="s">work</em> as hard<br>as you do', lead: 'Fast, SEO-ready websites built to turn visitors into enquiries — from a single landing page to a full online store.', cta: 'Start your website',
+      vis: { type: 'pair', a: ['srengenge.webp', '#000'], b: ['sanis.webp', '#000'] },
+      delivTitle: 'What we <em class="s">build</em>', delivNote: 'Every site is mobile-first, fast-loading and set up for Google from day one.',
+      deliv: [['Landing page', 'One focused page built to convert ad traffic into leads.'], ['Company profile', 'A credible multi-page home for your business and services.'], ['E-commerce', 'An online store with catalog, cart and payment integration.'], ['Portfolio & personal', 'Showcase your work with a clean, fast personal site.'], ['Wedding & event', 'Invitations, RSVPs and event details in one beautiful page.'], ['SEO & maintenance', 'On-page SEO, speed tuning, updates and backups after launch.']],
+      steps: [['Brief & sitemap', 'We map your goals, audience and every page the site needs.'], ['Design', 'High-fidelity designs for desktop and mobile, reviewed with you.'], ['Development', 'Clean, fast code with an easy editor for your team.'], ['Launch & SEO', 'Domain, analytics and Google setup — then we keep improving.']],
+      projects: ['sanis', 'pintara'], projTitle: 'Recent <em class="s">websites</em>', priceNote: 'Clear starting prices. Final quote depends on scope — no hidden costs.', per: '',
+      plans: [['Landing Page', 'For campaigns, launches and promos.', 'Rp [price]', ['1 conversion-focused page', 'Mobile-first responsive design', 'WhatsApp & form integration', 'Basic on-page SEO', 'Google Analytics setup']], ['Company Profile', 'For businesses that need credibility.', 'Rp [price]', ['Up to [N] pages', 'Custom design, no templates', 'Blog / news section', 'Full on-page SEO setup', 'Easy content editor', '[N] months of support'], true], ['E-commerce', 'For selling products online.', 'Rp [price]', ['Product catalog & search', 'Cart, checkout & payment gateway', 'Order & stock management', 'Shipping cost integration', 'Training for your team']]],
+      faqs: [['Can I edit the website myself?', 'Yes. We set up a simple editor so your team can update text, images and blog posts without touching code.'], ['Is the domain and hosting included?', 'We can handle domain and hosting for you, or deploy to your existing provider. It is listed clearly in your quote.'], ['Will my website show up on Google?', 'Every site ships with on-page SEO, a sitemap and Search Console setup. Ranking takes time — a blog helps a lot.'], ['Do you redesign existing websites?', 'Yes. We audit your current site, keep what works and move your content over without losing your Google rankings.']],
+      ctaWords: ["Let's build", 'your next', 'website.'] },
+    { slug: 'ads', n: '03', name: 'Google & Meta Ads', short: 'Performance campaigns that reach the right people and turn clicks into qualified leads.',
+      chips: ['Google Search', 'Meta Ads', 'Lead generation', 'Reporting'], pic: 'google-charts.webp', picBg: '#fff',
+      h1: 'Ads that turn<br>clicks into<br><em class="s">customers</em>', lead: 'Performance campaigns on Google and Meta that reach the right audience, lower your cost per lead and report every rupiah clearly.', cta: 'Get a free ads audit',
+      vis: { type: 'ads' },
+      delivTitle: 'What we <em class="s">manage</em>', delivNote: 'Full-funnel campaign management — from tracking setup to the landing page your ads send people to.',
+      deliv: [['Google Search Ads', 'Intent-based keywords that catch people actively looking for you.'], ['Meta Ads', 'Facebook and Instagram campaigns with creatives built to stop the scroll.'], ['Lead & WhatsApp campaigns', 'Lead forms and click-to-chat flows that land in your sales team.'], ['Conversion tracking', 'Pixel, UTM and analytics setup so every result is measurable.'], ['Landing page optimization', 'Better pages behind your ads for a lower cost per lead.'], ['Monthly reporting', 'Spend, reach, leads and cost per result — explained in plain language.']],
+      steps: [['Audit & goals', 'We review past campaigns and agree on the KPIs that matter.'], ['Setup & tracking', 'Accounts, pixels, audiences and conversion tracking done right.'], ['Launch & test', 'Multiple creatives and audiences go live to find what converts.'], ['Optimize & report', 'Budget moves to winners; you get a clear report every month.']],
+      projects: ['batu-panorama', 'dasindo'], projTitle: 'Campaign <em class="s">results</em>', priceNote: 'Monthly management fee. Your ad budget is paid directly to Google or Meta.', per: '/mo',
+      plans: [['Starter', 'One platform, one clear goal.', 'Rp [price]', ['Google or Meta Ads', 'Up to [N] campaigns', 'Conversion tracking setup', '[N] ad creatives / month', 'Monthly report']], ['Growth', 'Google and Meta working together.', 'Rp [price]', ['Google + Meta Ads', 'Up to [N] campaigns', 'A/B testing of creatives', 'Landing page recommendations', 'Monthly report + call'], true], ['Scale', 'For bigger budgets and multiple products.', 'Custom', ['Multi-platform strategy', 'Unlimited campaigns', 'Dedicated ads specialist', 'Custom dashboard', 'Weekly check-ins']]],
+      faqs: [['Is the ad budget included in the fee?', 'No. Our fee covers strategy and management; your ad budget is paid directly to Google or Meta, so you always see exactly what was spent.'], ['What is the minimum ad budget?', 'It depends on your market and goals. We recommend a starting budget during the free audit so campaigns have enough data to learn.'], ['How soon will I see results?', 'Campaigns start collecting data right away; the first weeks are for testing, then we scale what performs.'], ['Do I keep access to my ad accounts?', 'Always. Campaigns run on accounts you own, and you can see everything we do.']],
+      ctaWords: ["Let's make", 'your ads', 'profitable.'] },
+    { slug: 'graphic', n: '04', name: 'Graphic Design', short: 'Brand identities and scroll-stopping creatives that keep your look consistent everywhere.',
+      chips: ['Logo & identity', 'Social creatives', 'Print & packaging'], pic: null,
+      h1: 'Brands people<br><em class="s">remember</em>', lead: 'Logos, identities and everyday creatives that keep your brand consistent — on social media, in ads and in print.', cta: 'Start a design brief',
+      vis: { type: 'graphic' },
+      delivTitle: 'What we <em class="s">create</em>', delivNote: 'Every file delivered print-ready and in the formats your team actually uses.',
+      deliv: [['Logo & brand identity', 'A distinctive logo system with colors and typography to match.'], ['Brand guidelines', 'A clear guide so anyone can use your brand the right way.'], ['Social media templates', 'Editable feed and story templates your team can reuse.'], ['Ad creatives', 'Static and motion creatives sized for every ad placement.'], ['Print & packaging', 'Brochures, banners, labels and packaging, print-ready.'], ['Presentation decks', 'Pitch and company decks that look as good as your offer.']],
+      steps: [['Brief', 'We learn your brand, audience, competitors and what you need.'], ['Moodboard', 'Visual directions to agree on the feel before designing.'], ['Concepts', 'Design options presented with the thinking behind each one.'], ['Final files', 'Refined design delivered in every format you need.']],
+      projects: ['brand-identity'], projTitle: 'Recent <em class="s">work</em>', priceNote: 'Project-based or monthly — pick what fits how often you need design.', per: '',
+      plans: [['Creative Pack', 'For one-off campaigns and promos.', 'Rp [price]', ['[N] custom designs', 'Feed, story & ad sizes', 'Source files included', '[N] revision rounds', 'Delivery in [N] days']], ['Brand Identity', 'For new or rebranding businesses.', 'Rp [price]', ['[N] logo concepts', 'Color palette & typography', 'Brand guidelines document', 'Business card & letterhead', 'Social media kit'], true], ['Monthly Design', 'For brands that need design every week.', 'Rp [price]', ['Up to [N] designs / month', 'Priority turnaround', 'Dedicated designer', 'Brand-consistent templates', 'Monthly planning call']]],
+      faqs: [['Do I own the final designs?', 'Yes. Once the project is paid, full rights and source files are yours.'], ['What file formats will I receive?', 'Vector files for logos, plus PNG, JPG and PDF — and editable source files for templates.'], ['Can you work with our existing brand?', 'Of course. We follow your guidelines, or help tidy them up if they need it.'], ['How many revisions do I get?', 'Each package includes set revision rounds so feedback stays focused and on schedule.']],
+      ctaWords: ["Let's give", 'your brand', 'a face.'] },
+    { slug: 'social', n: '05', name: 'Social Media Management', short: 'Content planning and account management for Instagram and TikTok — consistent, on-brand, on time.',
+      chips: ['Content plan', 'Feed & reels', 'Copywriting', 'Monthly insights'], pic: null,
+      h1: 'Content that<br><em class="s">grows</em> your brand', lead: 'We plan, design, write and publish your Instagram and TikTok content every month — so you stay consistent without the daily stress.', cta: 'Grow my social media',
+      vis: { type: 'social' },
+      delivTitle: 'What we <em class="s">handle</em>', delivNote: 'Everything from strategy to posting — you just approve the calendar.',
+      deliv: [['Content strategy', 'Content pillars and tone of voice built around your audience.'], ['Monthly content calendar', 'A full month planned ahead and approved by you.'], ['Feed design & reels', 'On-brand posts, carousels, stories and short videos.'], ['Copywriting & captions', 'Captions and hashtags written to spark engagement.'], ['Community management', 'Replies to comments and DMs so no customer is ignored.'], ['Monthly insights', 'Reach, engagement and growth — with what to do next.']],
+      steps: [['Strategy', 'We audit your accounts and competitors, then set goals and pillars.'], ['Content plan', 'A monthly calendar of topics and formats for your approval.'], ['Production', 'Design, copy and video produced in batches, on brand.'], ['Publish & report', 'We post on schedule and report what worked each month.']],
+      projects: ['social-brand'], projTitle: 'Accounts we <em class="s">manage</em>', priceNote: 'Monthly plans — upgrade or adjust as your brand grows.', per: '/mo',
+      plans: [['Basic', 'Stay consistent on one platform.', 'Rp [price]', ['1 platform', '[N] feed posts / month', '[N] stories / month', 'Captions & hashtags', 'Monthly report']], ['Growth', 'Build an audience on Instagram and TikTok.', 'Rp [price]', ['2 platforms', '[N] posts + [N] reels / month', 'Content strategy & pillars', 'Community management', 'Monthly insights call'], true], ['Premium', 'Full-service content for active brands.', 'Rp [price]', ['Multi-platform', '[N]+ content pieces / month', 'Photo / video shoot days', 'Influencer coordination', 'Weekly reporting']]],
+      faqs: [['Do I need to provide photos?', 'Existing product photos help, but we can design with graphics or plan a shoot day in higher plans.'], ['Do I approve content before it goes live?', 'Yes. You review the monthly calendar first, and nothing is published without your approval.'], ['Can you also run ads for our posts?', 'Yes. Social management pairs well with our Meta Ads service to boost your best-performing content.'], ['Is there a minimum contract?', 'Plans are monthly. We recommend at least three months to see real growth trends.']],
+      ctaWords: ["Let's make", 'your feed', 'work.'] }
+  ];
+  const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
+
+  const webScope = (pages, features, tech = '[Tech stack]') => ({ type: 'scope', pages, features, tech });
+  const webFeat = [['Responsive design', 'Built to look sharp on phones, tablets and desktops.'], ['Enquiry everywhere', 'Contact and WhatsApp calls-to-action on every page.'], ['SEO foundation', 'Clean structure, meta tags and sitemap for Google.'], ['Easy updates', 'Content the team can edit without touching code.']];
+  const webMetrics = [['Enquiries after launch', '[+X%]', true], ['PageSpeed score', '[XX]'], ['Launched in', '[X] weeks']];
+  const PROJECTS = [
+    { slug: 'sanis', svc: 'web', cat: 'web', service: 'Website', title: 'CV. Sanis Panca Abadi', h1: 'Sanis Panca<br><em class="s">Abadi</em>', sub: 'Plastic manufacturer · Company website', img: 'sanis.webp', bg: '#000',
+      lead: 'A bold company website for a plastic manufacturer — presenting its products, services and credibility to business buyers.',
+      meta: [['Client', 'CV. Sanis Panca Abadi'], ['Industry', 'Plastic manufacturing'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Sanis Panca Abadi is a plastic manufacturer supplying business customers. [Add what they produce and who they serve.]'], ['The challenge', 'Buyers and partners needed one credible place to see the product range and the company behind it. [Add the specific problem.]'], ['Our approach', "A dark, industrial look anchored by the brand's red mark, clear product categories and an enquiry path on every page."]] },
+        webScope(['Home', 'About', 'Products', 'Services', 'Contact'], [['Product catalog', 'Products grouped by category so buyers find what they need fast.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full homepage screenshot]', '[Product page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    { slug: 'pelni', svc: 'uiux', cat: 'uiux', service: 'UI/UX Design', title: 'PT Pelni — Pelni Docs', h1: 'Pelni<br><em class="s">Docs</em>', sub: 'Document checker · Mobile app', img: 'pelni.webp', bg: '#F2F2F2', light: true,
+      lead: 'A document checker app for PT Pelni (Persero) — turning document verification into a clear, step-by-step flow with checkers and an approver.',
+      meta: [['Client', 'PT Pelni (Persero)'], ['Industry', 'Maritime transport'], ['Service', 'UI/UX Design'], ['Platform', 'Mobile app'], ['Year', '[Year]']],
+      blocks: [{ type: 'overview', items: [['The client', "PT Pelni (Persero) is Indonesia's state-owned passenger shipping company, operating routes across the archipelago."], ['The challenge', 'Checking required documents involved several people, and it was hard to see who had checked what. [Add specific context.]'], ['Our approach', 'A checklist-first mobile flow with clear roles, a status for every item and one approver who signs off at the end.']] },
+        { type: 'flow', title: 'The core <em class="s">flow</em>', items: [['Open a document set', 'See every required document and its status at a glance.'], ['Check item by item', 'Each checker marks their step, with notes where needed.'], ['Track progress', 'A clear timeline shows who checked what, and when.'], ['Approve', 'The approver reviews everything and signs off in one tap.']] },
+        { type: 'gallery', lead: 'uiux.webp', items: ['[Wireframes / user flow]', '[Component library]'] },
+        { type: 'metrics', items: [['Screens designed', '[XX]', true], ['User roles', '[X]'], ['Deliverables', 'Flows · UI · Prototype']] }, { type: 'quote' }] },
+    { slug: 'batu-panorama', svc: 'ads', cat: 'ads', service: 'Meta Ads', title: 'Batu Panorama Residence', h1: 'Batu Panorama<br><em class="s">Residence</em>', sub: 'PT. Artiland Group · 1,200+ conversions', img: 'meta-table.webp', bg: '#fff', contain: true,
+      lead: 'How we turned scattered ad spend into a steady flow of website leads and WhatsApp conversations for a growing property developer in Batu.',
+      meta: [['Client', 'PT. Artiland Group'], ['Industry', 'Property development'], ['Platform', 'Meta Ads'], ['Objective', 'Website leads + WhatsApp']], noCover: true,
+      blocks: [{ type: 'metrics', items: [['Total conversions', '1,200+', true], ['Website leads', '+97.76%'], ['Impressions', '+91.65%'], ['Click-through rate', '+22.63%']] },
+        { type: 'strip', items: [['609K', 'accounts reached'], ['1.64M', 'impressions'], ['1.02%', 'average CTR'], ['Rp52.6M', 'ad spend managed']] },
+        { type: 'dashboard', title: 'Campaign results', note: 'Source: Meta Ads Manager · 50 campaigns', img: 'meta-table.webp' },
+        { type: 'story', items: [['Objective', 'Generate a healthy mix of website leads and WhatsApp conversations through Meta Ads — expanding reach while keeping cost per result under control.'], ['Challenge', 'CTR swung between 0.42% and 1.14% across ad sets, and messaging campaigns ran at a high cost per result — up to Rp43,314 — dragging down overall efficiency.'], ['Solution', ['Doubled down on high-converting creatives for website leads and sharpened CTA copy for messaging.', 'Rebalanced budget between lead-form and WhatsApp objectives.', 'Tracked CPC and CTR per creative to decide what to optimize or reallocate.', 'Tuned ad frequency to avoid audience fatigue.']], ['Result', '1,200+ total conversions with a healthy 1.02% CTR and especially strong website-lead performance. Messaging campaigns delivered at a higher cost — our clear next lever for the following phase.']] }] },
+    { slug: 'pintara', svc: 'web', cat: 'web', service: 'Website', title: 'Pintara', h1: 'Pin<em class="s">tara</em>', sub: 'Medical exam prep · Education platform', img: 'pintara-med.webp', bg: '#000',
+      lead: 'An education platform website for students preparing to get into medical school — programs, mentors and registration in one place.',
+      meta: [['Client', 'Pintara'], ['Industry', 'Education'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Pintara helps students prepare for medical school entrance with guided programs. [Add details.]'], ['The challenge', '[What Pintara needed from the new website.]'], ['Our approach', 'A bright, trustworthy layout with clear program paths and a registration call-to-action above the fold.']] },
+        webScope(['Home', 'Programs', 'Medicine', 'Gap Year', 'Features', 'Contact'], [['Program pages', 'Each program explained with clear outcomes and pricing.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full homepage screenshot]', '[Program page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    { slug: 'dasindo', svc: 'ads', cat: 'ads', service: 'Google Ads', title: 'PT. Dasindo Media', h1: 'Dasindo<br><em class="s">Media</em>', sub: 'Dale Carnegie Training · 11× ROAS', img: 'google-charts.webp', bg: '#fff',
+      lead: 'Qualified leads for Dale Carnegie Training through Google Search Ads — at an 11× return on ad spend.',
+      meta: [['Client', 'PT. Dasindo Media'], ['Brand', 'Dale Carnegie Training'], ['Platform', 'Google Search Ads'], ['Objective', 'Lead form submissions']], noCover: true,
+      blocks: [{ type: 'metrics', items: [['Return on ad spend', '11×', true], ['Lead forms submitted', '100+'], ['Impressions', '68.6K'], ['Peak click-through rate', '6.54%']] },
+        { type: 'periods' },
+        { type: 'story', items: [['Objective', 'Generate qualified leads by sending targeted Google Search traffic to a lead form — while keeping costs efficient and conversion potential high.'], ['Challenge', 'Previous campaigns brought low-quality traffic at a high cost per click, so few visitors became leads and a lot of budget was wasted.'], ['Solution', ['Intent-based keyword targeting to reach people ready to enrol.', 'Refined geo-targeting to the areas that matter.', 'Rewritten ad copy focused on outcomes, not features.', 'UTM tracking so every lead is traced to its keyword.', 'Improved landing page UX for higher form completion.', 'Restructured funnel with smarter budget allocation.']], ['Result', 'Sharper targeting, the right tracking and ongoing optimization delivered 100+ lead forms and an 11× return on ad spend.']] }] },
+    { slug: 'bank-sampah', svc: 'uiux', cat: 'uiux', service: 'UI/UX Design', title: 'Bank Sampah Ki Ageng Senggurun', h1: 'Bank Sampah<br><em class="s">dashboard</em>', sub: 'Waste bank · Admin dashboard', img: 'banksampah.webp', bg: '#F2F2F2', light: true,
+      lead: 'An admin dashboard for a community waste bank — members, waste deposits and transactions in one clear view.',
+      meta: [['Client', 'Bank Sampah Ki Ageng Senggurun'], ['Industry', 'Community / environment'], ['Service', 'UI/UX Design'], ['Platform', 'Web dashboard'], ['Year', '[Year]']],
+      blocks: [{ type: 'overview', items: [['The client', 'A community waste bank where members deposit sorted waste and build savings. [Add details.]'], ['The challenge', 'Member, waste and transaction records needed to be easy to manage for a small admin team. [Add specifics.]'], ['Our approach', 'A calm dashboard with key totals on top and the latest members, waste deposits and transactions right below.']] },
+        { type: 'flow', title: 'Key <em class="s">screens</em>', items: [['Overview', 'Totals for members, pickups and waste collected at a glance.'], ['Members', 'Register and manage waste bank members.'], ['Waste deposits', 'Record waste by type and weight.'], ['Transactions', "Track every member's balance and history."]] },
+        { type: 'gallery', items: ['[Dashboard full screen]', '[Member detail]', '[Transaction history]'] }, { type: 'quote' }] },
+    { slug: 'srengenge', svc: 'web', cat: 'web', service: 'Website', title: 'CV. Srengenge Engineering', h1: 'Srengenge<br><em class="s">Engineering</em>', sub: 'Construction · Company website', img: 'srengenge.webp', bg: '#000',
+      lead: 'A company website for a construction and engineering firm — showcasing completed projects and making it easy to request a quote.',
+      meta: [['Client', 'CV. Srengenge Engineering'], ['Industry', 'Construction'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Srengenge Engineering designs and builds residential projects. [Add details.]'], ['The challenge', '[What the client needed from the website.]'], ['Our approach', 'Big project photography up front, proof points in numbers and a quote request always one tap away.']] },
+        webScope(['Home', 'Services', 'About', 'Contact', 'Blog'], [['Project showcase', 'Completed builds presented with photos and details.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full homepage screenshot]', '[Project page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    { slug: 'merteyasa', svc: 'web', cat: 'web', service: 'Website', title: 'Merteyasa Adventure', h1: 'Merteyasa<br><em class="s">Adventure</em>', sub: 'Bali travel tours · Booking website', img: 'merteyasa.webp', bg: '#000',
+      lead: 'A tour booking website for a Bali adventure operator — tour packages, destinations and a book-now path on every page.',
+      meta: [['Client', 'Merteyasa Adventure'], ['Industry', 'Travel & tourism'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Merteyasa runs adventure, waterfall and mountain tours in Bali. [Add details.]'], ['The challenge', '[What the client needed from the website.]'], ['Our approach', 'Full-bleed destination imagery, tours grouped by type and a Book Now button that follows you.']] },
+        webScope(['Home', 'About', 'Adventure Tours', 'Package Tours', 'Regular Tours', 'Half-Day Tours', 'Blog'], [['Tour catalog', 'Tours grouped by type with prices and itineraries.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full homepage screenshot]', '[Tour detail page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    { slug: 'brand-identity', svc: 'graphic', cat: 'graphic', service: 'Graphic Design', title: '[Brand name]', h1: '[Brand name]<br><em class="s">identity</em>', sub: 'Brand identity · Logo & guidelines', img: null,
+      lead: 'A complete brand identity for [Brand name] — logo, colors, typography and the templates that bring it to life every day.',
+      meta: [['Client', '[Brand name]'], ['Industry', '[Industry]'], ['Service', 'Graphic Design'], ['Deliverables', 'Logo · Guidelines · Social kit'], ['Year', '[Year]']],
+      blocks: [{ type: 'overview', items: [['The client', '[Who the brand is, what it sells and who it sells to.]'], ['The challenge', '[Why they needed a new identity.]'], ['The idea', '[The concept behind the logo and visual language.]']] }, { type: 'brand' },
+        { type: 'gallery', items: ['[Packaging mockup]', '[Business card]', '[Social posts]'] }, { type: 'quote' }] },
+    { slug: 'designskuy', svc: 'web', cat: 'web', service: 'Website', title: 'Designskuy', h1: 'Design<em class="s">skuy</em>', sub: 'Web agency · Landing page', img: 'designskuy.webp', bg: '#000',
+      lead: 'A landing page for a Malang web design service — clear packages, a friendly 3D illustration and a quick path to order.',
+      meta: [['Client', 'Designskuy'], ['Industry', 'Web design services'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Designskuy offers website creation for local businesses in Malang. [Add details.]'], ['The challenge', '[What the client needed.]'], ['Our approach', 'A dark, playful landing page with a purple accent, price list and portfolio sections.']] },
+        webScope(['Home', 'Price List', 'Portfolio', 'Social', 'About'], [['Price list', 'Packages compared side by side so visitors choose quickly.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full page screenshot]', '[Price list]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    { slug: 'social-brand', svc: 'social', cat: 'social', service: 'Social Media', title: '[Brand name]', h1: '[Brand name]<br><em class="s">on social</em>', sub: 'Instagram & TikTok · Monthly management', img: null,
+      lead: 'Monthly Instagram and TikTok management for [Brand name] — from content strategy to posting and reporting.',
+      meta: [['Client', '[Brand name]'], ['Industry', '[Industry]'], ['Platforms', 'Instagram · TikTok'], ['Service', 'Social Media Management'], ['Period', '[Month Year – Month Year]']],
+      blocks: [{ type: 'metrics', items: [['New followers', '[+X]', true], ['Reach growth', '[+X%]'], ['Engagement rate', '[X%]'], ['Content published', '[XX]']] },
+        { type: 'overview', items: [['The client', '[Who the brand is and who follows them.]'], ['The challenge', '[e.g. irregular posting, low engagement, no clear visual style.]'], ['Our approach', 'Clear content pillars, a consistent visual system and a monthly calendar the client approves before anything goes live.']] },
+        { type: 'social' }, { type: 'quote' }] },
+    { slug: 'pintara-gap', svc: 'web', cat: 'web', service: 'Website', title: 'Pintara — Gap Year', h1: 'Pintara<br><em class="s">Gap Year</em>', sub: 'Education · Landing page', img: 'pintara.webp', bg: '#000',
+      lead: 'A focused landing page for Pintara\'s gap year program — one message, one offer, one clear registration path.',
+      meta: [['Client', 'Pintara'], ['Industry', 'Education'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
+      blocks: [{ type: 'overview', items: [['The client', 'Pintara runs preparation programs for students aiming for top universities.'], ['The challenge', '[What the landing page needed to achieve.]'], ['Our approach', 'A clean, bright page with a single call-to-action and the program benefits right below.']] },
+        webScope(['Landing page'], [['Single CTA', 'One clear registration action repeated through the page.'], ...webFeat.slice(1)]),
+        { type: 'gallery', items: ['[Full page screenshot]', '[Mobile view]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] }
+  ];
+  const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
+
+  const g = (x, y, a) => `radial-gradient(ellipse at ${x}% ${y}%, rgba(42,163,107,${a}), transparent 62%)`;
+  const POSTS = [
+    { slug: 'landing-vs-profile', cat: 'Website', word: 'Landing <span style="color:#2AA36B">vs</span> Profile', title: 'Landing page vs company profile: which one does your business need?', time: '6 min read', glow: g(30, 110, .7), full: true, excerpt: 'Both are "websites", but they do very different jobs. Here\'s how to choose based on your goal, budget and where your traffic comes from.' },
+    { slug: 'website-cost', cat: 'Website', word: 'Budget', title: 'How much does a website cost in Indonesia in 2026?', time: '8 min read', glow: g(80, 110, .6) },
+    { slug: 'google-vs-meta', cat: 'Ads', word: 'Google vs Meta', title: 'Google Ads vs Meta Ads: where should local businesses spend first?', time: '7 min read', glow: g(20, 100, .55) },
+    { slug: 'losing-customers', cat: 'Website', word: '5 signs', title: '5 signs your website is quietly losing you customers', time: '5 min read', glow: g(50, 120, .6) },
+    { slug: 'what-is-uiux', cat: 'UI/UX', word: 'Usability', title: 'What is UI/UX design — and why does it affect sales?', time: '6 min read', glow: g(90, 40, .5) },
+    { slug: 'content-calendar', cat: 'Social Media', word: 'Calendar', title: 'An Instagram content calendar you will actually stick to', time: '6 min read', glow: g(10, 20, .5) },
+    { slug: 'brand-consistency', cat: 'Design', word: 'Consistency', title: 'Brand consistency: why a logo alone is not enough', time: '4 min read', glow: g(60, 0, .5) }
+  ];
+  const postBySlug = Object.fromEntries(POSTS.map(p => [p.slug, p]));
+
+  /* ---------- shared pieces ---------- */
+  const tagImg = p => p.img ? `<img src="${I(p.img)}" alt="${p.title}" loading="lazy" style="${p.contain || p.light ? 'object-fit:contain;' : ''}background:${p.bg}">` : `<div class="ph">[Project cover]</div>`;
+  const workCard = p => `<a class="wcard rv" href="#project-${p.slug}" data-cat="${p.cat}"><div class="img" style="background:${p.bg || '#151515'}">${tagImg(p)}<span class="tag">${p.service}</span></div><div class="foot"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="arrow">${UR()}</span></div></a>`;
+  const phero = (inner, right = '') => `<section class="phero"><div class="glow-bg"></div><div class="l intro-anim">${inner}</div>${right ? `<div class="r intro-anim">${right}</div>` : ''}</section>`;
+  const faqBlock = (title, items) => `<section class="sec alt wrap"><div class="faqwrap"><h2 class="h2">${title}</h2><div>${items.map(([q, a], i) => `<details${i === 0 ? ' open' : ''}><summary>${q}<i>+</i></summary><p>${a}</p></details>`).join('')}</div></div></section>`;
+
+
+  /* ---------- Growth Lab pieces ---------- */
+  const cta = (a = 'Ready to', b = 'grow', c = 'something?') => `
+  <section class="ctab" data-spot>
+    <span class="eyebrow" style="position:relative;color:#B9D0C2">Let's work together</span>
+    <h2 style="margin-top:24px">${a}<br>${b} <em>${c}</em></h2>
+    <div class="row"><p>Tell us about your goals. We'll come back with a clear, free plan built to grow your business.</p>
+      <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div class="contact"><span>[hello@organoostudio.com]</span><span>[WhatsApp +62 …]</span></div><a class="orb magnet" href="#contact">Book a<br>15-min call ↗</a></div></div>
+  </section>`;
+
+  function pageAbout() {
+    const values = [['Strategy first', 'No pretty pixels without a plan. We start from your goals and audience.'], ['Radical transparency', 'Clear pricing, honest timelines and reports you can actually read.'], ['Data over opinions', 'We test, measure and optimize — decisions follow the numbers.'], ['Partners, not vendors', 'We stay after launch, because growth is a long game.']];
+    const team = [['Radiyyan Ghifari', 'Founder'], ['[Name]', '[UI/UX Designer]'], ['[Name]', '[Web Developer]'], ['[Name]', '[Ads Specialist]']];
+    return phero(`<span class="eyebrow">About Organoo</span><h1>A small studio<br>with a <em class="s">big</em> focus<br>on growth.</h1>`, `<p class="lead">Organoo Studio is a digital agency from Malang helping businesses across Indonesia look sharper, reach further and sell more — through design, websites and performance ads.</p>`) + `
+  <section class="wrap" style="padding-bottom:clamp(72px,9vw,120px)"><div class="g3 g-uneq"><div class="ph rv" style="height:420px">[Team photo]</div><div class="ph rv" style="height:420px">[Workspace photo]</div><div class="ph rv" style="height:420px">[Behind the scenes]</div></div></section>
+  <section class="sec alt wrap"><div class="faqwrap"><span class="eyebrow">Our story</span><div style="display:flex;flex-direction:column;gap:28px"><p style="font-size:clamp(24px,2.6vw,36px);line-height:1.35;font-weight:500;letter-spacing:-.03em">We started Organoo because too many good businesses were stuck with websites that didn't sell and ads that burned money. <span style="color:var(--muted)">So we built a studio where design and data sit at the same table.</span></p><p class="lead" style="max-width:760px">Today we work with manufacturers, property developers, education platforms, government institutions and local brands — from a first landing page to full product design and always-on ad campaigns. Every project starts with the same question: what does growth look like for you?</p></div></div></section>
+  <section class="sec wrap"><div class="row-head"><h2 class="h2">What we <em class="s">stand</em> for</h2><p>Four principles that shape how we plan, design and report on every project.</p></div><div class="g4">${values.map(([t, d], i) => `<div class="card deliv rv"><span class="num">0${i + 1}</span><b>${t}</b><p>${d}</p></div>`).join('')}</div></section>
+  <section class="sec alt wrap"><h2 class="h2" style="margin-bottom:48px">The people behind <em class="s">Organoo</em></h2><div class="g4">${team.map(([n, r]) => `<div class="rv" style="display:flex;flex-direction:column;gap:16px"><div class="ph" style="height:340px">[Photo]</div><div><b style="font-size:19px">${n}</b><div style="color:var(--muted);font-size:14px">${r}</div></div></div>`).join('')}</div></section>
+  ${cta()}`;
+  }
+
+  function pageServices() {
+    return phero(`<span class="eyebrow">Our services</span><h1>Everything your brand<br>needs to <em class="s">grow</em> online</h1>`, `<p class="lead">Pick one service or combine them — every engagement is built around your goals, budget and timeline.</p>`) + `
+  <section class="wrap" style="display:flex;flex-direction:column;gap:24px;padding-bottom:clamp(72px,9vw,120px)">
+    ${SERVICES.map(s => `<a class="svc-card rv" href="#service-${s.slug}"><div class="txt"><span class="num">${s.n}</span><b>${s.name}</b><p>${s.short}</p><div class="chips">${s.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div></div><div class="pic" style="background:${s.picBg || '#151515'}">${s.pic ? `<img src="${I(s.pic)}" alt="" loading="lazy">` : `<div class="ph" style="height:100%;border-radius:0">[${s.name} showcase]</div>`}<span class="arrow">${RT()}</span></div></a>`).join('')}
+    <div class="rv" style="margin-top:24px;padding:clamp(28px,4vw,44px);border-radius:32px;background:var(--accent);color:var(--accent-ink);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between"><div><div style="font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-.03em">Not sure what you need?</div><div style="color:var(--accent-soft)">Tell us your goal — we'll recommend the right mix in a free 15-minute call.</div></div><a class="btn" style="background:var(--accent-ink);color:#fff" href="#contact"><span>Get a free consultation</span><span class="ico" style="background:#fff">${UR('#04140C', 15)}</span></a></div>
+  </section>`;
+  }
+
+  function svcVisual(s) {
+    const v = s.vis;
+    if (v.type === 'pair') return `<div class="svc-vis"><div class="a floaty f2" style="background:${v.a[1]}"><img src="${I(v.a[0])}" alt="" style="object-fit:${v.a[1] === '#000' ? 'cover' : 'contain'}"></div><div class="b floaty" style="background:${v.b[1]}"><img src="${I(v.b[0])}" alt="" style="object-fit:${v.b[1] === '#000' ? 'cover' : 'contain'}"></div></div>`;
+    if (v.type === 'ads') return `<div class="svc-vis"><div class="a floaty f2" style="background:#fff;aspect-ratio:2.3"><img src="img/google-charts.webp" alt="Google Ads charts"></div><div class="tile floaty" style="position:absolute;left:0;bottom:30px;width:58%;height:190px;background:var(--surface);border:1px solid rgba(42,163,107,.45);transform:rotate(-4deg)"><span style="font-size:13px;font-weight:600;color:var(--muted)">Google Ads · ROAS</span><b style="font-size:76px;line-height:1;letter-spacing:-.05em;color:var(--accent)">11×</b></div><div class="tile floaty f2" style="position:absolute;right:0;bottom:0;width:50%;height:170px;background:var(--accent);color:var(--accent-ink);transform:rotate(5deg)"><span style="font-size:13px;font-weight:600">Meta Ads · Conversions</span><b style="font-size:52px;line-height:1;letter-spacing:-.05em">1,200+</b></div></div>`;
+    if (v.type === 'graphic') return `<div class="svc-vis"><div class="ph floaty f2" style="position:absolute;right:0;top:0;width:66%;height:280px;transform:rotate(4deg)">[Logo mockup]</div><div class="tile floaty" style="position:absolute;left:0;top:60px;width:50%;height:250px;background:var(--surface);border:1px solid rgba(42,163,107,.45);transform:rotate(-5deg)"><span style="font-size:13px;font-weight:600;color:var(--muted)">Typography</span><b style="font-size:104px;line-height:.9;letter-spacing:-.05em">Aa</b><span style="font-size:13px;color:var(--muted)">Display · Body · Accent</span></div><div class="tile floaty f2" style="position:absolute;left:18%;bottom:0;width:82%;height:130px;padding:14px;background:var(--surface);border:1px solid var(--line-2);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;transform:rotate(2deg)"><i style="border-radius:12px;background:#2AA36B"></i><i style="border-radius:12px;background:#0A0A0A;border:1px solid var(--line-2)"></i><i style="border-radius:12px;background:#fff"></i><i style="border-radius:12px;background:#CFE9DC"></i></div></div>`;
+    return `<div class="svc-vis"><div class="floaty" style="position:absolute;left:24%;top:0;width:250px;height:460px;padding:14px;border-radius:36px;background:var(--surface);border:1px solid rgba(42,163,107,.45);display:flex;flex-direction:column;gap:12px;box-shadow:0 30px 80px rgba(0,0,0,.7)"><div style="display:flex;align-items:center;gap:10px;padding:6px 4px"><img src="img/logo.png" alt="" style="width:34px;height:34px;border-radius:50%"><div><div style="font-size:12px;font-weight:700">[yourbrand]</div><div style="font-size:10px;color:var(--muted)">[N] posts · [N] followers</div></div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">${['#2AA36B', '#1E1E1E', '#2A2A2A', '#2A2A2A', '#CFE9DC', '#1E1E1E', '#1E1E1E', '#2A2A2A', '#2AA36B', '#CFE9DC', '#1E1E1E', '#2A2A2A'].map(c => `<i style="height:72px;border-radius:6px;background:${c}"></i>`).join('')}</div><span style="margin-top:auto;text-align:center;font-size:11px;color:var(--dim)">[Replace with real feed]</span></div><div class="tile floaty f2" style="position:absolute;left:0;top:70px;width:170px;height:110px;background:var(--accent);color:var(--accent-ink);transform:rotate(-5deg)"><span style="font-size:12px;font-weight:700">Reach</span><b style="font-size:30px">+[X]%</b></div><div class="tile floaty" style="position:absolute;right:0;bottom:60px;width:180px;height:110px;background:var(--surface);border:1px solid var(--line-2);transform:rotate(5deg)"><span style="font-size:12px;font-weight:700;color:var(--muted)">Engagement</span><b style="font-size:30px;color:var(--accent)">[X]%</b></div></div>`;
+  }
+
+  function pageService(s) {
+    return phero(`<div class="crumb"><a href="#services">Services</a><span>/</span><b>${s.name}</b></div><h1>${s.h1}</h1><p class="lead">${s.lead}</p><div style="display:flex;flex-wrap:wrap;gap:12px">${btn(s.cta, '#contact', 'green')}<button class="btn ghost" type="button" data-scroll="pricing">See pricing</button></div>`, svcVisual(s)).replace('class="phero"', 'class="phero svc-hero"') + `
+  <section class="sec alt wrap"><div class="row-head"><h2 class="h2">${s.delivTitle}</h2><p>${s.delivNote}</p></div><div class="g3">${s.deliv.map(([t, d], i) => `<div class="card deliv rv"><span class="n">0${i + 1}</span><b>${t}</b><p>${d}</p></div>`).join('')}</div></section>
+  <section class="sec wrap"><h2 class="h2" style="margin-bottom:48px">How we <em class="s">work</em></h2><div class="g4">${s.steps.map(([t, d], i) => `<div class="step rv"><span>STEP 0${i + 1}</span><b>${t}</b><p>${d}</p></div>`).join('')}</div></section>
+  <section class="sec alt wrap"><div class="row-head"><h2 class="h2">${s.projTitle}</h2><a class="more" href="#work">All projects →</a></div><div class="g2">${s.projects.map(k => workCard(projBySlug[k])).join('')}</div></section>
+  <section class="sec wrap" id="pricing"><div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:48px"><h2 class="h2">Transparent <em class="s">pricing</em></h2><p style="color:var(--muted)">${s.priceNote}</p></div><div class="g3">${s.plans.map(([n, d, p, f, hot]) => `<div class="plan rv${hot ? ' hot' : ''}"><div class="top"><b>${n}</b>${hot ? '<span class="badge">Most popular</span>' : ''}</div><span class="desc">${d}</span><span class="from">Starting from</span><span class="price">${p}${s.per && p !== 'Custom' ? `<small>${s.per}</small>` : ''}</span><ul>${f.map(x => `<li>${CHECK}${x}</li>`).join('')}</ul><a class="btn" href="#contact">Get a quote</a></div>`).join('')}</div></section>
+  ${faqBlock('Common <em class="s">questions</em>', s.faqs)}
+  ${cta(...s.ctaWords)}`;
+  }
+
+  function pageWork() {
+    const cats = [['all', 'All work'], ['web', 'Websites'], ['uiux', 'UI/UX'], ['ads', 'Performance Ads'], ['graphic', 'Graphic Design'], ['social', 'Social Media']];
+    return phero(`<span class="eyebrow">Our work</span><h1>Projects that<br><em class="s">moved</em> the needle</h1>`, `<p class="lead">Websites, product design and campaigns for brands across Indonesia. Open any project for the full story.</p>`) + `
+  <section class="wrap" style="padding-bottom:clamp(72px,9vw,120px)">
+    <div class="filters" role="group" aria-label="Filter projects">${cats.map(([id, l], i) => `<button type="button" data-filter="${id}" aria-pressed="${i === 0}">${l} <span>${id === 'all' ? PROJECTS.length : PROJECTS.filter(p => p.cat === id).length}</span></button>`).join('')}</div>
+    <div class="g2" id="workGrid">${PROJECTS.map(workCard).join('')}</div>
+  </section>
+  ${cta('Your project', 'could be', 'next.')}`;
+  }
+
+  function block(p, b) {
+    switch (b.type) {
+      case 'overview': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="g3" style="gap:48px">${b.items.map(([t, d]) => `<div class="ov rv"><span>${t.toUpperCase()}</span><p>${d}</p></div>`).join('')}</div></section>`;
+      case 'scope': return `<section class="sec alt wrap"><div class="faqwrap"><h2 class="h2">What we <em class="s">delivered</em></h2><div style="display:flex;flex-direction:column;gap:36px"><div style="display:flex;flex-direction:column;gap:14px"><span class="eyebrow">Pages</span><div class="chips">${b.pages.map(x => `<span class="chip" style="font-size:15px;padding:10px 16px">${x}</span>`).join('')}</div></div><div class="g2" style="gap:16px">${b.features.map(([t, d]) => `<div class="card rv" style="padding:22px"><b style="font-size:18px">${t}</b><p style="margin-top:6px;font-size:14px;color:var(--muted)">${d}</p></div>`).join('')}</div><div style="font-size:14px;color:var(--muted)"><span class="eyebrow" style="display:inline-flex;margin-right:12px">Built with</span>${b.tech}</div></div></div></section>`;
+      case 'flow': return `<section class="sec alt wrap"><h2 class="h2" style="margin-bottom:48px">${b.title}</h2><div class="g4">${b.items.map(([t, d], i) => `<div class="metric rv${i === 0 ? ' hl' : ''}" style="min-height:230px"><span>0${i + 1}</span><div><b style="font-size:22px;letter-spacing:-.02em;line-height:1.2">${t}</b><p style="margin-top:8px;font-size:14px;${i === 0 ? 'color:var(--accent-soft)' : 'color:var(--muted)'}">${d}</p></div></div>`).join('')}</div></section>`;
+      case 'gallery': return `<section class="sec wrap"><div class="g2" style="gap:24px">${b.lead ? `<div class="rv" style="grid-column:1/-1;border-radius:28px;overflow:hidden;background:#EDEDED;aspect-ratio:2.1"><img src="${I(b.lead)}" alt="Design screens" style="width:100%;height:100%;object-fit:cover" loading="lazy"></div>` : ''}${b.items.map((x, i) => `<div class="ph rv" style="${!b.lead && i === 0 ? 'grid-column:1/-1;height:clamp(260px,40vw,560px)' : 'height:clamp(220px,30vw,420px)'}">${x}</div>`).join('')}</div></section>`;
+      case 'metrics': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="${b.items.length === 4 ? 'g4' : 'g3'}">${b.items.map(([l, v, hl]) => `<div class="metric rv${hl ? ' hl' : ''}"><span>${l}</span><b>${v}</b></div>`).join('')}</div></section>`;
+      case 'strip': return `<section class="wrap" style="margin-top:calc(-1 * clamp(52px,7vw,90px));padding-bottom:clamp(72px,9vw,110px)"><div style="display:flex;flex-wrap:wrap;gap:16px 48px;padding:22px 26px;border-radius:18px;border:1px solid var(--line);font-size:14px;color:var(--muted)">${b.items.map(([v, l]) => `<span><strong style="color:var(--text)">${v}</strong> ${l}</span>`).join('')}</div></section>`;
+      case 'dashboard': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="panel rv"><div class="panel-head"><b>${b.title}</b><span>${b.note}</span></div><div class="shotbox"><img src="${I(b.img)}" alt="${b.title}" loading="lazy"></div></div></section>`;
+      case 'periods': {
+        const per = (t, v) => `<div class="period"><span class="eyebrow">${t}</span><div class="g4" style="gap:12px">${v.map(([a, l], i) => `<div><b style="${i === 0 ? 'color:var(--accent)' : ''}">${a}</b><small>${l}</small></div>`).join('')}</div></div>`;
+        return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="panel rv"><div class="panel-head"><b>Campaign performance</b><span>Source: Google Ads · two reporting periods</span></div><div class="g2" style="margin-bottom:20px">${per('Period 1', [['47', 'Lead forms'], ['2.52K', 'Clicks'], ['Rp10.4K', 'Avg. CPC'], ['6.54%', 'CTR']])}${per('Period 2', [['55', 'Lead forms'], ['2.4K', 'Clicks'], ['Rp13K', 'Avg. CPC'], ['5.87%', 'CTR']])}</div><div class="shotbox"><img src="img/google-charts.webp" alt="Google Ads charts" loading="lazy"></div></div></section>`;
+      }
+      case 'story': return `<section class="sec alt wrap">${b.items.map(([t, d], i) => `<div class="story-row rv"><h3><span>0${i + 1}</span>${t}</h3>${Array.isArray(d) ? `<div class="g2" style="gap:16px">${d.map(x => `<div class="card" style="padding:22px;font-size:16px;color:var(--soft)">${x}</div>`).join('')}</div>` : `<p>${d}</p>`}</div>`).join('')}</section>`;
+      case 'brand': return `<section class="sec alt wrap"><h2 class="h2" style="margin-bottom:48px">Brand <em class="s">elements</em></h2><div style="display:flex;flex-direction:column;gap:24px"><div class="g2 g-21"><div class="rv" style="height:340px;border-radius:24px;background:#fff;color:var(--dim);display:grid;place-items:center">[Primary logo]</div><div class="rv" style="height:340px;border-radius:24px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:600">[Logo mark]</div></div><div class="g4">${[['#2AA36B', 'Primary'], ['#0A0A0A', 'Secondary'], ['#F4F1EA', 'Neutral'], ['#CFE9DC', 'Accent']].map(([c, n]) => `<div class="swatch rv"><i style="background:${c};${c === '#0A0A0A' ? 'border:1px solid var(--line-2)' : ''}"></i><b>[${n}]</b><small>[#HEX] · [RGB]</small></div>`).join('')}</div><div class="g2">${[['Display typeface', '[Display font]', 800, '#fff'], ['Body typeface', '[Body font]', 400, 'var(--muted)']].map(([l, f, w, c]) => `<div class="card rv" style="display:flex;justify-content:space-between;min-height:240px"><div style="display:flex;flex-direction:column;justify-content:space-between"><span class="eyebrow">${l}</span><b style="font-size:26px">${f}</b></div><span style="font-size:140px;line-height:1;font-weight:${w};letter-spacing:-.05em;align-self:flex-end;color:${c}">Aa</span></div>`).join('')}</div></div></section>`;
+      case 'social': return `<section class="sec alt wrap"><h2 class="h2" style="margin-bottom:48px">Content <em class="s">pillars</em></h2><div class="g4" style="margin-bottom:24px">${[['Educate', 'Tips and how-tos that build trust.'], ['Inspire', 'Stories and lifestyle that people share.'], ['Promote', 'Products and offers, without the hard sell.'], ['Engage', 'Polls, Q&As and trends that spark replies.']].map(([t, d]) => `<div class="card deliv rv"><span class="num">[X]% of content</span><b>${t}</b><p>${d}</p></div>`).join('')}</div><div class="panel rv" style="box-shadow:none"><div class="panel-head"><b>A sample week</b><span>Reel · Carousel · Story</span></div><div class="cal">${[['MON', [['c', 'Educate'], ['', 'Poll']]], ['TUE', [['', 'Behind the scenes']]], ['WED', [['r', 'Inspire']]], ['THU', [['', 'Q&A']]], ['FRI', [['c', 'Promote'], ['', 'Offer']]], ['SAT', [['r', 'Trend']]], ['SUN', [['', 'Recap']]]].map(([d, it]) => `<div><span>${d}</span>${it.map(([k, t]) => `<i class="${k}">${t}</i>`).join('')}</div>`).join('')}</div></div></section><section class="sec wrap"><h2 class="h2" style="margin-bottom:32px">The <em class="s">feed</em></h2><div class="g3" style="gap:8px">${Array.from({ length: 6 }, () => '<div class="ph rv" style="aspect-ratio:1;border-radius:14px">[Post]</div>').join('')}</div></section>`;
+      case 'quote': return `<section class="sec alt wrap"><div class="quote rv">${QUOTE}<p>[Client quote about working with Organoo Studio and what changed after the project.]</p><div><b>[Client name]</b><br><small>[Role], ${p.title}</small></div></div></section>`;
+    }
+    return '';
+  }
+
+  function pageProject(p) {
+    const s = svcBySlug[p.svc];
+    const idx = PROJECTS.indexOf(p), nx = PROJECTS[(idx + 1) % PROJECTS.length];
+    const cover = p.noCover ? '' : `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)">${p.img ? `<div class="cover${p.light ? ' light' : ''}"><img src="${I(p.img)}" alt="${p.title}"></div>` : `<div class="ph cover" style="border-radius:32px">[Hero visual]</div>`}</section>`;
+    return phero(`<div class="crumb"><a href="#work">Work</a><span>/</span><a href="#service-${s.slug}"><b>${s.name}</b></a></div><h1>${p.h1}</h1><p class="lead">${p.lead}</p>`, `<div class="meta">${p.meta.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`) + cover + p.blocks.map(b => block(p, b)).join('') + `
+  <section class="sec wrap"><a class="next" href="#project-${nx.slug}"><div class="l"><span>NEXT PROJECT</span><div><b>${nx.title}</b><small>${nx.service} · ${nx.sub.split(' · ').pop()}</small></div></div><div class="pic" style="background:${nx.bg || '#151515'}">${nx.img ? `<img src="${I(nx.img)}" alt="" loading="lazy" style="${nx.contain || nx.light ? 'object-fit:contain' : ''}">` : '<div class="ph" style="height:100%">[Project cover]</div>'}</div></a></section>
+  ${cta('Want results', 'like', 'these?')}`;
+  }
+
+  function postCard(p) { return `<a class="post rv" href="#post-${p.slug}"><div class="cv" style="--g:${p.glow}"><span>${p.word}</span></div><div class="tx"><span>${p.cat.toUpperCase()}</span><b>${p.title}</b><small>${p.time}</small></div></a>`; }
+  function pageBlog() {
+    const f = POSTS[0];
+    return phero(`<span class="eyebrow">Insights</span><h1>Notes on <em class="s">growing</em><br>brands online</h1>`, `<p class="lead">Practical guides on websites, design, ads and social media — written for business owners, not marketers.</p>`) + `
+  <section class="wrap" style="padding-bottom:64px"><a class="post feat rv" href="#post-${f.slug}"><div class="cv" style="--g:${f.glow}"><span style="font-size:clamp(56px,7vw,110px)">${f.word}</span></div><div class="tx"><div class="chips"><span class="chip" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Featured</span><span class="chip">${f.cat}</span></div><b>${f.title}</b><p style="color:var(--muted)">${f.excerpt}</p><small>Radiyyan Ghifari · ${f.time}</small></div></a></section>
+  <section class="wrap" style="padding-bottom:clamp(72px,9vw,120px)"><div class="g3">${POSTS.slice(1).map(postCard).join('')}</div></section>
+  <section class="sec alt wrap" style="position:relative;overflow:hidden"><div style="display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between"><h2 class="h2">Growth tips,<br><em class="s">once</em> a month.</h2><form id="nlForm" style="display:flex;flex-direction:column;gap:12px;width:min(460px,100%)"><label for="nlEmail" style="font-size:14px;color:var(--soft)">No spam. Practical ideas for your website, ads and content.</label><div style="display:flex;gap:8px;padding:6px;border-radius:999px;background:var(--surface);border:1px solid var(--line-2)"><input id="nlEmail" type="email" required placeholder="you@company.com" style="flex:1;min-width:0;padding:0 16px;background:transparent;border:0;outline:none;color:var(--text);font:inherit"><button class="btn green" style="height:46px;padding:0 20px" type="submit">Subscribe</button></div><span id="nlMsg" style="font-size:13px;color:var(--accent)"></span></form></div></section>`;
+  }
+
+  function pagePost(p) {
+    const rel = POSTS.filter(x => x.slug !== p.slug).slice(0, 3);
+    const body = p.full ? `
+      <p style="font-size:22px;line-height:1.7;color:var(--text)">If you're planning a new website, one of the first questions is whether you need a landing page or a full company profile. Both are "websites" — but they're built for very different jobs, and choosing the wrong one can waste your budget.</p>
+      <h2 id="lp">What is a landing page?</h2><p>A landing page is a single page with <strong>one goal</strong>: getting the visitor to take one action — fill a form, tap WhatsApp, book a call or buy. Every element on the page pushes toward that single action. There's no menu to wander off into.</p>
+      <h2 id="cp">What is a company profile website?</h2><p>A company profile is a multi-page site that introduces your business as a whole: who you are, what you offer, your portfolio, your team and how to reach you. Its job is <strong>credibility</strong>. It's the site people check after hearing your name — from a partner, a tender or a Google search.</p>
+      <h2 id="compare">Side-by-side comparison</h2>
+      <div class="tbl"><div><span></span><span>Landing page</span><span>Company profile</span></div><div><span>Main goal</span><span>One action</span><span>Trust &amp; information</span></div><div><span>Pages</span><span>1</span><span>4–10+</span></div><div><span>Best traffic</span><span>Ads &amp; campaigns</span><span>Google search, referrals</span></div><div><span>Time to launch</span><span>Faster</span><span>Longer</span></div><div><span>SEO potential</span><span>Limited</span><span style="color:var(--accent);font-weight:600">Strong, with a blog</span></div></div>
+      <h2 id="when-lp">When to choose a landing page</h2><ul><li>You're running Google or Meta Ads and need a page built to convert.</li><li>You're launching one product, event or promo.</li><li>You want to test an offer quickly before investing in a full site.</li></ul>
+      <h2 id="when-cp">When to choose a company profile</h2><ul><li>You work B2B, join tenders or need to look established.</li><li>You have several services or product lines to explain.</li><li>You want to be found on Google over the long term.</li></ul>
+      <div class="callout"><span>OUR TAKE</span><p>Most growing businesses end up needing both: a company profile as the home base, and a focused landing page for each campaign. In our ads work, sending traffic to a dedicated landing page instead of a homepage is one of the quickest ways to bring cost per lead down.</p></div>
+      <h2 id="bottom">The bottom line</h2><p>Start from your goal. Need leads from ads next month? Build a landing page. Need people to trust you when they look you up? Build a company profile. Still not sure — we're happy to help you decide in a free 15-minute call.</p>` : `
+      <p style="font-size:22px;line-height:1.7;color:var(--text)">[Article intro for "${p.title}".]</p><div class="callout"><span>DRAFT</span><p>This article is planned for the blog. Its full text will go here — written for SEO around the topic above.</p></div>`;
+    const toc = p.full ? `<nav class="toc" aria-label="On this page"><span>ON THIS PAGE</span>${[['lp', 'What is a landing page?'], ['cp', 'What is a company profile?'], ['compare', 'Side-by-side comparison'], ['when-lp', 'When to choose a landing page'], ['when-cp', 'When to choose a company profile'], ['bottom', 'The bottom line']].map(([id, t]) => `<a href="#post-${p.slug}" data-scroll="${id}">${t}</a>`).join('')}</nav>` : '<div></div>';
+    return `
+  <header class="phero" style="flex-direction:column;align-items:center;text-align:center"><div class="glow-bg" style="left:50%;margin-left:-410px;right:auto"></div><div class="l intro-anim" style="align-items:center;max-width:1040px"><div class="crumb"><a href="#blog">Blog</a><span>/</span><b>${p.cat}</b></div><h1 style="font-size:clamp(40px,5.4vw,72px);line-height:1.04">${p.title}</h1><div style="display:flex;align-items:center;gap:14px;font-size:14px;color:var(--muted)"><img src="img/logo.png" alt="" style="width:40px;height:40px;border-radius:50%"><div style="text-align:left"><b style="color:var(--text)">Radiyyan Ghifari</b><br>Founder, Organoo Studio</div><span>·</span><span>[Publish date]</span><span>·</span><span>${p.time}</span></div></div></header>
+  <section class="wrap" style="padding-bottom:80px"><div class="post" style="padding:0;border-radius:32px;overflow:hidden"><div class="cv" style="--g:${p.glow};aspect-ratio:2.4;border-radius:0"><span style="font-size:clamp(64px,10vw,170px)">${p.word}</span></div></div></section>
+  <section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="article">${toc}<article class="prose">${body}
+    <div class="card" style="margin-top:48px;display:flex;align-items:center;gap:18px"><img src="img/logo.png" alt="" style="width:64px;height:64px;border-radius:50%"><div><b style="font-size:17px">Radiyyan Ghifari</b><p style="margin:4px 0 0!important;font-size:14px!important;color:var(--muted)!important">Founder of Organoo Studio. Writes about websites, ads and growing small businesses online.</p></div></div>
+  </article></div></section>
+  <section class="sec alt wrap"><div class="row-head"><h2 class="h2">Keep <em class="s">reading</em></h2><a class="more" href="#blog">All articles →</a></div><div class="g3">${rel.map(postCard).join('')}</div></section>
+  ${cta()}`;
+  }
+
+  function pageContact() {
+    const svcs = [['uiux', 'UI/UX Design'], ['web', 'Website'], ['ads', 'Google / Meta Ads'], ['graphic', 'Graphic Design'], ['social', 'Social Media']];
+    const budgets = ['< Rp 5 jt', 'Rp 5–15 jt', 'Rp 15–50 jt', '> Rp 50 jt'];
+    const faqs = [['How long does a project take?', 'It depends on scope: a landing page is the quickest, while company profiles and product design take longer. You get a clear timeline before we start.'], ['Do you work with clients outside Malang?', 'Yes. We work remotely with clients across Indonesia, with calls and progress updates throughout.'], ['Can I update the website myself after launch?', 'Yes. We can set up an easy editor for your team, or handle updates for you with a maintenance plan.'], ['How do you report ad performance?', 'You get regular reports on spend, reach, clicks, leads and cost per result — plus what we are changing next and why.']];
+    return `
+  <section class="phero" style="align-items:stretch"><div class="glow-bg" style="left:-260px;right:auto;top:auto;bottom:-300px"></div>
+    <div class="contact-grid" style="position:relative;width:100%">
+      <div class="intro-anim" style="display:flex;flex-direction:column;gap:28px">
+        <span class="eyebrow">Contact</span>
+        <h1>Let's build<br>something<br>that <em class="s">grows.</em></h1>
+        <p class="lead">Tell us a little about your business and what you want to achieve. We'll reply with next steps — no hard sell.</p>
+        <div class="clist" style="margin-top:auto">
+          <div><span><small>WHATSAPP</small><b>[+62 8xx-xxxx-xxxx]</b></span></div>
+          <div><span><small>EMAIL</small><b>[hello@organoostudio.com]</b></span></div>
+          <a href="https://www.instagram.com/organoo.studio/"><span><small>INSTAGRAM</small><b>@organoo.studio</b></span>${UR('#2AA36B', 18)}</a>
+          <div><span><small>STUDIO</small><b>Malang, East Java, Indonesia</b></span></div>
+        </div>
+      </div>
+      <div id="formBox">
+        <form class="form" id="contactForm" novalidate>
+          <h2>Start a project</h2>
+          <div class="g2" style="gap:16px">
+            <div class="field" id="f-name"><label for="cName">Full name</label><input id="cName" name="name" type="text" placeholder="Your name" autocomplete="name"><span class="err"></span></div>
+            <div class="field"><label for="cCompany">Company</label><input id="cCompany" name="company" type="text" placeholder="Company or brand" autocomplete="organization"></div>
+            <div class="field" id="f-email"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email"><span class="err"></span></div>
+            <div class="field"><label for="cWa">WhatsApp</label><input id="cWa" name="wa" type="tel" placeholder="+62" autocomplete="tel"></div>
+          </div>
+          <fieldset><legend>What do you need? <span style="color:var(--dim);font-weight:500">(pick any)</span></legend><div class="chips pick" id="pickSvc">${svcs.map(([id, l]) => `<button type="button" data-v="${id}" aria-pressed="${id === 'web'}">${l}</button>`).join('')}</div></fieldset>
+          <fieldset><legend>Estimated budget</legend><div class="chips pick" id="pickBudget">${budgets.map((b, i) => `<button type="button" data-v="${b}" aria-pressed="${i === 1}">${b}</button>`).join('')}</div></fieldset>
+          <div class="field"><label for="cMsg">Tell us about your project</label><textarea id="cMsg" name="msg" rows="5" placeholder="Goals, timeline, links to your current website or social media…"></textarea></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px"><span style="font-size:13px;color:var(--muted);max-width:320px">By sending, you agree to be contacted about your enquiry.</span><button class="btn green" type="submit"><span>Send message</span><span class="ico">${UR('#fff', 15)}</span></button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="g2">
+    <a class="card rv" href="#contact" style="min-height:200px;display:flex;flex-direction:column"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2AA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 10h18"/></svg><b style="margin-top:auto;font-size:26px;letter-spacing:-.02em">Book a 15-min call</b><span style="color:var(--muted)">Pick a time that works for you — free, no commitment.</span></a>
+    <a class="card rv" href="#contact" style="min-height:200px;display:flex;flex-direction:column"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2AA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg><b style="margin-top:auto;font-size:26px;letter-spacing:-.02em">Chat on WhatsApp</b><span style="color:var(--muted)">Quick questions about pricing or timelines? Message us directly.</span></a>
+  </div></section>
+  ${faqBlock('Before you <em class="s">ask</em>', faqs)}`;
+  }
+
+  function page404() {
+    return `<section class="phero" style="min-height:90vh;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div class="glow-bg" style="left:50%;margin-left:-410px;right:auto;top:0"></div><div class="l intro-anim" style="align-items:center"><span class="serif floaty" style="font-size:clamp(160px,24vw,300px);line-height:.85;color:var(--accent)">404</span><h1 style="font-size:clamp(32px,3.4vw,44px)">This page wandered off.</h1><p class="lead">The link may be broken or the page may have moved.</p><div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">${btn('Back to home', '#home')}<a class="btn ghost" href="#work">See our work</a></div></div></section>`;
+  }
+
+
+  /* ---------- HOME ---------- */
+  function pageHome() {
+    const seeds = [[8, 22, 64, '#2AA36B', .6], [86, 16, 26, '#F2B33D', 1.2], [72, 58, 110, 'transparent', .35, '#0E1F17'], [18, 70, 30, '#F2B33D', .9], [52, 12, 14, '#0E1F17', 1.6], [92, 78, 48, '#2AA36B', .8]];
+    const stack = [['#0F2E20', '#EAF3ED'], ['#2AA36B', '#06140D'], ['#F3F7F4', '#0E1F17'], ['#F2B33D', '#0E1F17'], ['#0E1F17', '#EAF3ED']];
+    const hproj = ['sanis', 'pintara', 'batu-panorama', 'srengenge', 'pelni', 'merteyasa', 'dasindo', 'designskuy'].map(k => projBySlug[k]);
+    return `
+  <section class="hx" id="hx">
+    ${seeds.map(([x, y, s, c, d, b]) => `<i class="seed" data-depth="${d}" style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;background:${c};${b ? 'border:1.5px solid ' + b + ';' : ''}"></i>`).join('')}
+    <div class="hx-top mono"><span>Organoo Studio</span><span>Digital growth lab</span><span>Malang — Indonesia</span><span>Scroll ↓</span></div>
+    <div class="badge-rot" aria-hidden="true"><svg viewBox="0 0 150 150" id="badge"><defs><path id="circ" d="M75,75 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></defs><text><textPath href="#circ">Grown, not generated · Growth lab · Malang ·</textPath></text><path d="M75 57 l0 36 M57 75 l36 0" stroke="#0E1F17" stroke-width="2"/></svg></div>
+    <h1 class="hx-title" aria-label="Brands grow here.">
+      <span class="ln" aria-hidden="true"><span class="px">Brands</span><span class="pill-vid"><video id="pillVideo" muted playsinline loop preload="none" poster="studio-poster.jpg"></video></span><span class="px">grow</span></span>
+      <span class="ln" aria-hidden="true"><span class="hx-tag">UI/UX · Websites · Ads · Design · Social</span><span class="px">here</span><span class="dot">.</span></span>
+    </h1>
+    <div class="hx-bottom">
+      <p>We're a small digital studio from Malang that treats every brand like something alive: plan it, plant it, measure it, help it grow.</p>
+      <div class="acts">${btn('Start a project', '#contact', 'green')}<a class="btn ghost" href="#work">See the work</a></div>
+    </div>
+  </section>
+
+  <section class="window" data-scene="window">
+    <div class="pin">
+      <div class="win" id="win"><video id="winVideo" muted playsinline loop preload="none" poster="studio-poster.jpg"></video></div>
+      <span class="win-label" id="wl1" style="top:110px;left:var(--gutter)">Fig. 01 — The studio at work</span>
+      <span class="win-label" id="wl2" style="top:110px;right:var(--gutter)">Data · Design · Growth</span>
+      <p class="win-big" id="winBig">Data-driven.<br><em>Design-led.</em></p>
+      <span class="win-label" id="wl3" style="bottom:36px;left:var(--gutter)">Every decision backed by numbers</span>
+      <span class="win-label" id="wl4" style="bottom:36px;right:var(--gutter)">Keep scrolling ↓</span>
+    </div>
+  </section>
+
+  <section class="vm" aria-label="Clients and services">
+    <div class="vm-row a" data-vm="1">${'<span>PUPR</span><span>Pintara</span><span>Cazmilk</span><span>Jwaher</span><span>WP Malang</span><span>PT Pelni</span><span>Sanis</span><span>Dasindo Media</span><span>Artiland Group</span><span>Srengenge</span>'.repeat(2)}</div>
+    <div class="vm-row b" data-vm="-1">${'<span>UI/UX Design</span><span>Websites</span><span>Google Ads</span><span>Meta Ads</span><span>Graphic Design</span><span>Social Media</span>'.repeat(2)}</div>
+  </section>
+
+  <section class="sec alt wrap" data-scene="about">
+    <div class="about-b">
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <span class="eyebrow">No. 01 — About the lab</span>
+        <p class="big" id="aboutBig">We're not a vendor. We're a growth partner working side by side with your team, blending <mark>strategy, design and data</mark>. Great design only matters when it <mark>moves the numbers</mark>: more leads, lower cost per result and a brand people remember.</p>
+        <div>${btn('Meet the studio', '#about')}</div>
+      </div>
+      <div class="arch rv"><img id="archImg" src="img/organoo-web.webp" alt="Organoo Studio website on a laptop" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" data-scene="curve">
+    <div class="row-head"><div style="display:flex;flex-direction:column;gap:18px"><span class="eyebrow">No. 02 — Growth, measured</span><h2 class="h2">Results that <em class="s">grow</em></h2></div><p>Real numbers from real campaigns. Scroll to watch them plot.</p></div>
+    <div class="curve-wrap" id="curveWrap">
+      <svg class="curve" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AA36B" stop-opacity=".5"/><stop offset="1" stop-color="#2AA36B" stop-opacity="0"/></linearGradient><clipPath id="cclip"><rect id="cclipRect" x="0" y="0" width="0" height="420"/></clipPath></defs>
+        <g class="grid"><line x1="0" y1="105" x2="1200" y2="105"/><line x1="0" y1="210" x2="1200" y2="210"/><line x1="0" y1="315" x2="1200" y2="315"/></g>
+        <path class="area" clip-path="url(#cclip)" d="M0 400 C 180 390, 260 360, 340 300 S 520 250, 620 230 S 820 120, 900 110 S 1100 40, 1200 20 L1200 420 L0 420 Z"/>
+        <path class="path" id="curvePath" d="M0 400 C 180 390, 260 360, 340 300 S 520 250, 620 230 S 820 120, 900 110 S 1100 40, 1200 20"/>
+      </svg>
+      <div class="pt" data-at=".3" style="left:28%;top:78%"><b>11×</b><small>ROAS · Google Ads · Dasindo</small><i></i></div>
+      <div class="pt" data-at=".58" style="left:52%;top:60%"><b>1,200+</b><small>Conversions · Meta Ads · Batu Panorama</small><i></i></div>
+      <div class="pt" data-at=".86" style="left:78%;top:30%"><b>+97.8%</b><small>Website leads after optimization</small><i></i></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" style="padding-top:0">
+    <div class="row-head"><div style="display:flex;flex-direction:column;gap:18px"><span class="eyebrow">No. 03 — What we grow</span><h2 class="h2">Five ways<br>we help you <em class="s">grow</em></h2></div><a class="more" href="#services">All services</a></div>
+    <div class="stack" id="stack">
+      ${SERVICES.map((s, i) => `<a class="scard" href="#service-${s.slug}" style="--i:${i};background:${stack[i][0]};color:${stack[i][1]}" data-cursor="Open"><div class="t"><span class="mono">No. ${s.n} / 05</span><h3>${s.name}</h3><p>${s.short}</p><div class="chips">${s.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div><span class="go">Explore service ↗</span></div><div class="pic" style="background:${s.picBg || '#151515'}">${s.pic ? `<img src="${I(s.pic)}" alt="" loading="lazy" style="${s.picBg === '#fff' || s.picBg === '#EDEDED' ? 'object-fit:contain' : ''}">` : `<div class="ph" style="height:100%;border:0;color:inherit">[${s.name} showcase]</div>`}</div></a>`).join('')}
+    </div>
+  </section>
+
+  <section class="hscroll alt" data-scene="hscroll" id="hs">
+    <div class="pin">
+      <div class="hhead"><div style="display:flex;flex-direction:column;gap:18px"><span class="eyebrow">No. 04 — Selected work</span><h2 class="h2">Work that <em class="s">moved</em><br>the needle</h2></div><a class="more" href="#work">All projects</a></div>
+      <div class="htrack" id="htrack">${hproj.map(p => `<a class="hcard" href="#project-${p.slug}" data-cursor="View"><div class="img" style="background:${p.bg}">${p.img ? `<img src="${I(p.img)}" alt="${p.title}" loading="lazy" style="${p.light || p.contain ? 'object-fit:contain' : ''}">` : ''}</div><span class="mono">${p.service}</span><b>${p.title}</b></a>`).join('')}</div>
+      <div class="hprog"><i id="hprog"></i></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" data-scene="grow" id="growSec">
+    <div class="grow">
+      <div class="pin2">
+        <span class="eyebrow" style="margin-bottom:24px">No. 05 — How things grow here</span>
+        <svg class="plant" viewBox="0 0 300 380" aria-hidden="true">
+          <ellipse cx="150" cy="352" rx="120" ry="18" fill="#0E1F17" opacity=".08"/>
+          <path d="M60 350 Q150 330 240 350" stroke="#0E1F17" stroke-width="3" fill="none"/>
+          <circle class="seedc" id="seedc" cx="150" cy="340" r="12" fill="#0E1F17"/>
+          <path class="stem" id="stem" d="M150 340 C 150 280, 140 240, 150 180 S 160 90, 150 40"/>
+          <path class="lf" data-s="1" d="M149 270 C 110 262, 92 236, 96 214 C 124 214, 146 236, 149 270 Z" fill="#2AA36B"/>
+          <path class="lf" data-s="2" d="M151 210 C 190 200, 212 172, 208 148 C 178 148, 154 176, 151 210 Z" fill="#1F8A57"/>
+          <path class="lf" data-s="2" d="M149 160 C 112 150, 96 124, 100 104 C 128 104, 146 128, 149 160 Z" fill="#2AA36B"/>
+          <circle class="lf" data-s="3" cx="150" cy="36" r="22" fill="#F2B33D"/>
+        </svg>
+      </div>
+      <div class="gsteps" id="gsteps">
+        ${[['Seed', 'Discover', 'We dig into your business, audience and competitors to find the real opportunity.'], ['Sprout', 'Strategy', 'A clear plan for channels, messaging, budget and the KPIs we will be judged on.'], ['Leaf', 'Design & build', 'Websites, interfaces, creatives and campaigns crafted to convert.'], ['Bloom', 'Measure & optimize', 'Transparent monthly reports and continuous optimization. Then we grow again.']].map(([k, t, d], i) => `<div class="gstep" data-step="${i}"><span class="k">0${i + 1} · ${k}</span><div><b>${t}</b><p>${d}</p></div></div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="results" style="padding-top:0">
+    <div class="row-head"><div style="display:flex;flex-direction:column;gap:18px"><span class="eyebrow">No. 06 — Lab reports</span><h2 class="h2">Proof, not <em class="s">promises</em></h2></div><a class="more" href="#work">All case studies</a></div>
+    <div class="g2">
+      <a class="report rv" href="#project-batu-panorama" data-cursor="Read"><div class="rh mono"><span>Report No. 01 · Meta Ads</span><span>Property</span></div><div class="rb"><span style="color:var(--muted)">PT. Artiland Group — Batu Panorama Residence</span><div class="big"><span data-count="1200" data-suffix="+">1,200+</span><small>conversions</small></div><div class="mini"><div><strong>+97.8%</strong><em>Website leads</em></div><div><strong>609K</strong><em>Accounts reached</em></div><div><strong>1.02%</strong><em>Average CTR</em></div></div></div><div class="shot"><img src="img/meta-table.webp" alt="" loading="lazy"></div></a>
+      <a class="report rv" href="#project-dasindo" data-cursor="Read"><div class="rh mono"><span>Report No. 02 · Google Ads</span><span>Training</span></div><div class="rb"><span style="color:var(--muted)">PT. Dasindo Media — Dale Carnegie Training</span><div class="big"><span data-count="11" data-suffix="×">11×</span><small>return on ad spend</small></div><div class="mini"><div><strong>100+</strong><em>Lead forms</em></div><div><strong>68.6K</strong><em>Impressions</em></div><div><strong>6.54%</strong><em>Peak CTR</em></div></div></div><div class="shot"><img src="img/google-charts.webp" alt="" loading="lazy"></div></a>
+    </div>
+  </section>
+  ${cta()}`;
+  }
+
+  /* ---------- router ---------- */
+  const app = document.getElementById('app');
+  const wipe = document.getElementById('wipe');
+  let lenis = null, home = null;
+  function resolve(token) {
+    if (!token || token === 'home' || token === 'top') return ['home', pageHome, 'Organoo — Digital growth lab in Malang'];
+    if (token === 'about') return ['about', pageAbout, 'About'];
+    if (token === 'services') return ['services', pageServices, 'Services'];
+    if (token === 'work') return ['work', pageWork, 'Work'];
+    if (token === 'blog') return ['blog', pageBlog, 'Blog'];
+    if (token === 'contact') return ['contact', pageContact, 'Contact'];
+    let m;
+    if ((m = token.match(/^service-(.+)$/)) && svcBySlug[m[1]]) { const s = svcBySlug[m[1]]; return ['services', () => pageService(s), s.name]; }
+    if ((m = token.match(/^project-(.+)$/)) && projBySlug[m[1]]) { const p = projBySlug[m[1]]; return ['work', () => pageProject(p), p.title]; }
+    if ((m = token.match(/^post-(.+)$/)) && postBySlug[m[1]]) { const p = postBySlug[m[1]]; return ['blog', () => pagePost(p), p.title]; }
+    return [null, page404, 'Page not found'];
+  }
+  function scrollTop() { if (lenis) lenis.scrollTo(0, { immediate: true }); window.scrollTo(0, 0); }
+  function smoothTo(el) { if (!el) return; if (lenis) lenis.scrollTo(el, { offset: -100 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+  function draw() {
+    const token = decodeURIComponent(location.hash.slice(1));
+    const [section, fn, title] = resolve(token);
+    const isHome = fn === pageHome;
+    document.body.classList.remove('menu-open');
+    document.getElementById('burger').setAttribute('aria-expanded', 'false');
+    app.innerHTML = fn();
+    document.title = isHome ? title : title + ' — Organoo Studio';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (isHome ? 'home' : section || '')));
+    scrollTop();
+    setupSplits(app);
+    setupReveals();
+    if ('IntersectionObserver' in window && !reduce) { const mio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('lit'); mio.unobserve(e.target); } }), { threshold: .8 }); app.querySelectorAll('em.s').forEach(m => mio.observe(m)); } else app.querySelectorAll('em.s').forEach(m => m.classList.add('lit'));
+    home = null;
+    if (isHome) initHome();
+    if (token === 'work') initWork();
+    if (token === 'contact') initContact();
+    if (token === 'blog') initNewsletter();
+    setupMagnets(document);
+    setupCounters();
+    wm.classList.add('pre'); wmIO.observe(wm);
+    if (lenis) requestAnimationFrame(() => lenis.resize());
+  }
+  let first = true;
+  function render() {
+    if (first || reduce) { first = false; draw(); return; }
+    wipe.classList.remove('leave'); wipe.classList.add('cover');
+    setTimeout(() => { draw(); wipe.classList.remove('cover'); wipe.classList.add('leave'); setTimeout(() => { wipe.classList.remove('leave'); }, 600); }, 480);
+  }
+  addEventListener('hashchange', render);
+  document.addEventListener('click', e => {
+    const s = e.target.closest('[data-scroll]');
+    if (s) { e.preventDefault(); smoothTo(document.getElementById(s.dataset.scroll)); return; }
+    const a = e.target.closest('a[href^="#"]');
+    if (a && location.hash === a.getAttribute('href')) { e.preventDefault(); render(); }
+  });
+  document.getElementById('burger').addEventListener('click', () => {
+    const open = !document.body.classList.contains('menu-open');
+    document.body.classList.toggle('menu-open', open);
+    document.getElementById('burger').setAttribute('aria-expanded', String(open));
+  });
+
+  /* ---------- helpers ---------- */
+  function setupSplits(root) {
+    root.querySelectorAll('.split').forEach(el => {
+      if (el.dataset.done) return; el.dataset.done = 1;
+      const txt = el.textContent; el.textContent = '';
+      [...txt].forEach((ch, i) => { const s = document.createElement('span'); s.textContent = ch === ' ' ? ' ' : ch; s.style.setProperty('--i', i); el.appendChild(s); });
+    });
+  }
+  let revealIO = null;
+  function setupReveals() {
+    const els = app.querySelectorAll('.rv');
+    if (reduce || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+    if (revealIO) revealIO.disconnect();
+    revealIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(e => revealIO.observe(e));
+  }
+  function initWork() {
+    const grid = document.getElementById('workGrid');
+    app.querySelectorAll('[data-filter]').forEach(b => b.addEventListener('click', () => {
+      const f = b.dataset.filter;
+      app.querySelectorAll('[data-filter]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      grid.querySelectorAll('.wcard').forEach(c => { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+      if (lenis) lenis.resize();
+    }));
+  }
+  function initContact() {
+    const svc = document.getElementById('pickSvc'), bud = document.getElementById('pickBudget');
+    svc.addEventListener('click', e => { const b = e.target.closest('button'); if (b) b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+    bud.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; bud.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); });
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('cName'), email = document.getElementById('cEmail');
+      const setErr = (id, msg) => { const f = document.getElementById(id); f.classList.toggle('bad', !!msg); f.querySelector('.err').textContent = msg; };
+      const okName = name.value.trim().length > 1, okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+      setErr('f-name', okName ? '' : 'Please enter your name.');
+      setErr('f-email', okEmail ? '' : 'Please enter a valid email, like you@company.com.');
+      if (!okName) { name.focus(); return; } if (!okEmail) { email.focus(); return; }
+      const picked = [...svc.querySelectorAll('[aria-pressed="true"]')].map(b => b.textContent).join(', ') || 'not chosen yet';
+      document.getElementById('formBox').innerHTML = `<div class="form"><div class="sent"><b>Thanks, ${name.value.trim().split(' ')[0].replace(/[<>&"]/g, '')}!</b><p>Your brief is ready: ${picked}, budget ${bud.querySelector('[aria-pressed="true"]')?.textContent || '—'}.</p><p style="color:var(--muted);font-size:14px">This is a prototype, so nothing was sent. On the live site this form will deliver straight to the Organoo team.</p></div><button class="btn ghost" type="button" id="againBtn">Start another brief</button></div>`;
+      document.getElementById('againBtn').addEventListener('click', render);
+    });
+  }
+  function initNewsletter() {
+    const f = document.getElementById('nlForm');
+    f.addEventListener('submit', e => { e.preventDefault(); const v = document.getElementById('nlEmail').value.trim(); document.getElementById('nlMsg').textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Subscribed in the prototype — the live site will connect this to your mailing list.' : 'Please enter a valid email.'; });
+  }
+
+
+  /* ---------- counters ---------- */
+  function setupCounters() {
+    const els = app.querySelectorAll('[data-count]');
+    if (reduce || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = performance.now();
+      const step = t => { const k = ease(clamp((t - t0) / 1600)); el.textContent = Math.round(to * k).toLocaleString('en-US') + suf; if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), { threshold: .5 });
+    els.forEach(el => io.observe(el));
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  function setupMagnets(root) {
+    if (!fine || reduce) return;
+    root.querySelectorAll('.btn, .magnet').forEach(el => {
+      if (el.dataset.mag) return; el.dataset.mag = 1;
+      const k = el.classList.contains('orb') ? .35 : .22;
+      el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.translate = ((e.clientX - r.left - r.width / 2) * k) + 'px ' + ((e.clientY - r.top - r.height / 2) * k) + 'px'; });
+      el.addEventListener('pointerleave', () => { el.style.translate = ''; });
+    });
+  }
+
+  /* ---------- cursor ---------- */
+  const cur = document.getElementById('cur'), ring = document.getElementById('curRing'), curLabel = document.getElementById('curLabel');
+  let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+  addEventListener('pointermove', e => {
+    mx = e.clientX; my = e.clientY;
+    if (!fine) return;
+    const t = e.target.closest ? e.target : null;
+    const lab = t && t.closest('[data-cursor], .wcard, .post, .svc-card, .next');
+    if (lab) { ring.classList.add('big'); ring.classList.remove('hov'); curLabel.textContent = lab.dataset.cursor || 'View'; }
+    else { ring.classList.remove('big'); ring.classList.toggle('hov', !!(t && t.closest('a, button, summary, input, textarea'))); }
+    const spot = t && t.closest('[data-spot]');
+    if (spot) { const r = spot.getBoundingClientRect(); spot.style.setProperty('--mx', (e.clientX - r.left) + 'px'); spot.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+    const tilt = t && t.closest('.card, .plan');
+    document.querySelectorAll('.tilted').forEach(el => { if (el !== tilt) { el.classList.remove('tilted'); el.style.transform = ''; } });
+    if (tilt && !reduce) { const r = tilt.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; tilt.classList.add('tilted'); tilt.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-4px)`; }
+  }, { passive: true });
+
+  /* ---------- footer wordmark ---------- */
+  const wm = document.getElementById('wm');
+  [...wm.children].forEach((s, i) => s.style.transitionDelay = (i * 60) + 'ms');
+  const wmIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { wm.classList.remove('pre'); wmIO.unobserve(wm); setTimeout(() => [...wm.children].forEach(s => s.style.transitionDelay = ''), 1200); } }), { threshold: .3 });
+
+  /* ---------- home scenes ---------- */
+  function initHome() {
+    const q = id => document.getElementById(id);
+    const big = q('aboutBig');
+    // wrap words, keep <mark>
+    const walk = node => { [...node.childNodes].forEach(n => { if (n.nodeType === 3) { const frag = document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(w => { if (!w) return; if (/^\s+$/.test(w)) frag.appendChild(document.createTextNode(w)); else { const s = document.createElement('span'); s.className = 'w dim'; s.textContent = w; frag.appendChild(s); } }); n.replaceWith(frag); } else walk(n); }); };
+    walk(big);
+    home = {
+      hx: q('hx'), seeds: [...app.querySelectorAll('.seed')], pxLetters: [], badge: q('badge'),
+      win: app.querySelector('[data-scene="window"]'), winEl: q('win'), winBig: q('winBig'), wls: ['wl1', 'wl2', 'wl3', 'wl4'].map(q),
+      rows: [...app.querySelectorAll('[data-vm]')].map(el => ({ el, x: 0, dir: +el.dataset.vm })),
+      about: app.querySelector('[data-scene="about"]'), words: [...big.querySelectorAll('.w')], arch: q('archImg'),
+      curve: app.querySelector('[data-scene="curve"]'), cpath: q('curvePath'), clip: q('cclipRect'), pts: [...app.querySelectorAll('.pt')],
+      cards: [...app.querySelectorAll('.scard')],
+      hs: q('hs'), track: q('htrack'), hprog: q('hprog'),
+      grow: q('growSec'), stem: q('stem'), leaves: [...app.querySelectorAll('.plant .lf')], seedc: q('seedc'), gsteps: [...app.querySelectorAll('.gstep')],
+      len: 0, slen: 0
+    };
+    const h = home;
+    // variable-weight letters in the hero
+    app.querySelectorAll('.px').forEach(el => { const t = el.textContent; el.textContent = ''; [...t].forEach(ch => { const s = document.createElement('span'); s.textContent = ch; el.appendChild(s); h.pxLetters.push(s); }); });
+    h.len = h.cpath.getTotalLength(); h.cpath.style.strokeDasharray = h.len; h.cpath.style.strokeDashoffset = reduce ? 0 : h.len;
+    h.slen = h.stem.getTotalLength(); h.stem.style.strokeDasharray = h.slen; h.stem.style.strokeDashoffset = reduce ? 0 : h.slen;
+    if (reduce) { h.words.forEach(w => w.classList.remove('dim')); h.pts.forEach(p => p.classList.add('on')); h.leaves.forEach(l => l.classList.add('on')); h.gsteps.forEach(s => s.classList.add('on')); h.clip.setAttribute('width', 1200); }
+    const sizeHs = () => { if (!h.track || small) return; h.hs.style.height = (h.track.scrollWidth - innerWidth + innerHeight) + 'px'; };
+    sizeHs(); h.sizeHs = sizeHs;
+    // videos: small pill loops; window loops (both light, no scrubbing)
+    const vids = [q('pillVideo'), q('winVideo')];
+    const start = () => vids.forEach(v => { if (!v) return; v.src = 'studio.mp4'; if (!reduce) v.play().catch(() => {}); });
+    if (document.readyState === 'complete') setTimeout(start, 200); else addEventListener('load', () => setTimeout(start, 200), { once: true });
+  }
+  addEventListener('resize', () => { if (home && home.sizeHs) home.sizeHs(); });
+
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? clamp((innerHeight - r.top) / (innerHeight + r.height)) : clamp(-r.top / t); }
+  function inview(el) { const r = el.getBoundingClientRect(); return clamp((innerHeight - r.top) / (innerHeight + r.height)); }
+
+  let lastY = scrollY, vel = 0;
+  const vineFill = document.getElementById('vineFill'), vineLeaf = document.getElementById('vineLeaf');
+  function tick() {
+    const y = scrollY; const dy = y - lastY; lastY = y;
+    vel += ((lenis ? lenis.velocity : dy) - vel) * .12;
+    rx += (mx - rx) * .18; ry += (my - ry) * .18;
+    if (fine) { cur.style.transform = `translate(${mx}px,${my}px)`; ring.style.transform = `translate(${rx}px,${ry}px)`; }
+    const docH = document.documentElement.scrollHeight - innerHeight;
+    const pg = docH > 0 ? clamp(y / docH) : 0;
+    vineFill.style.transform = `scaleY(${pg})`; vineLeaf.style.top = `calc(${pg * 100}% - 6px)`;
+    if (home && !reduce) {
+      const h = home;
+      // hero: seeds parallax + letter weight by cursor distance + badge spin
+      const nx = mx / innerWidth - .5, ny = my / innerHeight - .5;
+      h.seeds.forEach(s => { const d = +s.dataset.depth; s.style.transform = `translate(${nx * d * 60}px, ${ny * d * 60 - y * d * .15}px)`; });
+      if (fine && y < innerHeight) h.pxLetters.forEach(s => { const r = s.getBoundingClientRect(); const d = Math.hypot(r.left + r.width / 2 - mx, r.top + r.height / 2 - my); const w = 380 + 420 * clamp(1 - d / 320); s.style.fontVariationSettings = `"wght" ${w.toFixed(0)}, "wdth" ${(80 + 20 * clamp(1 - d / 320)).toFixed(0)}, "opsz" 96`; });
+      h.badge.style.transform = `rotate(${y * .12}deg)`;
+      // window: arch grows to full screen
+      const wp = prog(h.win), k = ease(clamp(wp / .7));
+      const vw = innerWidth, vh = innerHeight;
+      const w0 = Math.min(vw * .34, 460), h0 = vh * .56;
+      const ix = (vw - (w0 + (vw - w0) * k)) / 2, iy = (vh - (h0 + (vh - h0) * k)) / 2;
+      const R = (1 - k) * w0 / 2;
+      h.winEl.style.clipPath = `inset(${iy}px ${ix}px ${iy}px ${ix}px round ${R}px ${R}px ${8 * (1 - k)}px ${8 * (1 - k)}px)`;
+      h.winBig.style.opacity = clamp((k - .55) / .3);
+      h.winBig.style.transform = `translateY(-50%) scale(${.9 + .1 * k})`;
+      h.wls.forEach(l => l.style.opacity = clamp((k - .7) / .3));
+      // velocity marquee
+      h.rows.forEach(r => { r.x -= (1.1 + Math.abs(vel) * .35) * r.dir; const half = r.el.scrollWidth / 2; if (r.x < -half) r.x += half; if (r.x > 0) r.x -= half; r.el.style.transform = `translateX(${r.x}px) skewX(${clamp(vel * .6, -12, 12) * -1}deg)`; });
+      // about words + arch parallax
+      const ap = inview(h.about);
+      const lit = Math.floor(clamp((ap - .25) / .45) * h.words.length);
+      h.words.forEach((w, i) => w.classList.toggle('dim', i >= lit));
+      h.arch.style.transform = `translateY(${(-ap * 16)}%)`;
+      // curve draws itself
+      const cp = clamp((inview(h.curve) - .2) / .5);
+      h.cpath.style.strokeDashoffset = h.len * (1 - cp);
+      h.clip.setAttribute('width', 1200 * cp);
+      h.pts.forEach(p => p.classList.toggle('on', cp >= +p.dataset.at));
+      // stacking cards
+      h.cards.forEach((c, i) => { const nx2 = h.cards[i + 1]; if (!nx2) { c.style.transform = ''; return; } const top = 96 + (i + 1) * 26; const r = nx2.getBoundingClientRect(); const t = clamp((innerHeight - r.top) / (innerHeight - top)); c.style.transform = `scale(${1 - t * .06})`; c.style.filter = `brightness(${1 - t * .25})`; });
+      // horizontal work
+      if (!small) { const hp = prog(h.hs), dist = h.track.scrollWidth - innerWidth; h.track.style.transform = `translateX(${-hp * dist}px) skewX(${clamp(vel * .4, -8, 8) * -1}deg)`; h.hprog.style.transform = `scaleX(${hp})`; }
+      // plant grows
+      const gp = clamp((prog(h.grow) - .05) / .8);
+      h.stem.style.strokeDashoffset = h.slen * (1 - gp);
+      h.seedc.setAttribute('fill', gp > .05 ? '#1F8A57' : '#0E1F17');
+      h.leaves.forEach(l => l.classList.toggle('on', gp > +l.dataset.s * .28));
+      const stepOn = Math.min(3, Math.floor(gp * 4));
+      h.gsteps.forEach((s, i) => s.classList.toggle('on', i <= stepOn));
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (!reduce && !small && window.Lenis) {
+    lenis = new Lenis({ lerp: .09 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+  render();
+  requestAnimationFrame(tick);
+})();
+</script>
