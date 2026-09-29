@@ -1,0 +1,55 @@
+Strata Atelier (demo by Organoo Studio) — credits
+Photos: Unsplash, under the Unsplash License (free to use).
+Team portraits are stock models; names, roles and bios are fictional.
+3D buildings are procedural models generated in the browser with three.js (MIT licence), loaded from cdn.jsdelivr.net.
+
+photos/c1.jpg  https://unsplash.com/photos/ibqEcam6ns4
+photos/c2.jpg  https://unsplash.com/photos/18joWFjUhKw
+photos/c3.jpg  https://unsplash.com/photos/H4Xlh-B_7Rg
+photos/c4.jpg  https://unsplash.com/photos/9-qFzV9a2Zc
+photos/c5.jpg  https://unsplash.com/photos/D3GYSD-eHUw
+photos/f1.jpg  https://unsplash.com/photos/tKN1WXrzQ3s
+photos/f2.jpg  https://unsplash.com/photos/VobvKmG-StA
+photos/f3.jpg  https://unsplash.com/photos/nmpW_WwwVSc
+photos/f4.jpg  https://unsplash.com/photos/j6ERcKXdlXw
+photos/f5.jpg  https://unsplash.com/photos/qoPAjwEiUmg
+photos/g1.jpg  https://unsplash.com/photos/iFgRcqHznqg
+photos/g2.jpg  https://unsplash.com/photos/mEZ3PoFGs_k
+photos/g3.jpg  https://unsplash.com/photos/EZ4TYgXPNWk
+photos/g4.jpg  https://unsplash.com/photos/Bg3JaBhnrg4
+photos/g5.jpg  https://unsplash.com/photos/wyIs3Qd0r6o
+photos/g6.jpg  https://unsplash.com/photos/uNaSs6pRzj4
+photos/g7.jpg  https://unsplash.com/photos/VkdH0Eemwqs
+photos/g8.jpg  https://unsplash.com/photos/pq9npYMirk8
+photos/i1.jpg  https://unsplash.com/photos/75b60epaBAs
+photos/i10.jpg  https://unsplash.com/photos/IOYtmlKKK7U
+photos/i2.jpg  https://unsplash.com/photos/vQc0ZDy7Wv8
+photos/i3.jpg  https://unsplash.com/photos/f7TsUnnLGMg
+photos/i4.jpg  https://unsplash.com/photos/R0BBCW1AnSc
+photos/i5.jpg  https://unsplash.com/photos/otLG89ShC4M
+photos/i6.jpg  https://unsplash.com/photos/o08lTHSjjU8
+photos/i7.jpg  https://unsplash.com/photos/w4NlzF8N8-8
+photos/i8.jpg  https://unsplash.com/photos/0B7ijYKaKcE
+photos/i9.jpg  https://unsplash.com/photos/5l6PTBM2smI
+photos/m1.jpg  https://unsplash.com/photos/Mb32AJpqd-g
+photos/m3.jpg  https://unsplash.com/photos/XjNnftIsI-g
+photos/m4.jpg  https://unsplash.com/photos/C-zio8nFBDg
+photos/m5.jpg  https://unsplash.com/photos/hHbRVMU-4pQ
+photos/r1.jpg  https://unsplash.com/photos/PshCtT16gJo
+photos/r2.jpg  https://unsplash.com/photos/87jHTTqQ4os
+photos/r3.jpg  https://unsplash.com/photos/5zCbrGCvtsA
+photos/r4.jpg  https://unsplash.com/photos/_5mQmqIW3rA
+photos/r5.jpg  https://unsplash.com/photos/jTCLppdwSEc
+photos/s10.jpg  https://unsplash.com/photos/Ler7ucoR7vc
+photos/s2.jpg  https://unsplash.com/photos/nGsVMkRatgM
+photos/s4.jpg  https://unsplash.com/photos/Zkp-H7bgkLA
+photos/s7.jpg  https://unsplash.com/photos/jRQ-YugzjWE
+photos/x1.jpg  https://unsplash.com/photos/RECjfdtDVLo
+photos/x10.jpg  https://unsplash.com/photos/oPyu636ASPw
+photos/x12.jpg  https://unsplash.com/photos/4G6DOKSwO8U
+photos/x2.jpg  https://unsplash.com/photos/F-slnkFvcag
+photos/x3.jpg  https://unsplash.com/photos/psXpVaedGRw
+photos/x4.jpg  https://unsplash.com/photos/J2Y59Q042eg
+photos/x5.jpg  https://unsplash.com/photos/sh2gc8APbEk
+photos/x7.jpg  https://unsplash.com/photos/vfXzIJadDXY
+photos/x9.jpg  https://unsplash.com/photos/J_pSdNTqncI

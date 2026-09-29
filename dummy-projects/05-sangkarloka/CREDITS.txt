@@ -1,0 +1,32 @@
+Sangkarloka website by Organoo Studio
+Logo: Sangkarloka. All photos: Unsplash (Unsplash License, free to use)
+photos/aloe-blue.jpg  https://unsplash.com/photos/UZVH49gFB0c
+photos/aloe-white.jpg  https://unsplash.com/photos/IdVNRv-5wJo
+photos/bunny-ears-1.jpg  https://unsplash.com/photos/oY-9vpapY30
+photos/cactus-brown-pot.jpg  https://unsplash.com/photos/fbAnIjhrOL4
+photos/cactus-shallow.jpg  https://unsplash.com/photos/27v6BSNYE68
+photos/gift-box-plant.jpg  https://unsplash.com/photos/f1vbBr6x8Sc
+photos/hand-cactus.jpg  https://unsplash.com/photos/PGCaEWZs4Dw
+photos/hand-small-plant.jpg  https://unsplash.com/photos/puDuLlsah3c
+photos/hand-white-bg.jpg  https://unsplash.com/photos/aRFyZYwfBro
+photos/hands-plants.jpg  https://unsplash.com/photos/R75l4Luum5o
+photos/hands-small-plants.jpg  https://unsplash.com/photos/ebxj2hUU-bk
+photos/hedgehog-pots.jpg  https://unsplash.com/photos/Q6pI5t07RRI
+photos/hook-plant.jpg  https://unsplash.com/photos/0z6deQY39i0
+photos/nice-day-sign.jpg  https://unsplash.com/photos/CUJ8cZ-wPfg
+photos/pink-succulent.jpg  https://unsplash.com/photos/9dlJd7aMcOE
+photos/succulent-green.jpg  https://unsplash.com/photos/Xse_WtQsIGA
+photos/succulent-table.jpg  https://unsplash.com/photos/AhAxCcVajHk
+photos/succulent-topview.jpg  https://unsplash.com/photos/pBkf12JDvGA
+photos/succulent-white-pot.jpg  https://unsplash.com/photos/D2SvRLMzmUQ
+photos/succulents-top.jpg  https://unsplash.com/photos/zu-OdjJRa0w
+photos/succulents-variety.jpg  https://unsplash.com/photos/46xWt_kBFDw
+photos/terrarium.jpg  https://unsplash.com/photos/rDLBArZUl1c
+photos/white-pot-plant.jpg  https://unsplash.com/photos/vHkj3fX9wCk
+photos/window-shelf.jpg  https://unsplash.com/photos/EleyBNnodCY
+photos/plants-table.jpg  https://unsplash.com/photos/2_U7oKsFWiI
+photos/cut/*.webp  background-removed versions of Unsplash photos:
+  cactus-beige-pot https://unsplash.com/photos/WPZlpwJx0Lk
+  pink-succulent https://unsplash.com/photos/9dlJd7aMcOE
+  white-pot-plant https://unsplash.com/photos/vHkj3fX9wCk
+  cactus-brown-pot https://unsplash.com/photos/fbAnIjhrOL4

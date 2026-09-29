@@ -15,6 +15,8 @@ Brand: black `#0A0A0A`, white `#FFFFFF`, emerald `#2AA36B`. Type: Manrope + Inst
 | `/previews/website/` | **Website** — option 1 baseline, all pages. |
 | `/previews/growth-lab/` | **Growth Lab** — option 2, alternate palette (reference). |
 
+Portfolio demo sites (nine dummy client websites) live in [`dummy-projects/`](dummy-projects/). They are not part of the Astro build.
+
 The four prototypes live under `public/previews/` as self-contained static sites. The Astro home page (`src/pages/index.astro`) reads the Motion prototype at build time and lifts its markup, styles and script into the shared layout.
 
 ## Project structure
