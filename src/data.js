@@ -198,21 +198,18 @@ const PROCESS = [
 /* items floating in the 3D flythrough hero: [kind, src/label, x(vw), y(vh), z(px), extra] */
 const FLY = [
   ['shot', 'demos/lumetric-card.webp', -30, -14, -350],
-  ['card', 'gd-bowlful-post-2.webp', 30, -20, -620, 'sq'],
+  ['card', 'gd/bowlful-post-2-sm.webp', 30, -20, -620, 'sq'],
   ['chip', ['1,200+', 'conversions', 'Batu Panorama'], -16, 22, -520],
   ['card', 'pelni.webp', 28, 16, -820],
-  ['shot', 'gd-kinetik-studio-cover.webp', -34, 10, -1000],
+  ['shot', 'gd/kinetik-studio-cover-sm.webp', -34, 10, -1000],
   ['shot', 'demos/arbor-and-co-card.webp', 32, 20, -1250],
   ['chrome', '', -2, -4, -1400],
-  ['card', 'gd-kelana-post-1.webp', -30, -26, -1300, 'sq'],
+  ['card', 'gd/kelana-post-1-sm.webp', -30, -26, -1300, 'sq'],
   ['chip', ['11×', 'ROAS', 'Dale Carnegie'], 18, -26, -1550],
   ['card', 'banksampah.webp', -34, 16, -1700],
-  ['shot', 'gd-tabung-cover.webp', 30, -8, -1850],
   ['shot', 'demos/halden-and-rowe-card.webp', -26, -24, -2000],
   ['wide', 'google-charts.webp', 26, 26, -2150],
-  ['card', 'gd-rimba-roastery-post-1.webp', -6, 30, -2250, 'sq'],
   ['chip', ['+97.8%', 'website leads', 'after optimization'], -30, 2, -2350],
   ['shot', 'demos/strata-atelier-card.webp', 30, -6, -2500],
-  ['shot', 'gd-lumea-cover.webp', -28, -18, -2650],
   ['shot', 'demos/sangkarloka-card.webp', 4, -30, -2800]
 ];

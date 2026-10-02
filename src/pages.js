@@ -75,7 +75,7 @@ function pageHome() {
       <div class="grain"></div>
       <canvas class="stars" id="stars"></canvas>
       <div class="bloom" id="bloom"></div>
-      <div class="world" id="world"><div class="cam" id="cam">${fly}</div></div><div class="fly-scrim" id="flyScrim"></div>
+      <div class="world"><div class="cam" id="cam">${fly}</div></div><div class="fly-scrim" id="flyScrim"></div>
       <div class="fly-copy" id="flyCopy">
         <span class="lbl rv">Digital agency · Jakarta, Indonesia</span>
         <h1 class="split" id="flyH">Ideas that <em class="s">grow</em><span class="seed"></span><br>into digital brands.</h1>
@@ -166,9 +166,9 @@ function processStrips() {
 function initHome() {
   /* --- flythrough --- */
   const items = $$('.fo').map(el => ({ el, x: +el.dataset.x, y: +el.dataset.y, z: +el.dataset.z, r: (Math.random() - .5) * 16 }));
-  const cam = $('#cam'), world = $('#world'), scrim = $('#flyScrim'), copy = $('#flyCopy'), mid = $('#flyMid'), bloom = $('#bloom'), cue = $('#cue'), stars = $('#stars');
-  const SP = Array.from({ length: 280 }, () => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() }));
-  let tx = 0, ty = 0;
+  const cam = $('#cam'), scrim = $('#flyScrim'), copy = $('#flyCopy'), mid = $('#flyMid'), bloom = $('#bloom'), cue = $('#cue'), stars = $('#stars');
+  const SP = Array.from({ length: 170 }, () => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() }));
+  let tx = 0, ty = 0, lastFz = -1;
   scene($('#fly'), (p, pv, t) => {
     const vw = innerWidth, vh = innerHeight, depth = reduce ? 0 : eIO(p) * 3200;
     const midA = range(p, .38, .5) * (1 - range(p, .78, .88));
@@ -178,16 +178,16 @@ function initHome() {
       const z = it.z + depth;
       let op = z > 260 ? clamp(1 - (z - 260) / 380) : clamp((z + 3100) / 600);
       const f = 1000 / (1000 - Math.min(z, 900)), sx = it.x * f, sy = it.y * f;
-      if (Math.abs(sx) < 36 && Math.abs(sy) < 24) op *= lerp(.1, 1, range(p, .06, .2)) * (1 - midA * .7);
+      op *= lerp(0, 1, range(p, .1, .24));
+      if (Math.abs(sx) < 36 && Math.abs(sy) < 24) op *= lerp(.05, 1, range(p, .12, .26)) * (1 - midA * .7);
       it.el.style.opacity = op.toFixed(3);
       it.el.style.visibility = op <= 0.01 ? 'hidden' : 'visible';
       if (op > 0.01) it.el.style.transform = `translate3d(${it.x * vw / 100}px,${it.y * vh / 100}px,${z}px) rotateY(${-it.x * .35 + it.r}deg) rotateZ(${it.r * .3}deg)`;
     }
-    /* intro: the work sits blurred and dimmed behind the headline, then comes into focus as you scroll */
-    const fz = reduce ? 0 : 1 - range(p, .02, .2);
-    world.style.filter = fz > .01 ? `blur(${(fz * 12).toFixed(2)}px) brightness(${(1 - fz * .45).toFixed(3)}) saturate(${(1 - fz * .3).toFixed(3)})` : 'none';
-    scrim.style.opacity = fz.toFixed(3);
-    const c = range(p, .03, .2);
+    /* intro: a static dark veil sits behind the headline and lifts as you scroll (opacity only — cheap to animate) */
+    const fz = reduce ? 0 : 1 - range(p, .04, .24);
+    if (fz !== lastFz) { scrim.style.opacity = fz.toFixed(3); lastFz = fz; }
+    const c = range(p, .02, .12);
     copy.style.opacity = 1 - c; copy.style.transform = `translateY(${-c * 60}px) scale(${1 - c * .08})`;
     copy.style.pointerEvents = c > .5 ? 'none' : '';
     const m = range(p, .42, .56) * (1 - range(p, .74, .86));
@@ -195,7 +195,7 @@ function initHome() {
     bloom.style.setProperty('--bs', (.55 + p * 1.6).toFixed(3)); bloom.style.setProperty('--ba', (.22 + range(p, .78, 1) * .55).toFixed(3));
     cue.style.opacity = 1 - range(p, 0, .05);
     // starfield
-    const { ctx, w, h } = fitCanvas(stars, 1.5);
+    const { ctx, w, h } = fitCanvas(stars, 1);
     ctx.clearRect(0, 0, w, h);
     const sp = .0012 + Math.min(Math.abs(S.vy), 60) * .00022 + (reduce ? 0 : .0008);
     for (const s of SP) {
