@@ -1,5 +1,5 @@
 /* ===================== SHARED BLOCKS ===================== */
-const chromeSvg = (cls = '', id = '') => `<svg class="${cls}" ${id ? `id="${id}"` : ''} viewBox="0 0 200 200" aria-hidden="true"><use href="#mkChrome"/></svg>`;
+const chromeSvg = (cls = '', id = '') => `<svg class="${cls}" ${id ? `id="${id}"` : ''} viewBox="0 0 100 100" aria-hidden="true"><use href="#mkChrome" width="100" height="100"/></svg>`;
 const imgTag = (src, light, cls = '') => `<img class="${light ? 'lt ' : ''}${cls}" src="${I(src)}" alt="" loading="lazy" decoding="async">`;
 
 function clientsMarquee() {
@@ -22,7 +22,7 @@ function footer() {
   return `<footer class="foot">
     <div class="ask"><h2 class="split">Have an idea?<br>Let's <em class="s">grow</em> it.</h2>${btn('Start a project', '#contact')}</div>
     <div class="cols">
-      <div><div class="brandline"><svg viewBox="0 0 160 160"><use href="#mkFlat"/></svg>organoo <span>studio</span></div><p>A digital agency from Jakarta designing brands, websites and campaigns that keep growing.</p></div>
+      <div><div class="brandline"><svg viewBox="0 0 200 200"><use href="#mkFlat"/></svg>organoo <span>studio</span></div><p>A digital agency from Jakarta designing brands, websites and campaigns that keep growing.</p></div>
       <div><h4>STUDIO</h4><a href="#about" data-link>About</a><a href="#work" data-link>Work</a><a href="#journal" data-link>Journal</a><a href="#contact" data-link>Contact</a></div>
       <div><h4>SERVICES</h4>${SERVICES.map(s => `<a href="#service-${s.slug}" data-link>${s.name}</a>`).join('')}</div>
       <div><h4>CONNECT</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="#contact" data-link>organoostudio@gmail.com</a></div>
@@ -37,7 +37,7 @@ const postCard = p => `<a class="post rv" href="#post-${p.slug}" data-link data-
 /* service mini visual for cards / previews */
 function miniVis(s) {
   if (s.kind === 'graphic') return `<div class="mini-brand"><b>Aa</b><span><i style="background:#0B0D0C"></i><i style="background:#1FAE5E"></i><i style="background:#96E1B9"></i><i style="background:#C0F408"></i></span></div>`;
-  if (s.kind === 'social') return `<div class="mini-feed">${Array.from({ length: 9 }, (_, i) => `<i style="background:${['#1FAE5E', '#0B0D0C', '#96E1B9', '#C0F408', '#F4F7F5', '#13442a'][i % 6]}"></i>`).join('')}</div>`;
+  if (s.kind === 'video') return `<div class="mini-video"><div class="scr"><i class="play"></i></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i></div></div>`;
   return imgTag(s.pic, s.light);
 }
 
@@ -79,7 +79,7 @@ function pageHome() {
       <div class="fly-copy" id="flyCopy">
         <span class="lbl rv">Digital agency · Jakarta, Indonesia</span>
         <h1 class="split" id="flyH">Ideas that <em class="s">grow</em><span class="seed"></span><br>into digital brands.</h1>
-        <p class="sub rv" style="--d:.5s">Organoo Studio designs brands, builds websites and runs Google &amp; Meta campaigns — one team, from first idea to measurable growth.</p>
+        <p class="sub rv" style="--d:.5s">Organoo Studio designs and builds websites, runs ads on Meta, Google, Amazon and marketplaces, and creates graphics and video — one team, from idea to growth.</p>
         <div class="ctas rv" style="--d:.7s">${btn('Start a project', '#contact')}${btn('See our work', '#work', 'b-ghost')}</div>
       </div>
       <div class="fly-mid" id="flyMid"><div><h2>Step inside<br>the <em class="s">work</em>.</h2><p>${PROJECTS.length} cases · ${SERVICES.length} services · one studio</p></div></div>
@@ -100,7 +100,7 @@ function pageHome() {
   <section class="sc ring paper" id="ring" aria-label="Services">
     <div class="stick">
       <div class="mq-big r1" id="rq1">${'Websites that work<span class="o"></span>Ads that convert<span class="o"></span>Brands people remember<span class="o"></span>'.repeat(2)}</div>
-      <div class="mq-big r2" id="rq2">${'Interfaces people love<span class="o"></span>Content that grows<span class="o"></span>'.repeat(3)}</div>
+      <div class="mq-big r2" id="rq2">${'Interfaces people love<span class="o"></span>Videos people finish<span class="o"></span>'.repeat(3)}</div>
       <div class="head"><span class="lbl">What we do</span><h2>Five ways we help you <em class="s">grow</em></h2></div>
       <div class="stage"><div class="wheel" id="wheel">${SERVICES.map((s, i) => `<figure class="scard" data-i="${i}"><a class="in" href="#service-${s.slug}" data-link data-cur="Open"><div class="top"><span>${s.n}</span><span>/ 05</span></div><div class="vis">${miniVis(s)}</div><div><h3>${s.name}</h3><p>${s.short}</p></div></a></figure>`).join('')}</div></div>
       <div class="side" id="rside"></div>
@@ -146,9 +146,9 @@ function pageHome() {
   ${processStrips()}
   <section class="sc pola" id="pola" aria-label="Clients">
     <div class="stick">
-      <h2 class="title">Brands &amp; builds<br>that <em>grow</em></h2>
-      <div class="list l" id="pl">${CLIENTS.slice(0, half).map((c, i) => `<span>${pad(i + 1)}. ${c[0]}</span>`).join('')}</div>
-      <div class="list r" id="pr">${CLIENTS.slice(half).map((c, i) => `<span>${c[0]} .${pad(i + half + 1)}</span>`).join('')}</div>
+      <div class="pcenter" id="pcenter"><h2 class="title">Brands &amp; builds<br>that <em>grow</em></h2>
+        <div class="clist" id="pl"><b>Clients</b>${CLIENTS.map(c => `<span>${c[0]}</span>`).join('')}</div>
+      </div>
       ${polaHtml}
     </div>
   </section>
@@ -302,11 +302,11 @@ function initHome() {
   /* --- polaroids --- */
   const pcs = $$('.pola .pc').map((el, i, arr) => {
     const n = arr.length, th = i / n * Math.PI * 2 + (i % 2 ? .18 : -.12);
-    const rx = innerWidth < 760 ? 28 : 38, ry = innerWidth < 760 ? 40 : 31;
+    const rx = innerWidth < 760 ? 30 : 39, ry = innerWidth < 760 ? 40 : 37;
     const sd = Math.random() * Math.PI * 2;
     return { el, tx: Math.cos(th) * rx + (Math.random() - .5) * 6, ty: Math.sin(th) * ry + (Math.random() - .5) * 6, tr: (Math.random() - .5) * 26, sx: Math.cos(sd) * 95, sy: Math.sin(sd) * 95, sr: (Math.random() - .5) * 120, d: i / n * .32 };
   });
-  const pl = $$('#pl span,#pr span'), ptitle = $('.pola .title');
+  const pl = $$('#pl span'), ptitle = $('#pcenter');
   scene($('#pola'), (p) => {
     for (const c of pcs) {
       const k = reduce ? 1 : eOut(range(p, c.d, c.d + .38));
@@ -567,7 +567,7 @@ function svis(s) {
   if (s.kind === 'web') return `<div class="svis"><div class="card" style="width:66%;left:0;top:2%" data-px="-30"><img src="${I('demos/lumetric-card.webp')}" alt=""></div><div class="card" style="width:62%;right:0;bottom:6%" data-px="40"><img src="${I('demos/arbor-and-co-card.webp')}" alt=""></div><div class="kpi" style="right:2%;top:6%" data-px="16"><b>9</b><span>live concept demos</span></div></div>`;
   if (s.kind === 'ads') return `<div class="svis"><div class="card" style="width:86%;left:6%;top:22%;padding:8px" data-px="-24"><img src="${I('google-charts.webp')}" alt=""></div><div class="card" style="width:78%;right:0;bottom:12%;padding:8px" data-px="34"><img src="${I('meta-table.webp')}" alt=""></div><div class="kpi" style="left:0;top:2%" data-px="14"><b>11×</b><span>ROAS · Dasindo Media</span></div><div class="kpi" style="right:4%;bottom:0" data-px="22"><b>1,200+</b><span>conversions · Batu Panorama</span></div></div>`;
   if (s.kind === 'graphic') return `<div class="svis"><div class="spec" style="left:4%;top:4%" data-px="-24">Aa<em>.</em></div><div class="sw" style="left:6%;bottom:12%" data-px="26"><i style="background:#0B0D0C;border:1px solid rgba(255,255,255,.15)"></i><i style="background:#1FAE5E"></i><i style="background:#96E1B9"></i><i style="background:#C0F408"></i><i style="background:#F4F7F5"></i></div><div style="right:2%;top:16%;width:46%" data-px="34">${chromeSvg('', '')}</div></div>`;
-  return `<div class="svis"><div class="phone" style="left:30%;top:0" data-px="-24"><div class="sc2">${Array.from({ length: 12 }, (_, i) => `<i style="background:${['#1FAE5E', '#0B0D0C', '#96E1B9', '#C0F408', '#F4F7F5', '#13442a'][i % 6]}"></i>`).join('')}</div></div><div class="kpi" style="left:0;top:36%" data-px="20"><b>1 mo</b><span>content planned ahead</span></div><div class="kpi" style="right:0;bottom:12%" data-px="32"><b>2</b><span>platforms · Instagram &amp; TikTok</span></div></div>`;
+  return `<div class="svis"><div class="vframe" style="left:0;top:4%;width:74%" data-px="-26"><div class="scr"><i class="play"></i><span class="rec">00:00:14:08</span></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i><i style="flex:2.5"></i></div></div><div class="vphone" style="right:2%;bottom:2%" data-px="38"><div class="scr"><i class="play"></i><span class="cap">Captions that<br>read on mute</span></div></div><div class="kpi" style="left:4%;bottom:6%" data-px="18"><b>9:16</b><span>1:1 · 16:9 · every platform</span></div></div>`;
 }
 function pageService(slug) {
   const s = svcBySlug[slug], projs = s.projects.map(x => projBySlug[x]).filter(Boolean);
@@ -595,7 +595,7 @@ function pageService(slug) {
 
 /* ===================== WORK ===================== */
 function pageWork() {
-  const cats = [['all', 'All'], ['web', 'Website'], ['uiux', 'UI/UX'], ['ads', 'Ads'], ['graphic', 'Graphic'], ['social', 'Social'], ['concept', 'Concept demos']];
+  const cats = [['all', 'All'], ['web', 'Website'], ['uiux', 'UI/UX'], ['ads', 'Ads'], ['graphic', 'Graphic'], ['video', 'Video'], ['concept', 'Concept demos']];
   return `
   <section class="ph-hero" style="min-height:76vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Work</span></div>
     <h1 class="split">Selected <em class="s">work</em></h1>
@@ -637,6 +637,7 @@ function block(b, p) {
     case 'social': return `<section class="sec"><div class="shd"><h2 class="split">The <em class="s">feed</em></h2><p>A consistent visual system and content pillars — real posts coming soon.</p></div><div class="feedwrap"><div class="bigphone rv"><div class="scrn"><div class="ig"><i></i><div><b>[brandname]</b><small>[XX] posts · [X]K followers</small></div></div><div class="grid">${Array.from({ length: 12 }, (_, i) => `<i style="background:${['#1FAE5E', '#0B0D0C', '#96E1B9', '#F4F7F5', '#C0F408', '#13442a'][i % 6]};color:${[1, 5].includes(i % 6) ? 'rgba(255,255,255,.4)' : ''}">[post]</i>`).join('')}</div></div></div>
       <div class="pillars">${[['Educate', 'Tips and how-tos that make your audience better at what they care about.'], ['Show the product', 'Clear, attractive posts that answer “what is it and why should I care?”'], ['Behind the scenes', 'The people and process that make the brand feel human.'], ['Community', 'Customer stories, replies and moments worth sharing.']].map(([h, t], i) => `<div class="rv" style="--d:${i * .07}s"><span class="n">${pad(i + 1)}</span><div><b>${h}</b><p>${t}</p></div></div>`).join('')}</div></div></section>`;
     case 'shots': return `<section class="sec" style="padding-top:0"><div class="gal shots">${[['hero', 1], ['collage', 0], ['desktop', 0], ['page', 1]].map(([k, w]) => `<div class="g img rv${w ? ' span3' : ''}"><img src="${I('demos/' + b.slug + '-' + k + '.webp')}" alt="${b.title} — ${k} view" loading="lazy"></div>`).join('')}</div></section>`;
+    case 'video': return `<section class="sec"><div class="shd"><h2 class="split">The <em class="s">edits</em></h2><p>Final videos in every format — real clips coming soon.</p></div><div class="vgal"><div class="vframe rv"><div class="scr"><i class="play"></i><span class="rec">16:9 · [Brand video]</span></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i><i style="flex:2.5"></i></div></div>${['[Reel 01]', '[Reel 02]', '[Ad cut]'].map(t => `<div class="vphone rv"><div class="scr"><i class="play"></i><span class="cap">${t}</span></div></div>`).join('')}</div></section>`;
     case 'quote': return `<section class="quote"><blockquote class="rv">[Client testimonial — a short quote about working with Organoo Studio.]</blockquote><cite>— [Name], [Role] · ${p.meta[0][1]}</cite></section>`;
   }
   return '';
@@ -665,7 +666,7 @@ function initCase() {
 function pageJournal() {
   return `
   <section class="ph-hero" style="min-height:70vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Journal</span></div>
-    <h1 class="split">Notes on <em class="s">growth</em></h1><p class="lead rv">Practical guides on websites, ads, design and social media — written for business owners, not designers.</p></section>
+    <h1 class="split">Notes on <em class="s">growth</em></h1><p class="lead rv">Practical guides on websites, ads, design and video — written for business owners, not designers.</p></section>
   <section class="sec" style="padding-top:4vh"><div class="jgrid">${POSTS.map(postCard).join('')}</div></section>
   ${footer()}`;
 }

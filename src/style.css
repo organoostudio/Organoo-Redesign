@@ -56,7 +56,7 @@ em.s{font-style:normal;color:var(--em)}
 .loader{position:fixed;inset:0;z-index:400;background:#030504;display:grid;place-items:center;--iris:0px;-webkit-mask:radial-gradient(circle at 50% 50%,transparent var(--iris),#000 calc(var(--iris) + 1px));mask:radial-gradient(circle at 50% 50%,transparent var(--iris),#000 calc(var(--iris) + 1px))}
 .loader.open{--iris:160vmax;transition:--iris 1.25s var(--ease2)}
 .loader canvas{position:absolute;inset:0;width:100%;height:100%}
-.lmark{position:relative;z-index:2;width:150px;height:150px;opacity:0;transform:scale(.6);transition:opacity .9s var(--ease3),transform 1.4s var(--ease3)}
+.lmark{position:relative;z-index:2;width:184px;height:184px;opacity:0;transform:scale(.6);transition:opacity .9s var(--ease3),transform 1.4s var(--ease3)}
 .loader.mark .lmark{opacity:1;transform:none}
 .loader.open .lmark{transform:scale(2.6);opacity:0;transition:transform 1.2s var(--ease2),opacity .7s .25s}
 .rec{display:inline-flex;align-items:center;gap:8px}
@@ -340,7 +340,12 @@ html:not(.fine) .cur,html:not(.fine) .cring{display:none}
 /* ============ polaroids ============ */
 .pola{height:280vh;background:var(--deep)}
 .pola .stick{background:radial-gradient(70% 60% at 50% 50%,#0e1813,var(--deep) 70%)}
-.pola .title{position:absolute;left:50%;top:50%;z-index:1;transform:translate(-50%,-50%);text-align:center;font-size:clamp(40px,6.2vw,104px);letter-spacing:-.055em;line-height:.9;width:min(92vw,900px)}
+.pola .pcenter{position:absolute;left:50%;top:50%;z-index:3;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:26px;width:min(92vw,900px);pointer-events:none}
+.pola .title{text-align:center;font-size:clamp(40px,6.2vw,104px);letter-spacing:-.055em;line-height:.9;text-shadow:0 10px 50px rgba(0,0,0,.8)}
+.pola .clist{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 18px;max-width:min(92vw,720px);padding:12px 20px;border-radius:18px;background:rgba(5,7,6,.72);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pola .clist b{font-weight:500;color:var(--em);margin-right:2px}
+.pola .clist span{transition:color .3s}
+.pola .clist span.on{color:#fff}
 .pola .title em{font-style:normal;color:var(--em)}
 .pc{position:absolute;left:50%;top:50%;z-index:2;width:clamp(130px,13vw,200px);background:#f6f5f0;padding:9px 9px 34px;border-radius:3px;box-shadow:0 22px 46px rgba(0,0,0,.55),0 2px 4px rgba(0,0,0,.4);will-change:transform,opacity;color:#222}
 .pc .ph{aspect-ratio:1;overflow:hidden;background:#111;display:grid;place-items:center}
@@ -351,14 +356,6 @@ html:not(.fine) .cur,html:not(.fine) .cring{display:none}
 .pc .ph.word.m{background:var(--mint);color:var(--emi)}
 .pc .cap{position:absolute;left:10px;right:10px;bottom:9px;font-family:var(--mono);font-size:10.5px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc .tape{position:absolute;left:50%;top:-10px;width:60px;height:20px;transform:translateX(-50%) rotate(-3deg);background:rgba(150,225,185,.55);box-shadow:0 1px 2px rgba(0,0,0,.2)}
-.pola .list{position:absolute;z-index:3;top:50%;transform:translateY(-50%);display:grid;gap:7px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
-.pola .list.l{left:var(--gut)}.pola .list.r{right:var(--gut);text-align:right}
-.pola .list span{transition:color .3s}
-.pola .list span.on{color:#fff}
-.pola .list span.on::before{content:"→ ";color:var(--em)}
-.pola .list.r span.on::before{content:"";}
-.pola .list.r span.on::after{content:" ←";color:var(--em)}
-@media(max-width:900px){.pola .list{display:none}}
 
 /* ============ team ============ */
 .team{padding:16vh 0 14vh;background:var(--ink);overflow:hidden}
@@ -804,7 +801,9 @@ details.q p{color:var(--muted);padding:0 50px 26px 0;max-width:640px}
   .pc{width:104px;padding:6px 6px 24px}
   .pc .cap{font-size:9px;bottom:6px}
   .pc:nth-child(n+12){display:none}
-  .pola .title{font-size:12vw;text-shadow:0 6px 30px rgba(0,0,0,.9)}
+  .pola .title{font-size:12vw}
+  .pola .pcenter{gap:16px}
+  .pola .clist{font-size:10.5px;gap:4px 12px;padding:10px 14px}
 }
 
 /* tight display tracking eats word gaps — give them back */
@@ -820,3 +819,24 @@ h1,h2,.sphere .big,.ring .mq-big,.slide .ln,.wmk,.xwin .w1,.xwin .w2,.srow .t,.m
 
 /* new web project covers in the flythrough */
 .fo .card.shot{width:clamp(260px,27vw,420px);background:#0b0d0c}
+
+/* video service visuals */
+.mini-video{width:78%;display:grid;gap:8px}
+.mini-video .scr,.vframe .scr,.vphone .scr{position:relative;display:grid;place-items:center;border-radius:10px;background:radial-gradient(90% 90% at 30% 20%,#1f5a3c,#0a120d 70%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.mini-video .scr{aspect-ratio:16/9}
+.play{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);position:relative;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-left:12px solid #0B0D0C;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.mini-video .tl,.vframe .tl{display:flex;gap:3px;height:12px}
+.mini-video .tl i,.vframe .tl i{border-radius:3px;background:rgba(255,255,255,.18)}
+.mini-video .tl i.g,.vframe .tl i.g{background:var(--em)}
+.vframe{border-radius:16px;padding:10px;background:#0d110f;border:1px solid var(--line2);box-shadow:0 30px 70px rgba(0,0,0,.5);display:grid;gap:10px}
+.vframe .scr{aspect-ratio:16/9}
+.vframe .rec,.vphone .cap{position:absolute;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.8);letter-spacing:.06em}
+.vframe .rec{left:12px;bottom:10px}
+.vphone{width:170px;border-radius:26px;padding:7px;background:#0a0d0b;box-shadow:0 30px 60px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.12)}
+.vphone .scr{aspect-ratio:9/16;border-radius:20px}
+.vphone .cap{left:0;right:0;bottom:16%;text-align:center;font-family:var(--sans);font-weight:800;font-size:15px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.svis .vframe,.svis .vphone{position:absolute}
+.vgal{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:16px;align-items:end}
+.vgal .vphone{width:100%}
+@media(max-width:860px){.vgal{grid-template-columns:1fr 1fr}.vgal .vframe{grid-column:1/-1}.vgal .vphone:last-child{display:none}}
