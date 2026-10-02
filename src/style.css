@@ -888,3 +888,5 @@ h1,h2,.sphere .big,.ring .mq-big,.slide .ln,.wmk,.xwin .w1,.xwin .w2,.srow .t,.m
 @media(max-width:900px){.dsh{grid-template-columns:1fr}.dsh-br{flex:none;height:min(120vw,620px)}.dsh-cta{flex-direction:column;align-items:flex-start}.dsh-th span{display:none}}
 .dsh-th button::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(5,7,6,.85));pointer-events:none}
 .dsh-th button span{z-index:1}
+.fly .world{will-change:filter}
+.fly-scrim{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(60% 50% at 50% 52%,rgba(5,7,6,.72) 0%,rgba(5,7,6,.38) 55%,transparent 85%)}

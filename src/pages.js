@@ -75,7 +75,7 @@ function pageHome() {
       <div class="grain"></div>
       <canvas class="stars" id="stars"></canvas>
       <div class="bloom" id="bloom"></div>
-      <div class="world"><div class="cam" id="cam">${fly}</div></div>
+      <div class="world" id="world"><div class="cam" id="cam">${fly}</div></div><div class="fly-scrim" id="flyScrim"></div>
       <div class="fly-copy" id="flyCopy">
         <span class="lbl rv">Digital agency · Jakarta, Indonesia</span>
         <h1 class="split" id="flyH">Ideas that <em class="s">grow</em><span class="seed"></span><br>into digital brands.</h1>
@@ -166,7 +166,7 @@ function processStrips() {
 function initHome() {
   /* --- flythrough --- */
   const items = $$('.fo').map(el => ({ el, x: +el.dataset.x, y: +el.dataset.y, z: +el.dataset.z, r: (Math.random() - .5) * 16 }));
-  const cam = $('#cam'), copy = $('#flyCopy'), mid = $('#flyMid'), bloom = $('#bloom'), cue = $('#cue'), stars = $('#stars');
+  const cam = $('#cam'), world = $('#world'), scrim = $('#flyScrim'), copy = $('#flyCopy'), mid = $('#flyMid'), bloom = $('#bloom'), cue = $('#cue'), stars = $('#stars');
   const SP = Array.from({ length: 280 }, () => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() }));
   let tx = 0, ty = 0;
   scene($('#fly'), (p, pv, t) => {
@@ -183,6 +183,10 @@ function initHome() {
       it.el.style.visibility = op <= 0.01 ? 'hidden' : 'visible';
       if (op > 0.01) it.el.style.transform = `translate3d(${it.x * vw / 100}px,${it.y * vh / 100}px,${z}px) rotateY(${-it.x * .35 + it.r}deg) rotateZ(${it.r * .3}deg)`;
     }
+    /* intro: the work sits blurred and dimmed behind the headline, then comes into focus as you scroll */
+    const fz = reduce ? 0 : 1 - range(p, .02, .2);
+    world.style.filter = fz > .01 ? `blur(${(fz * 12).toFixed(2)}px) brightness(${(1 - fz * .45).toFixed(3)}) saturate(${(1 - fz * .3).toFixed(3)})` : 'none';
+    scrim.style.opacity = fz.toFixed(3);
     const c = range(p, .03, .2);
     copy.style.opacity = 1 - c; copy.style.transform = `translateY(${-c * 60}px) scale(${1 - c * .08})`;
     copy.style.pointerEvents = c > .5 ? 'none' : '';
