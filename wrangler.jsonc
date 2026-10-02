@@ -1,7 +1,7 @@
 // Used only if this repo is deployed as a Cloudflare *Worker* (Workers & Pages → Create → Import a repository).
 // Cloudflare *Pages* ignores this file and uses: build command `npm run build`, output directory `dist`.
 {
-  "name": "organoo-studio",
+  "name": "organoo-redesign",
   "compatibility_date": "2026-09-01",
   "assets": { "directory": "./dist" }
 }
