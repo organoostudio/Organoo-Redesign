@@ -172,7 +172,7 @@ const POSTS = [
 ];
 const postBySlug = Object.fromEntries(POSTS.map(p => [p.slug, p]));
 
-const CLIENTS = [['PUPR', 'font-weight:800;letter-spacing:.08em'], ['PT PELNI', 'font-weight:800'], ['Pintara', 'font-weight:700'], ['Cazmilk', 'font-weight:300;font-style:italic'], ['JWAHER', 'font-weight:800;letter-spacing:.24em;font-size:.82em'], ['WP Malang', 'font-weight:600'], ['SANIS', 'font-weight:700;letter-spacing:.06em'], ['Dasindo Media', 'font-family:var(--mono);font-weight:500;font-size:.8em'], ['Artiland Group', 'font-weight:300'], ['Srengenge', 'font-weight:700'], ['Merteyasa', 'font-weight:600;font-style:italic'], ['Dale Carnegie', 'font-weight:500']];
+const CLIENTS = [['PUPR', 'font-weight:800;letter-spacing:.08em'], ['PT PELNI', 'font-weight:800'], ['Cazmilk', 'font-weight:300;font-style:italic'], ['JWAHER', 'font-weight:800;letter-spacing:.24em;font-size:.82em'], ['WP Malang', 'font-weight:600'], ['Dasindo Media', 'font-family:var(--mono);font-weight:500;font-size:.8em'], ['Artiland Group', 'font-weight:300'], ['Dale Carnegie', 'font-weight:500']];
 
 const TEAM = [
   ['Radiyyan Ghifari', 'RG', ['Founder', 'Creative Director', 'Strategy']],
