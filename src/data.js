@@ -162,7 +162,7 @@ const DEMOS = [
 PROJECTS.push(...DEMOS);
 const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
 /* cases shown in the home TV viewer (real imagery only) */
-const SHOWCASE = ['lumetric', 'kinetik-studio', 'pelni', 'dasindo', 'bowlful', 'arbor-and-co', 'batu-panorama', 'rimba-roastery', 'halden-and-rowe', 'bank-sampah', 'tabung', 'strata-atelier', 'sangkarloka', 'lumea'];
+const SHOWCASE = ['strata-atelier', 'kinetik-studio', 'pelni', 'dasindo', 'bowlful', 'arbor-and-co', 'batu-panorama', 'rimba-roastery', 'halden-and-rowe', 'bank-sampah', 'tabung', 'lumetric', 'sangkarloka', 'lumea'];
 
 // Journal articles live in content/blog/*.md and are built to /blog/ by scripts/blog.mjs;
 // build.mjs injects BLOG_POSTS (the newest few) for the home page strip.

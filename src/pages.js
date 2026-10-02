@@ -385,7 +385,10 @@ function initViewer() {
       for (let y = 0; y < h; y += s) for (let x = 0; x < w; x += s) { const c = Math.random() * 255 | 0; ctx.fillStyle = `rgb(${c},${c},${c})`; ctx.fillRect(x, y, s, s); }
     }
     const r = v.getBoundingClientRect();
-    if (!hover && r.top < innerHeight && r.bottom > 0 && now - timer > 6000) { timer = now; if (now - S.t0 > 7000) show(i + 1); }
+    const inView = r.top < innerHeight && r.bottom > 0;
+    if (!inView) { timer = 0; return; }
+    if (!timer) { timer = now; return; } /* just scrolled in: hold the first case (Strata Atelier) a full beat */
+    if (!hover && now - timer > 6000) { timer = now; show(i + 1); }
   });
   v.addEventListener('mouseenter', () => hover = true); v.addEventListener('mouseleave', () => hover = false);
   v.addEventListener('click', () => { timer = performance.now(); show(i + 1); });
