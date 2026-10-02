@@ -854,3 +854,37 @@ h1,h2,.sphere .big,.ring .mq-big,.slide .ln,.wmk,.xwin .w1,.xwin .w2,.srow .t,.m
 .wc .fr.gdc{background:var(--panel)}
 .wc .fr.gdc .pv{inset:-5% 0}
 .wc .fr.gdc img{width:86%;border-radius:12px;-webkit-mask-image:none;mask-image:none;box-shadow:0 26px 60px rgba(0,0,0,.5)}
+
+/* concept demo showcase: mockups left, live homepage right */
+.dsh{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(16px,2vw,28px);align-items:stretch}
+.dsh-l{display:flex;flex-direction:column;gap:12px;min-width:0}
+.dsh-main{position:relative;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.dsh-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.035);transition:opacity .7s var(--ease3),transform 1.2s var(--ease3)}
+.dsh-main img.on{opacity:1;transform:none}
+.dsh-th{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.dsh-th button{position:relative;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#111;cursor:pointer;aspect-ratio:4/3;opacity:.55;transition:opacity .3s,border-color .3s}
+.dsh-th button img{width:100%;height:100%;object-fit:cover;display:block}
+.dsh-th button span{position:absolute;left:8px;bottom:6px;font-family:var(--mono);font-size:10px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.dsh-th button:hover{opacity:.85}.dsh-th button.on{opacity:1;border-color:var(--em)}
+.dsh-r{display:flex;flex-direction:column;gap:12px;min-width:0}
+.dsh-br{flex:1;display:flex;flex-direction:column;min-height:420px;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 40px 90px rgba(0,0,0,.45)}
+.dsh-br .bar{display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#EEF1EF;flex:none}
+.dsh-br .bar i{width:9px;height:9px;border-radius:50%;background:#cfd6d2}
+.dsh-br .bar span{margin-left:10px;flex:1;height:22px;line-height:22px;border-radius:7px;background:#fff;color:#5b6660;font-family:var(--mono);font-size:10.5px;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dsh-br .vp{position:relative;flex:1;overflow:hidden;background:#f4f6f5}
+.dsh-br .vp iframe{position:absolute;left:0;top:0;width:1440px;border:0;transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .6s}
+.dsh-br .vp.ready iframe{opacity:1}
+.dsh-br .vp .poster{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .6s}
+.dsh-br .vp.ready .poster{opacity:0}
+.dsh-br .prog{position:absolute;right:6px;top:10px;bottom:10px;width:14px;cursor:ns-resize;z-index:2;touch-action:none}
+.dsh-br .prog::before{content:"";position:absolute;left:5px;top:0;bottom:0;width:4px;border-radius:4px;background:rgba(11,13,12,.12)}
+.dsh-br .prog i{position:absolute;left:5px;top:0;bottom:0;width:4px;border-radius:4px;background:var(--em);transform-origin:top;transform:scaleY(0)}
+.dsh-br .hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:2;font-family:var(--mono);font-size:10px;color:#fff;background:rgba(11,13,12,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none}
+.dsh-br .vp:hover .hint{opacity:1}
+.dsh-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 16px 16px 22px;border-radius:18px;background:var(--panel);border:1px solid var(--line);transition:border-color .3s}
+.dsh-cta:hover{border-color:var(--em)}
+.dsh-cta b{display:block;font-size:17px;letter-spacing:-.01em}.dsh-cta small{display:block;margin-top:4px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.dsh-cta .btn{flex:none;pointer-events:none}
+@media(max-width:900px){.dsh{grid-template-columns:1fr}.dsh-br{flex:none;height:min(120vw,620px)}.dsh-cta{flex-direction:column;align-items:flex-start}.dsh-th span{display:none}}
+.dsh-th button::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(5,7,6,.85));pointer-events:none}
+.dsh-th button span{z-index:1}

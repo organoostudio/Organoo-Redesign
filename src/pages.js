@@ -638,7 +638,17 @@ function block(b, p) {
       <div class="board"><div class="logo rv">[Logo lockup]</div><div class="pal rv">${[['#0B0D0C', '[Primary]', '#fff'], ['#1FAE5E', '[Accent]', '#03150B'], ['#96E1B9', '[Soft]', '#03150B'], ['#F4F7F5', '[Paper]', '#03150B']].map(([c, l, t]) => `<i style="background:${c};color:${t}">${l}</i>`).join('')}</div><div class="typ rv"><b>Aa</b><span>[Typeface name]</span></div><div class="mock rv">[Business card mockup]</div><div class="mock rv">[Packaging mockup]</div></div></section>`;
     case 'social': return `<section class="sec"><div class="shd"><h2 class="split">The <em class="s">feed</em></h2><p>A consistent visual system and content pillars — real posts coming soon.</p></div><div class="feedwrap"><div class="bigphone rv"><div class="scrn"><div class="ig"><i></i><div><b>[brandname]</b><small>[XX] posts · [X]K followers</small></div></div><div class="grid">${Array.from({ length: 12 }, (_, i) => `<i style="background:${['#1FAE5E', '#0B0D0C', '#96E1B9', '#F4F7F5', '#C0F408', '#13442a'][i % 6]};color:${[1, 5].includes(i % 6) ? 'rgba(255,255,255,.4)' : ''}">[post]</i>`).join('')}</div></div></div>
       <div class="pillars">${[['Educate', 'Tips and how-tos that make your audience better at what they care about.'], ['Show the product', 'Clear, attractive posts that answer “what is it and why should I care?”'], ['Behind the scenes', 'The people and process that make the brand feel human.'], ['Community', 'Customer stories, replies and moments worth sharing.']].map(([h, t], i) => `<div class="rv" style="--d:${i * .07}s"><span class="n">${pad(i + 1)}</span><div><b>${h}</b><p>${t}</p></div></div>`).join('')}</div></div></section>`;
-    case 'shots': return `<section class="sec" style="padding-top:0"><div class="gal shots">${[['hero', 1], ['collage', 0], ['desktop', 0], ['page', 1]].map(([k, w]) => `<div class="g img rv${w ? ' span3' : ''}"><img src="${I('demos/' + b.slug + '-' + k + '.webp')}" alt="${b.title} — ${k} view" loading="lazy"></div>`).join('')}</div></section>`;
+    case 'shots': {
+      const views = [['hero', 'Cover'], ['collage', 'All screens'], ['desktop', 'Responsive'], ['page', 'Inner page']];
+      return `<section class="sec dshow"><div class="shd"><h2 class="split">See it <em class="s">live</em></h2><p>Device mockups next to the real homepage, running live — scroll through it or open the full demo.</p></div>
+      <div class="dsh">
+        <div class="dsh-l rv"><div class="dsh-main">${views.map(([k, l], i) => `<img class="${i ? '' : 'on'}" src="${I('demos/' + b.slug + '-' + k + '.webp')}" alt="${b.title} — ${l}" loading="${i ? 'lazy' : 'eager'}" decoding="async">`).join('')}</div>
+          <div class="dsh-th" role="tablist">${views.map(([k, l], i) => `<button type="button" class="${i ? '' : 'on'}" data-i="${i}" aria-label="${l}"><img src="${I('demos/' + b.slug + '-' + k + '.webp')}" alt="" loading="lazy"><span>${l}</span></button>`).join('')}</div></div>
+        <div class="dsh-r rv" style="--d:.1s"><div class="dsh-br"><div class="bar"><i></i><i></i><i></i><span>organoostudio.com/demos/${b.slug}</span></div>
+            <div class="vp" data-src="/demos/${b.slug}/"><img class="poster" src="${I('demos/' + b.slug + '-hero.webp')}" alt=""><div class="prog"><i></i></div><span class="hint">Hover to pause · drag the bar to explore</span></div></div>
+          <a class="dsh-cta" href="/demos/${b.slug}/" target="_blank" rel="noopener" data-cur="Open"><div><b>Explore the full site</b><small>Fully working demo · desktop &amp; mobile</small></div><span class="btn b-em"><span>Open live demo</span><span class="ic">${ARR}</span></span></a></div>
+      </div></section>`;
+    }
     case 'video': return `<section class="sec"><div class="shd"><h2 class="split">The <em class="s">edits</em></h2><p>Final videos in every format — real clips coming soon.</p></div><div class="vgal"><div class="vframe rv"><div class="scr"><i class="play"></i><span class="rec">16:9 · [Brand video]</span></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i><i style="flex:2.5"></i></div></div>${['[Reel 01]', '[Reel 02]', '[Ad cut]'].map(t => `<div class="vphone rv"><div class="scr"><i class="play"></i><span class="cap">${t}</span></div></div>`).join('')}</div></section>`;
     case 'quote': return `<section class="quote"><blockquote class="rv">[Client testimonial — a short quote about working with Organoo Studio.]</blockquote><cite>— [Name], [Role] · ${p.meta[0][1]}</cite></section>`;
   }
@@ -659,7 +669,41 @@ function pageCase(slug) {
   <a class="next" href="#work-${n.slug}" data-link data-cur="Next"><span class="k">Next case · ${n.service}</span><h2>${n.title}</h2>${n.img ? `<div class="im"><img src="${I(n.img)}" alt=""></div>` : ''}</a>
   ${footer()}`;
 }
+function initDemoShow() {
+  const root = $('.dsh'); if (!root) return;
+  /* mockup switcher */
+  const imgs = $$('.dsh-main img', root), th = $$('.dsh-th button', root);
+  let cur = 0, auto = setInterval(() => show((cur + 1) % imgs.length), 4200);
+  function show(n) { cur = n; imgs.forEach((im, i) => im.classList.toggle('on', i === n)); th.forEach((t, i) => t.classList.toggle('on', i === n)); }
+  th.forEach((t, i) => t.addEventListener('click', () => { clearInterval(auto); show(i); }));
+  /* live homepage preview: real demo in a scaled iframe that scrolls itself */
+  const vp = $('.dsh-br .vp', root), bar = $('.prog', vp), barI = $('.prog i', vp);
+  let fr = null, sc = 1, pos = 0, dir = 1, wait = 60, hover = false, drag = false;
+  const fit = () => { if (!fr) return; sc = vp.clientWidth / 1440; fr.style.transform = `scale(${sc})`; fr.style.height = (vp.clientHeight / sc) + 'px'; };
+  const load = () => {
+    if (fr) return; fr = document.createElement('iframe'); fr.src = vp.dataset.src; fr.title = 'Live demo preview'; fr.tabIndex = -1; fr.setAttribute('scrolling', 'no');
+    fr.addEventListener('load', () => { vp.classList.add('ready'); fit(); });
+    vp.prepend(fr); fit();
+  };
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { load(); io.disconnect(); } }, { rootMargin: '400px' });
+  io.observe(vp); addEventListener('resize', fit);
+  vp.addEventListener('mouseenter', () => hover = true); vp.addEventListener('mouseleave', () => hover = false);
+  const seek = e => { const r = bar.getBoundingClientRect(); const k = clamp((e.clientY - r.top) / r.height, 0, 1); try { const w = fr.contentWindow, d = w.document.documentElement; pos = k * (d.scrollHeight - w.innerHeight); w.scrollTo(0, pos); } catch (_) {} };
+  bar.addEventListener('pointerdown', e => { drag = true; bar.setPointerCapture(e.pointerId); seek(e); });
+  bar.addEventListener('pointermove', e => drag && seek(e)); bar.addEventListener('pointerup', () => drag = false);
+  const vis = () => { const r = vp.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+  tick(() => {
+    if (!fr || !vp.classList.contains('ready')) return;
+    let w, max; try { w = fr.contentWindow; max = w.document.documentElement.scrollHeight - w.innerHeight; } catch (_) { return; }
+    if (max <= 0) return;
+    if (!hover && !drag && !reduce && vis()) {
+      if (wait > 0) wait--; else { pos += dir * 2.2; if (pos >= max) { pos = max; dir = -1; wait = 90; } else if (pos <= 0) { pos = 0; dir = 1; wait = 90; } w.scrollTo(0, pos); }
+    } else pos = w.scrollY;
+    barI.style.transform = `scaleY(${pos / max})`;
+  });
+}
 function initCase() {
+  initDemoShow();
   const cv = $('#cv'); if (!cv) return;
   scene($('#cover'), p => { const k = eIO(range(p, 0, .7)); cv.style.setProperty('--cw', lerp(innerWidth < 760 ? 88 : 62, 94, k) + 'vw'); cv.style.setProperty('--cr', lerp(26, 12, k) + 'px'); });
 }
