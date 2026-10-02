@@ -20,12 +20,12 @@ const SERVICES = [
     faqs: [['What do I receive at the end?', 'Organized design files for every screen, a clickable prototype and handoff specs for your developers.'], ['Can you also build what you design?', 'For websites and web apps, our development team can take it from design to launch. For native apps we hand off to your developers.'], ['How many revisions are included?', 'Each package includes set revision rounds per stage, so feedback stays focused and the timeline stays on track.'], ['Can you redesign our existing app?', 'Yes. We start with a UX audit of your current product, then prioritize the changes with the biggest impact.']],
     ctaWords: ["Let's design", 'something', 'intuitive.'] },
   { slug: 'web', n: '02', name: 'Website Development', kind: 'web', short: 'Fast, SEO-ready websites — from a single landing page to full e-commerce.',
-    chips: ['Landing page', 'Company profile', 'E-commerce', 'SEO setup'], pic: 'srengenge.webp',
+    chips: ['Landing page', 'Company profile', 'E-commerce', 'SEO setup'], pic: 'demos/halden-and-rowe-card.webp', light: true,
     h1: 'Websites that <em class="s">work</em> as hard as you do', lead: 'Fast, SEO-ready websites built to turn visitors into enquiries — from a single landing page to a full online store.', cta: 'Start your website',
     delivTitle: 'What we <em class="s">build</em>', delivNote: 'Every site is mobile-first, fast-loading and set up for Google from day one.',
     deliv: [['Landing page', 'One focused page built to convert ad traffic into leads.'], ['Company profile', 'A credible multi-page home for your business and services.'], ['E-commerce', 'An online store with catalog, cart and payment integration.'], ['Portfolio & personal', 'Showcase your work with a clean, fast personal site.'], ['Wedding & event', 'Invitations, RSVPs and event details in one beautiful page.'], ['SEO & maintenance', 'On-page SEO, speed tuning, updates and backups after launch.']],
     steps: [['Brief & sitemap', 'We map your goals, audience and every page the site needs.'], ['Design', 'High-fidelity designs for desktop and mobile, reviewed with you.'], ['Development', 'Clean, fast code with an easy editor for your team.'], ['Launch & SEO', 'Domain, analytics and Google setup — then we keep improving.']],
-    projects: ['sanis', 'srengenge', 'merteyasa', 'pintara'], projTitle: 'Recent <em class="s">websites</em>', priceNote: 'Clear starting prices. Final quote depends on scope — no hidden costs.', per: '',
+    projects: ['lumetric', 'arbor-and-co', 'halden-and-rowe', 'strata-atelier'], projTitle: 'Recent <em class="s">websites</em>', priceNote: 'Clear starting prices. Final quote depends on scope — no hidden costs.', per: '',
     plans: [['Landing Page', 'For campaigns, launches and promos.', 'Rp [price]', ['1 conversion-focused page', 'Mobile-first responsive design', 'WhatsApp & form integration', 'Basic on-page SEO', 'Google Analytics setup']], ['Company Profile', 'For businesses that need credibility.', 'Rp [price]', ['Up to [N] pages', 'Custom design, no templates', 'Blog / news section', 'Full on-page SEO setup', 'Easy content editor', '[N] months of support'], true], ['E-commerce', 'For selling products online.', 'Rp [price]', ['Product catalog & search', 'Cart, checkout & payment gateway', 'Order & stock management', 'Shipping cost integration', 'Training for your team']]],
     faqs: [['Can I edit the website myself?', 'Yes. We set up a simple editor so your team can update text, images and blog posts without touching code.'], ['Is the domain and hosting included?', 'We can handle domain and hosting for you, or deploy to your existing provider. It is listed clearly in your quote.'], ['Will my website show up on Google?', 'Every site ships with on-page SEO, a sitemap and Search Console setup. Ranking takes time — a blog helps a lot.'], ['Do you redesign existing websites?', 'Yes. We audit your current site, keep what works and move your content over without losing your Google rankings.']],
     ctaWords: ["Let's build", 'your next', 'website.'] },
@@ -63,12 +63,6 @@ const SERVICES = [
 const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
 
 const PROJECTS = [
-  { slug: 'sanis', svc: 'web', service: 'Website', title: 'CV. Sanis Panca Abadi', h1: 'Sanis Panca <em class="s">Abadi</em>', sub: 'Plastic manufacturer · Company website', img: 'sanis.webp', tags: ['Website', 'Manufacturing', 'Company profile'],
-    lead: 'A bold company website for a plastic manufacturer — presenting its products, services and credibility to business buyers.',
-    meta: [['Client', 'CV. Sanis Panca Abadi'], ['Industry', 'Plastic manufacturing'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Sanis Panca Abadi is a plastic manufacturer supplying business customers. [Add what they produce and who they serve.]'], ['The challenge', 'Buyers and partners needed one credible place to see the product range and the company behind it. [Add the specific problem.]'], ['Our approach', "A dark, industrial look anchored by the brand's red mark, clear product categories and an enquiry path on every page."]] },
-      { type: 'live' }, webScope(['Home', 'About', 'Products', 'Services', 'Contact'], [['Product catalog', 'Products grouped by category so buyers find what they need fast.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full homepage screenshot]', '[Product page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
   { slug: 'pelni', svc: 'uiux', service: 'UI/UX Design', title: 'PT Pelni — Pelni Docs', h1: 'Pelni <em class="s">Docs</em>', sub: 'Document checker · Mobile app', img: 'pelni.webp', light: true, tags: ['UI/UX', 'Mobile app', 'State-owned'],
     lead: 'A document checker app for PT Pelni (Persero) — turning document verification into a clear, step-by-step flow with checkers and an approver.',
     meta: [['Client', 'PT Pelni (Persero)'], ['Industry', 'Maritime transport'], ['Service', 'UI/UX Design'], ['Platform', 'Mobile app'], ['Year', '[Year]']],
@@ -84,12 +78,6 @@ const PROJECTS = [
       { type: 'strip', items: [['609K', 'accounts reached'], ['1.64M', 'impressions'], ['1.02%', 'average CTR'], ['Rp52.6M', 'ad spend managed']] },
       { type: 'dashboard', title: 'Campaign results', note: 'Source: Meta Ads Manager · 50 campaigns', img: 'meta-table.webp' },
       { type: 'story', items: [['Objective', 'Generate a healthy mix of website leads and WhatsApp conversations through Meta Ads — expanding reach while keeping cost per result under control.'], ['Challenge', 'CTR swung between 0.42% and 1.14% across ad sets, and messaging campaigns ran at a high cost per result — up to Rp43,314 — dragging down overall efficiency.'], ['Solution', ['Doubled down on high-converting creatives for website leads and sharpened CTA copy for messaging.', 'Rebalanced budget between lead-form and WhatsApp objectives.', 'Tracked CPC and CTR per creative to decide what to optimize or reallocate.', 'Tuned ad frequency to avoid audience fatigue.']], ['Result', '1,200+ total conversions with a healthy 1.02% CTR and especially strong website-lead performance. Messaging campaigns delivered at a higher cost — our clear next lever for the following phase.']] }] },
-  { slug: 'pintara', svc: 'web', service: 'Website', title: 'Pintara', h1: 'Pin<em class="s">tara</em>', sub: 'Medical exam prep · Education platform', img: 'pintara-med.webp', tags: ['Website', 'Education', 'Platform'],
-    lead: 'An education platform website for students preparing to get into medical school — programs, mentors and registration in one place.',
-    meta: [['Client', 'Pintara'], ['Industry', 'Education'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Pintara helps students prepare for medical school entrance with guided programs. [Add details.]'], ['The challenge', '[What Pintara needed from the new website.]'], ['Our approach', 'A bright, trustworthy layout with clear program paths and a registration call-to-action above the fold.']] },
-      { type: 'live' }, webScope(['Home', 'Programs', 'Medicine', 'Gap Year', 'Features', 'Contact'], [['Program pages', 'Each program explained with clear outcomes and pricing.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full homepage screenshot]', '[Program page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
   { slug: 'dasindo', svc: 'ads', service: 'Google Ads', title: 'PT. Dasindo Media', h1: 'Dasindo <em class="s">Media</em>', sub: 'Dale Carnegie Training · 11× ROAS', img: 'google-charts.webp', light: true, wide: true, tags: ['Google Ads', 'Training', '11× ROAS'],
     lead: 'Qualified leads for Dale Carnegie Training through Google Search Ads — at an 11× return on ad spend.',
     meta: [['Client', 'PT. Dasindo Media'], ['Brand', 'Dale Carnegie Training'], ['Platform', 'Google Search Ads'], ['Objective', 'Lead form submissions']],
@@ -103,41 +91,17 @@ const PROJECTS = [
       { type: 'devices', img: 'banksampah.webp', desk: true },
       { type: 'flow', title: 'Key <em class="s">screens</em>', items: [['Overview', 'Totals for members, pickups and waste collected at a glance.'], ['Members', 'Register and manage waste bank members.'], ['Waste deposits', 'Record waste by type and weight.'], ['Transactions', "Track every member's balance and history."]] },
       { type: 'gallery', items: ['[Dashboard full screen]', '[Member detail]', '[Transaction history]'] }, { type: 'quote' }] },
-  { slug: 'srengenge', svc: 'web', service: 'Website', title: 'CV. Srengenge Engineering', h1: 'Srengenge <em class="s">Engineering</em>', sub: 'Construction · Company website', img: 'srengenge.webp', tags: ['Website', 'Construction', 'Company profile'],
-    lead: 'A company website for a construction and engineering firm — showcasing completed projects and making it easy to request a quote.',
-    meta: [['Client', 'CV. Srengenge Engineering'], ['Industry', 'Construction'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Srengenge Engineering designs and builds residential projects. [Add details.]'], ['The challenge', '[What the client needed from the website.]'], ['Our approach', 'Big project photography up front, proof points in numbers and a quote request always one tap away.']] },
-      { type: 'live' }, webScope(['Home', 'Services', 'About', 'Contact', 'Blog'], [['Project showcase', 'Completed builds presented with photos and details.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full homepage screenshot]', '[Project page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
-  { slug: 'merteyasa', svc: 'web', service: 'Website', title: 'Merteyasa Adventure', h1: 'Merteyasa <em class="s">Adventure</em>', sub: 'Bali travel tours · Booking website', img: 'merteyasa.webp', tags: ['Website', 'Travel', 'Booking'],
-    lead: 'A tour booking website for a Bali adventure operator — tour packages, destinations and a book-now path on every page.',
-    meta: [['Client', 'Merteyasa Adventure'], ['Industry', 'Travel & tourism'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Merteyasa runs adventure, waterfall and mountain tours in Bali. [Add details.]'], ['The challenge', '[What the client needed from the website.]'], ['Our approach', 'Full-bleed destination imagery, tours grouped by type and a Book Now button that follows you.']] },
-      { type: 'live' }, webScope(['Home', 'About', 'Adventure Tours', 'Package Tours', 'Regular Tours', 'Half-Day Tours', 'Blog'], [['Tour catalog', 'Tours grouped by type with prices and itineraries.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full homepage screenshot]', '[Tour detail page]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
   { slug: 'brand-identity', svc: 'graphic', service: 'Graphic Design', title: '[Brand name]', h1: '[Brand name] <em class="s">identity</em>', sub: 'Brand identity · Logo & guidelines', img: null, tags: ['Graphic', 'Identity', 'Guidelines'],
     lead: 'A complete brand identity for [Brand name] — logo, colors, typography and the templates that bring it to life every day.',
     meta: [['Client', '[Brand name]'], ['Industry', '[Industry]'], ['Service', 'Graphic Design'], ['Deliverables', 'Logo · Guidelines · Social kit'], ['Year', '[Year]']],
     blocks: [{ type: 'overview', items: [['The client', '[Who the brand is, what it sells and who it sells to.]'], ['The challenge', '[Why they needed a new identity.]'], ['The idea', '[The concept behind the logo and visual language.]']] }, { type: 'brand' },
       { type: 'gallery', items: ['[Packaging mockup]', '[Business card]', '[Social posts]'] }, { type: 'quote' }] },
-  { slug: 'designskuy', svc: 'web', service: 'Website', title: 'Designskuy', h1: 'Design<em class="s">skuy</em>', sub: 'Web agency · Landing page', img: 'designskuy.webp', tags: ['Website', 'Landing page', 'Agency'],
-    lead: 'A landing page for a Malang web design service — clear packages, a friendly 3D illustration and a quick path to order.',
-    meta: [['Client', 'Designskuy'], ['Industry', 'Web design services'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Designskuy offers website creation for local businesses in Malang. [Add details.]'], ['The challenge', '[What the client needed.]'], ['Our approach', 'A dark, playful landing page with a purple accent, price list and portfolio sections.']] },
-      { type: 'live' }, webScope(['Home', 'Price List', 'Portfolio', 'Social', 'About'], [['Price list', 'Packages compared side by side so visitors choose quickly.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full page screenshot]', '[Price list]', '[Mobile views]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
   { slug: 'social-brand', svc: 'social', service: 'Social Media', title: '[Brand name]', h1: '[Brand name] <em class="s">on social</em>', sub: 'Instagram & TikTok · Monthly management', img: null, tags: ['Social', 'Instagram', 'TikTok'],
     lead: 'Monthly Instagram and TikTok management for [Brand name] — from content strategy to posting and reporting.',
     meta: [['Client', '[Brand name]'], ['Industry', '[Industry]'], ['Platforms', 'Instagram · TikTok'], ['Service', 'Social Media Management'], ['Period', '[Month Year – Month Year]']],
     blocks: [{ type: 'metrics', items: [['New followers', '[+X]', true], ['Reach growth', '[+X%]'], ['Engagement rate', '[X%]'], ['Content published', '[XX]']] },
       { type: 'overview', items: [['The client', '[Who the brand is and who follows them.]'], ['The challenge', '[e.g. irregular posting, low engagement, no clear visual style.]'], ['Our approach', 'Clear content pillars, a consistent visual system and a monthly calendar the client approves before anything goes live.']] },
-      { type: 'social' }, { type: 'quote' }] },
-  { slug: 'pintara-gap', svc: 'web', service: 'Website', title: 'Pintara — Gap Year', h1: 'Pintara <em class="s">Gap Year</em>', sub: 'Education · Landing page', img: 'pintara.webp', tags: ['Website', 'Education', 'Landing page'],
-    lead: "A focused landing page for Pintara's gap year program — one message, one offer, one clear registration path.",
-    meta: [['Client', 'Pintara'], ['Industry', 'Education'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
-    blocks: [{ type: 'overview', items: [['The client', 'Pintara runs preparation programs for students aiming for top universities.'], ['The challenge', '[What the landing page needed to achieve.]'], ['Our approach', 'A clean, bright page with a single call-to-action and the program benefits right below.']] },
-      { type: 'live' }, webScope(['Landing page'], [['Single CTA', 'One clear registration action repeated through the page.'], ...webFeat.slice(1)]),
-      { type: 'gallery', items: ['[Full page screenshot]', '[Mobile view]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] }
+      { type: 'social' }, { type: 'quote' }] }
 ];
 /* ---------- concept demos: live sites served from /demos/<slug>/, synced from organoostudio/Dummy-Project at build ---------- */
 const demo = o => ({ svc: 'web', cat: 'concept', service: 'Concept · Live demo', img: `demos/${o.slug}-card.webp`, full: true, demo: `/demos/${o.slug}/`, ...o,
@@ -194,7 +158,7 @@ const DEMOS = [
 PROJECTS.push(...DEMOS);
 const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
 /* cases shown in the home TV viewer (real imagery only) */
-const SHOWCASE = ['srengenge', 'pelni', 'dasindo', 'sanis', 'batu-panorama', 'merteyasa', 'bank-sampah', 'pintara', 'designskuy'];
+const SHOWCASE = ['lumetric', 'pelni', 'dasindo', 'arbor-and-co', 'batu-panorama', 'halden-and-rowe', 'bank-sampah', 'strata-atelier', 'sangkarloka'];
 
 const g = (x, y, a) => `radial-gradient(ellipse at ${x}% ${y}%, rgba(31,174,94,${a}), transparent 62%)`;
 const POSTS = [
@@ -223,23 +187,23 @@ const PROCESS = [
   ['01', 'Discover', 'We dig into your business, audience and competitors to find the one problem worth solving first.', ['Workshop', 'Audit', '1 week'], 'uiux.webp', true],
   ['02', 'Strategy', 'A clear plan with goals, KPIs, sitemap or campaign structure — agreed before anything is designed.', ['Roadmap', 'KPIs', 'Sitemap'], 'google-charts.webp', true],
   ['03', 'Design', 'On-brand interfaces and creatives, reviewed with you at every milestone.', ['UI', 'Brand', 'Prototype'], 'pelni.webp', true],
-  ['04', 'Build', 'Fast, clean builds and campaign setups with tracking done right from day one.', ['Development', 'Tracking', 'QA'], 'srengenge.webp', false],
+  ['04', 'Build', 'Fast, clean builds and campaign setups with tracking done right from day one.', ['Development', 'Tracking', 'QA'], 'demos/stockroom-desktop.webp', true],
   ['05', 'Grow', 'We launch, measure and keep improving — budget and effort move to what works.', ['Launch', 'Optimize', 'Report'], 'meta-table.webp', true]
 ];
 
 /* items floating in the 3D flythrough hero: [kind, src/label, x(vw), y(vh), z(px), extra] */
 const FLY = [
-  ['lap', 'srengenge.webp', -30, -14, -350],
+  ['shot', 'demos/lumetric-card.webp', -30, -14, -350],
   ['card', 'pelni.webp', 28, -18, -700],
   ['chip', ['1,200+', 'conversions', 'Batu Panorama'], -16, 22, -520],
-  ['lap', 'sanis.webp', 32, 20, -1050],
+  ['shot', 'demos/arbor-and-co-card.webp', 32, 20, -1050],
   ['chrome', '', -2, -4, -1400],
   ['card', 'banksampah.webp', -34, 16, -1250],
   ['chip', ['11×', 'ROAS', 'Dale Carnegie'], 18, -26, -1500],
-  ['lap', 'merteyasa.webp', -26, -24, -1800],
+  ['shot', 'demos/halden-and-rowe-card.webp', -26, -24, -1800],
   ['wide', 'google-charts.webp', 26, 26, -1950],
-  ['lap', 'pintara-med.webp', 30, -6, -2300],
+  ['shot', 'demos/strata-atelier-card.webp', 30, -6, -2300],
   ['card', 'uiux.webp', -30, 4, -2450],
   ['chip', ['+97.8%', 'website leads', 'after optimization'], -6, 30, -2200],
-  ['lap', 'designskuy.webp', 4, -30, -2700]
+  ['shot', 'demos/sangkarloka-card.webp', 4, -30, -2700]
 ];

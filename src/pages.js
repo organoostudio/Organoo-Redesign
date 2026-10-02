@@ -25,7 +25,7 @@ function footer() {
       <div><div class="brandline"><svg viewBox="0 0 160 160"><use href="#mkFlat"/></svg>organoo <span>studio</span></div><p>A digital agency from Jakarta designing brands, websites and campaigns that keep growing.</p></div>
       <div><h4>STUDIO</h4><a href="#about" data-link>About</a><a href="#work" data-link>Work</a><a href="#journal" data-link>Journal</a><a href="#contact" data-link>Contact</a></div>
       <div><h4>SERVICES</h4>${SERVICES.map(s => `<a href="#service-${s.slug}" data-link>${s.name}</a>`).join('')}</div>
-      <div><h4>CONNECT</h4><a href="https://instagram.com/organoostudio" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="#contact" data-link>organoostudio@gmail.com</a></div>
+      <div><h4>CONNECT</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="#contact" data-link>organoostudio@gmail.com</a></div>
     </div>
     <div class="wmk" id="wmk"><div class="base">organoo <em>studio</em></div><div class="lit" aria-hidden="true">organoo <em>studio</em></div></div>
     <div class="legal"><span>© 2026 Organoo Studio</span><span>Jakarta, Indonesia · <b id="clock">--:--</b> WIB</span><span>Move your cursor over the name ↑</span></div>
@@ -47,12 +47,13 @@ function pageHome() {
     let inner = '';
     if (k === 'lap') inner = `<img class="lap" src="${I(s)}" alt="">`;
     else if (k === 'card') inner = `<div class="card"><img src="${I(s)}" alt=""></div>`;
+    else if (k === 'shot') inner = `<div class="card shot"><img src="${I(s)}" alt=""></div>`;
     else if (k === 'wide') inner = `<div class="card wide"><img src="${I(s)}" alt=""></div>`;
     else if (k === 'chip') inner = `<div class="chip"><b>${s[0]}</b><div>${s[1]}<small>${s[2]}</small></div></div>`;
     else if (k === 'chrome') inner = chromeSvg('chrome');
     return `<div class="fo" data-x="${x}" data-y="${y}" data-z="${z}">${inner}</div>`;
   }).join('');
-  const tvLayout = [[12, 22, 230, -120, 18, -4, 'img:merteyasa.webp'], [31, 10, 170, -300, 10, 3, 'bars'], [71, 13, 200, -200, -14, 4, 'img:pintara.webp'], [89, 30, 240, -60, -22, -3, 'static'], [7, 60, 210, -40, 24, 5, 'static'], [24, 82, 190, -260, 14, -6, 'img:pelni.webp|ct'], [50, 86, 160, -420, 0, 2, 'bars'], [77, 66, 230, -100, -18, -5, 'img:sanis.webp'], [93, 84, 170, -320, -10, 6, 'img:google-charts.webp|ct'], [38, 46, 150, -600, 6, -2, 'static'], [63, 48, 150, -560, -6, 3, 'img:designskuy.webp']];
+  const tvLayout = [[12, 22, 230, -120, 18, -4, 'img:demos/tandem-card.webp'], [31, 10, 170, -300, 10, 3, 'bars'], [71, 13, 200, -200, -14, 4, 'img:demos/forma-card.webp'], [89, 30, 240, -60, -22, -3, 'static'], [7, 60, 210, -40, 24, 5, 'static'], [24, 82, 190, -260, 14, -6, 'img:pelni.webp|ct'], [50, 86, 160, -420, 0, 2, 'bars'], [77, 66, 230, -100, -18, -5, 'img:demos/aurelle-estates-card.webp'], [93, 84, 170, -320, -10, 6, 'img:google-charts.webp|ct'], [38, 46, 150, -600, 6, -2, 'static'], [63, 48, 150, -560, -6, 3, 'img:demos/stockroom-card.webp']];
   const tvs = tvLayout.map(([x, y, w, z, ry, rz, c]) => {
     let scr;
     if (c === 'bars') scr = '<div class="bars"></div>';
@@ -60,7 +61,7 @@ function pageHome() {
     else { const [src, f] = c.slice(4).split('|'); scr = `<img class="${f || ''}" src="${I(src)}" alt="">`; }
     return `<div class="crt" style="--x:${x}%;--y:${y}%;--w:${w}px;--z:${z}px;--ry:${ry}deg;--rz:${rz}deg" data-z="${z}"><div class="body"><div class="scr">${scr}</div></div></div>`;
   }).join('');
-  const polas = [['srengenge.webp', 'Srengenge Engineering'], ['pelni.webp|ct', 'PT Pelni — Docs'], ['w:PUPR', 'Kementerian PUPR', ''], ['sanis.webp', 'Sanis Panca Abadi'], ['merteyasa.webp', 'Merteyasa Adventure'], ['w:Dale<br>Carnegie', 'Dasindo Media', 'g'], ['banksampah.webp|ct', 'Bank Sampah'], ['pintara.webp', 'Pintara'], ['google-charts.webp|ct', '11× ROAS'], ['w:Artiland', 'Batu Panorama', 'm'], ['designskuy.webp', 'Designskuy'], ['pintara-med.webp', 'Pintara Medicine'], ['meta-table.webp|ct', '1,200+ conversions'], ['uiux.webp|ct', 'UI/UX systems']];
+  const polas = [['demos/lumetric-card.webp', 'Lumetric · concept'], ['pelni.webp|ct', 'PT Pelni — Docs'], ['w:PUPR', 'Kementerian PUPR', ''], ['demos/arbor-and-co-card.webp', 'Arbor & Co. · concept'], ['demos/halden-and-rowe-card.webp', 'Halden & Rowe · concept'], ['w:Dale<br>Carnegie', 'Dasindo Media', 'g'], ['banksampah.webp|ct', 'Bank Sampah'], ['demos/sangkarloka-card.webp', 'Sangkarloka'], ['google-charts.webp|ct', '11× ROAS'], ['w:Artiland', 'Batu Panorama', 'm'], ['demos/strata-atelier-card.webp', 'Strata Atelier · concept'], ['demos/tandem-card.webp', 'Tandem · concept'], ['meta-table.webp|ct', '1,200+ conversions'], ['uiux.webp|ct', 'UI/UX systems']];
   const polaHtml = polas.map(([src, cap, col], i) => {
     let ph;
     if (src.startsWith('w:')) ph = `<div class="ph word ${col || ''}">${src.slice(2)}</div>`;
@@ -145,7 +146,7 @@ function pageHome() {
   ${processStrips()}
   <section class="sc pola" id="pola" aria-label="Clients">
     <div class="stick">
-      <h2 class="title">Brands we've<br>helped <em>grow</em></h2>
+      <h2 class="title">Brands &amp; builds<br>that <em>grow</em></h2>
       <div class="list l" id="pl">${CLIENTS.slice(0, half).map((c, i) => `<span>${pad(i + 1)}. ${c[0]}</span>`).join('')}</div>
       <div class="list r" id="pr">${CLIENTS.slice(half).map((c, i) => `<span>${c[0]} .${pad(i + half + 1)}</span>`).join('')}</div>
       ${polaHtml}
@@ -563,7 +564,7 @@ function initServices() {
 
 function svis(s) {
   if (s.kind === 'uiux') return `<div class="svis"><div class="card" style="width:58%;left:2%;top:4%" data-px="-30"><img src="${I('pelni.webp')}" alt=""></div><div class="card" style="width:60%;right:0;bottom:8%" data-px="40"><img src="${I('banksampah.webp')}" alt=""></div><div class="kpi" style="left:6%;bottom:6%" data-px="18"><b>4</b><span>core flows · Pelni Docs</span></div></div>`;
-  if (s.kind === 'web') return `<div class="svis"><img class="lap" src="${I('srengenge.webp')}" style="left:-4%;top:0" data-px="-30" alt=""><img class="lap" src="${I('sanis.webp')}" style="right:-8%;bottom:4%" data-px="40" alt=""><div class="kpi" style="right:2%;top:6%" data-px="16"><b>SEO</b><span>ready from day one</span></div></div>`;
+  if (s.kind === 'web') return `<div class="svis"><div class="card" style="width:66%;left:0;top:2%" data-px="-30"><img src="${I('demos/lumetric-card.webp')}" alt=""></div><div class="card" style="width:62%;right:0;bottom:6%" data-px="40"><img src="${I('demos/arbor-and-co-card.webp')}" alt=""></div><div class="kpi" style="right:2%;top:6%" data-px="16"><b>9</b><span>live concept demos</span></div></div>`;
   if (s.kind === 'ads') return `<div class="svis"><div class="card" style="width:86%;left:6%;top:22%;padding:8px" data-px="-24"><img src="${I('google-charts.webp')}" alt=""></div><div class="card" style="width:78%;right:0;bottom:12%;padding:8px" data-px="34"><img src="${I('meta-table.webp')}" alt=""></div><div class="kpi" style="left:0;top:2%" data-px="14"><b>11×</b><span>ROAS · Dasindo Media</span></div><div class="kpi" style="right:4%;bottom:0" data-px="22"><b>1,200+</b><span>conversions · Batu Panorama</span></div></div>`;
   if (s.kind === 'graphic') return `<div class="svis"><div class="spec" style="left:4%;top:4%" data-px="-24">Aa<em>.</em></div><div class="sw" style="left:6%;bottom:12%" data-px="26"><i style="background:#0B0D0C;border:1px solid rgba(255,255,255,.15)"></i><i style="background:#1FAE5E"></i><i style="background:#96E1B9"></i><i style="background:#C0F408"></i><i style="background:#F4F7F5"></i></div><div style="right:2%;top:16%;width:46%" data-px="34">${chromeSvg('', '')}</div></div>`;
   return `<div class="svis"><div class="phone" style="left:30%;top:0" data-px="-24"><div class="sc2">${Array.from({ length: 12 }, (_, i) => `<i style="background:${['#1FAE5E', '#0B0D0C', '#96E1B9', '#C0F408', '#F4F7F5', '#13442a'][i % 6]}"></i>`).join('')}</div></div><div class="kpi" style="left:0;top:36%" data-px="20"><b>1 mo</b><span>content planned ahead</span></div><div class="kpi" style="right:0;bottom:12%" data-px="32"><b>2</b><span>platforms · Instagram &amp; TikTok</span></div></div>`;
@@ -698,7 +699,7 @@ function pageContact() {
     </form>
     <div class="cinfo">
       <div class="blk"><h4>Email</h4><span class="cp"><a href="mailto:organoostudio@gmail.com">organoostudio@gmail.com</a><button type="button" data-copy="organoostudio@gmail.com">Copy</button></span></div>
-      <div class="blk"><h4>Instagram</h4><a href="https://instagram.com/organoostudio" target="_blank" rel="noopener">@organoostudio ↗</a></div>
+      <div class="blk"><h4>Instagram</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">@organoo.studio ↗</a></div>
       <div class="blk"><h4>Studio</h4><p>Jakarta, Indonesia</p></div>
       <div class="blk"><h4>Prefer to talk?</h4><p>Book a free 15-minute call — mention it in your brief.</p></div>
     </div></div></section>

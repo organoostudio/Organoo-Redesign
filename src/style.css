@@ -817,3 +817,6 @@ h1,h2,.sphere .big,.ring .mq-big,.slide .ln,.wmk,.xwin .w1,.xwin .w2,.srow .t,.m
 .gal.shots .g.img{aspect-ratio:auto;background:#111;border:1px solid var(--line)}
 .gal.shots .g.img img{height:auto;object-fit:cover}
 .gal .g.span3{grid-column:1 / -1}
+
+/* new web project covers in the flythrough */
+.fo .card.shot{width:clamp(260px,27vw,420px);background:#0b0d0c}
