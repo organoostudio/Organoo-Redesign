@@ -116,6 +116,7 @@ main{position:relative;z-index:2;background:var(--bg);margin-bottom:var(--footer
 /* WORK CARDS */
 .wcard{display:flex;flex-direction:column;gap:14px;padding:14px;border-radius:28px;background:var(--surface);border:1px solid var(--line);transition:border-color .3s}
 .wcard:hover{border-color:rgba(42,163,107,.45)}
+.wcard[hidden]{display:none}
 .wcard .img{position:relative;aspect-ratio:1.4;border-radius:18px;overflow:hidden;background:#000}
 .wcard .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .wcard:hover .img img{transform:scale(1.04)}
@@ -636,6 +637,57 @@ legend{padding:0;margin-bottom:12px;font-size:13px;font-weight:600;color:#B8BDBA
   const webScope = (pages, features, tech = '[Tech stack]') => ({ type: 'scope', pages, features, tech });
   const webFeat = [['Responsive design', 'Built to look sharp on phones, tablets and desktops.'], ['Enquiry everywhere', 'Contact and WhatsApp calls-to-action on every page.'], ['SEO foundation', 'Clean structure, meta tags and sitemap for Google.'], ['Easy updates', 'Content the team can edit without touching code.']];
   const webMetrics = [['Enquiries after launch', '[+X%]', true], ['PageSpeed score', '[XX]'], ['Launched in', '[X] weeks']];
+  /* ---------- concept demos (live sites served from /demos/, synced from the Dummy-Project repo) ---------- */
+  const demo = (o) => ({ svc: 'web', cat: 'concept', service: 'Concept · Live demo', noCover: true, img: `demos/${o.slug}-card.webp`, demo: `/demos/${o.slug}/`, ...o,
+    meta: [['Client', o.client || 'Concept — fictional brand'], ['Category', o.category], ['Type', 'Concept project'], ['Year', '2026'], ['Live demo', `<a href="/demos/${o.slug}/" target="_blank" rel="noopener" style="color:var(--accent-soft)">Open the site ↗</a>`]],
+    blocks: [{ type: 'shots', slug: o.slug, title: o.title }, { type: 'overview', items: o.overview }, { type: 'scope', pages: o.pages, features: o.features, tech: o.tech || 'HTML, CSS, vanilla JavaScript · fully client-side' }] });
+  const DEMOS = [
+    demo({ slug: 'lumetric', title: 'Lumetric', h1: 'Lumetric<br><em class="s">analytics</em>', sub: 'Marketing analytics SaaS · Landing + dashboard', bg: '#1E0C33', category: 'SaaS · Marketing analytics',
+      lead: 'A concept SaaS for marketing attribution: a landing page that sells the product and a full dashboard app behind it, with demo data you can click through.',
+      overview: [['The brief', 'Show how we design a classic SaaS: a marketing site that converts and an app that feels real from the first click.'], ['The idea', 'One revenue model across ad spend, store orders and CRM deals, told with a bold magenta palette and clear data.'], ['What to try', 'Switch attribution models, run the ROI calculator, open the dashboard and flip to dark mode.']],
+      pages: ['Landing', 'Pricing', 'Integrations', 'Login & signup', 'Dashboard', 'Payments', 'Customers', 'Analytics', 'Invoices', 'Automation'],
+      features: [['Attribution switcher', 'Change the model and watch the numbers update.'], ['Pricing calculator', 'Monthly/annual, three currencies and a seat slider.'], ['Full dashboard app', 'Eleven app pages with tables, charts and filters.'], ['Command palette', 'Ctrl/Cmd + K to jump anywhere, plus dark mode.']] }),
+    demo({ slug: 'tandem', title: 'Tandem', h1: 'Tandem<br><em class="s">AI CRM</em>', sub: 'AI-native CRM · Landing + app', bg: '#0B2226', category: 'AI product · CRM',
+      lead: 'A concept AI-native CRM for studios that sell abroad: ask questions in plain language, draft replies in your own voice and see where revenue is heading.',
+      overview: [['The brief', 'Design an AI product that feels useful, not gimmicky, with AI features woven into everyday CRM work.'], ['The idea', 'Teal and coral, a serif accent and an “Ask Tandem” box that streams answers from the demo data.'], ['What to try', 'Ask a question on the landing page, drag cards on the project board and try Smart Reply in the inbox.']],
+      pages: ['Landing', 'Pricing', 'Overview', 'Clients', 'Projects', 'Inbox', 'Analytics'],
+      features: [['Ask Tandem', 'Streaming answers generated from demo data (rule-based, no API).'], ['Smart Reply', 'Drafts replies in different tones.'], ['Kanban board', 'Drag-and-drop projects between stages.'], ['AI pricing', 'A credit slider shows the cost of AI usage.']] }),
+    demo({ slug: 'stockroom', title: 'Stockroom', h1: 'Stock<em class="s">room</em>', sub: 'E-commerce SaaS · Landing + admin', bg: '#0C1D1A', category: 'SaaS · E-commerce analytics',
+      lead: 'A concept dashboard for online sellers: orders, inventory, payouts and ad spend from every channel in one calm view.',
+      overview: [['The brief', 'An admin tool for brands that sell on several marketplaces at once.'], ['The idea', 'Sea-glass greens and navy, a margin calculator on the landing page and a dashboard that customises itself.'], ['What to try', 'Run the fees calculator, customise dashboard widgets, fulfil an order and add a discount code.']],
+      pages: ['Landing', 'Pricing', 'Integrations', 'Dashboard', 'Customers', 'Orders', 'Products', 'Transactions', 'Goals', 'Sales', 'Marketing'],
+      features: [['Margin calculator', 'See how fees and returns eat into revenue.'], ['Custom widgets', 'Show, hide and reorder dashboard cards.'], ['Order actions', 'Fulfil, refund and create orders.'], ['Product CRUD', 'Bulk actions and stock levels.']] }),
+    demo({ slug: 'arbor-and-co', title: 'Arbor & Co.', h1: 'Arbor<br><em class="s">& Co.</em>', sub: 'DTC furniture · Online store', bg: '#1A1715', category: 'E-commerce · Furniture',
+      lead: 'A concept direct-to-consumer furniture store with an editorial feel: shop-the-look hero, filters, product pages, cart and a three-step checkout.',
+      overview: [['The brief', 'A Shopify-style storefront that feels like a magazine, not a catalogue.'], ['The idea', 'Rotating room “looks” with hotspots you can shop, warm oak and terracotta accents and real photography.'], ['What to try', 'Add the look to your cart, apply code WELCOME30 and go through checkout.']],
+      pages: ['Home', 'Shop', 'Product', 'Cart', 'Checkout', 'Our story', 'Showrooms', 'Delivery'],
+      features: [['Shop the look', 'Hotspots on the hero photo add items to the cart.'], ['Smart filters', 'Category, price and colour, with sorting.'], ['Delivery estimate', 'Dates by US ZIP or Australian postcode.'], ['Checkout flow', 'Discount codes, validation and an order confirmation.']] }),
+    demo({ slug: 'sangkarloka', title: 'Sangkarloka', h1: 'Sangkar<em class="s">loka</em>', sub: 'Mini plant house · Online store', bg: '#1F3310', category: 'E-commerce · Plants', client: 'Sangkarloka (Organoo’s own brand)',
+      lead: 'A store concept for Sangkarloka, our own mini succulent and cactus brand: a plant-shelf hero, a plant-match quiz and a checkout built for Indonesia.',
+      overview: [['The brief', 'Give a small plant brand a shop that feels as friendly as its products, in Bahasa Indonesia with an English toggle.'], ['The idea', 'The logo’s two greens, cut-out plants on a shelf and a sentence-builder quiz instead of a form.'], ['What to try', 'Finish the plant-match sentence, add gift wrap and check out with JNE, SiCepat or GoSend.']],
+      pages: ['Beranda', 'Katalog', 'Produk', 'Cerita', 'Keranjang', 'Checkout'],
+      features: [['Plant match', 'A sentence builder that recommends the right plant.'], ['Gift wrapping', 'Live preview of the “Just For You” card.'], ['Care guide', 'Tabs with a watering calculator.'], ['Local checkout', 'Couriers, BCA VA, QRIS and COD by city.']] }),
+    demo({ slug: 'halden-and-rowe', title: 'Halden & Rowe', h1: 'Halden<br><em class="s">& Rowe</em>', sub: 'Wealth & business advisory · Company profile', bg: '#0A1438', category: 'Professional services',
+      lead: 'A concept company profile for an advisory firm: credible and premium, with lots of motion and a booking flow that works end to end.',
+      overview: [['The brief', 'The “compro” that sells best — for law, accounting, consulting and financial firms — but bright and alive.'], ['The idea', 'Cobalt and citrus, a serif headline with an inline photo pill, and scroll effects in every section.'], ['What to try', 'Scroll the pinned services, play with the planning calculator and book a consultation.']],
+      pages: ['Home', 'Services', '6 service pages', 'Advisors', 'Insights', '4 articles', 'Book a consultation'],
+      features: [['Planning calculator', 'Sliders feed an animated projection chart.'], ['Booking wizard', 'Service, advisor, format and time zone-aware slots.'], ['Advisor profiles', 'Filters and modals with next free slot.'], ['Scroll motion', 'Pinned horizontal services and stacking cards.']] }),
+    demo({ slug: 'forma', title: 'FORMA', h1: 'FORMA<br><em class="s">club</em>', sub: 'Fitness & recovery club · Website + QR check-in', bg: '#161616', category: 'Healthcare & wellness',
+      lead: 'A concept fitness and recovery club with a working QR attendance system: a member card that refreshes every 30 seconds, a front-desk scanner and an admin dashboard.',
+      overview: [['The brief', 'Booking and service pages for a wellness brand, plus a daily attendance system that stops card sharing at the door.'], ['The idea', 'Black, white and lime, expanded type and a phone that becomes your key.'], ['What to try', 'Open the member card, simulate a scan (even a screenshot) and watch it appear in the admin feed.']],
+      pages: ['Home', 'Classes', 'Coaches', 'Memberships', 'Recovery', 'Journal', 'Join', 'Member card', 'Scanner', 'Admin'],
+      features: [['Rotating QR', 'Signed codes that expire, written from scratch.'], ['Anti-fraud rules', 'Catches screenshots, double entries and expired plans.'], ['Class schedule', 'Two clubs, filters and booking.'], ['Admin dashboard', 'Live feed, charts, members and CSV export.']] }),
+    demo({ slug: 'aurelle-estates', title: 'Aurelle Estates', h1: 'Aurelle<br><em class="s">Estates</em>', sub: 'Real estate & developments · Listings site', bg: '#141518', category: 'Real estate',
+      lead: 'A concept for an agency and developer selling luxury homes in Sydney, Los Angeles and Lisbon: listings, filters, a map and live development availability.',
+      overview: [['The brief', 'Show off luxury visuals while keeping search, filters and maps genuinely useful.'], ['The idea', 'Ivory and ember with a Didone serif, a zooming hero and floating price cards.'], ['What to try', 'Filter homes, compare three listings, run the mortgage calculator and reserve a residence.']],
+      pages: ['Home', 'Buy', 'Rent', 'New developments', 'Property', 'Development', 'Sell / valuation', 'Agents', 'Saved'],
+      features: [['Listings & map', 'Grid, split and map views with filters.'], ['Compare', 'Up to three homes side by side.'], ['Mortgage calculator', 'Donut chart that updates live.'], ['Availability grid', 'Reserve units in a development.']] }),
+    demo({ slug: 'strata-atelier', title: 'Strata Atelier', h1: 'Strata<br><em class="s">Atelier</em>', sub: 'Architecture & 3D studio · Award-style site', bg: '#121316', category: 'Architecture & interiors',
+      lead: 'An award-style concept for an architecture studio, built around cinematic 3D: scroll and a house builds itself from site lines to a lit dusk scene.',
+      overview: [['The brief', 'Experiment freely, Awwwards-style, with property shown as a cinematic 3D object.'], ['The idea', 'Six buildings generated in code with three.js: sun studies, section cuts, exploded floors and a massing lab.'], ['What to try', 'Scroll the home page, drag the model, move the sun to dusk and shape your own house in the Lab.']],
+      pages: ['Home', 'Work', '6 project pages', 'Massing Lab', 'Studio', 'Journal', 'Start a project'],
+      features: [['Cinematic scroll', 'Site → structure → envelope → light → landscape.'], ['Live 3D viewer', 'Sun, section cut, explode and camera presets.'], ['Massing Lab', 'A parametric house with live area, cost and carbon.'], ['PNG stills', 'Save a render of any view.']], tech: 'three.js (WebGL), HTML, CSS, JavaScript · fully client-side' }),
+  ];
   const PROJECTS = [
     { slug: 'sanis', svc: 'web', cat: 'web', service: 'Website', title: 'CV. Sanis Panca Abadi', h1: 'Sanis Panca<br><em class="s">Abadi</em>', sub: 'Plastic manufacturer · Company website', img: 'sanis.webp', bg: '#000',
       lead: 'A bold company website for a plastic manufacturer — presenting its products, services and credibility to business buyers.',
@@ -709,7 +761,8 @@ legend{padding:0;margin-bottom:12px;font-size:13px;font-weight:600;color:#B8BDBA
       meta: [['Client', 'Pintara'], ['Industry', 'Education'], ['Service', 'Website Development'], ['Year', '[Year]'], ['Live site', '[website.com]']],
       blocks: [{ type: 'overview', items: [['The client', 'Pintara runs preparation programs for students aiming for top universities.'], ['The challenge', '[What the landing page needed to achieve.]'], ['Our approach', 'A clean, bright page with a single call-to-action and the program benefits right below.']] },
         webScope(['Landing page'], [['Single CTA', 'One clear registration action repeated through the page.'], ...webFeat.slice(1)]),
-        { type: 'gallery', items: ['[Full page screenshot]', '[Mobile view]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] }
+        { type: 'gallery', items: ['[Full page screenshot]', '[Mobile view]'] }, { type: 'metrics', items: webMetrics }, { type: 'quote' }] },
+    ...DEMOS
   ];
   const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
 
@@ -832,7 +885,7 @@ legend{padding:0;margin-bottom:12px;font-size:13px;font-weight:600;color:#B8BDBA
   }
 
   function pageWork() {
-    const cats = [['all', 'All work'], ['web', 'Websites'], ['uiux', 'UI/UX'], ['ads', 'Performance Ads'], ['graphic', 'Graphic Design'], ['social', 'Social Media']];
+    const cats = [['all', 'All work'], ['web', 'Websites'], ['uiux', 'UI/UX'], ['ads', 'Performance Ads'], ['graphic', 'Graphic Design'], ['social', 'Social Media'], ['concept', 'Concept demos']];
     return phero(`<span class="eyebrow">Our work</span><h1>Projects that<br><em class="s">moved</em> the needle</h1>`, `<p class="lead">Websites, product design and campaigns for brands across Indonesia. Open any project for the full story.</p>`) + `
   <section class="wrap" style="padding-bottom:clamp(72px,9vw,120px)">
     <div class="filters" role="group" aria-label="Filter projects">${cats.map(([id, l], i) => `<button type="button" data-filter="${id}" aria-pressed="${i === 0}">${l} <span>${id === 'all' ? PROJECTS.length : PROJECTS.filter(p => p.cat === id).length}</span></button>`).join('')}</div>
@@ -847,6 +900,7 @@ legend{padding:0;margin-bottom:12px;font-size:13px;font-weight:600;color:#B8BDBA
       case 'scope': return `<section class="sec alt wrap"><div class="faqwrap"><h2 class="h2">What we <em class="s">delivered</em></h2><div style="display:flex;flex-direction:column;gap:36px"><div style="display:flex;flex-direction:column;gap:14px"><span class="eyebrow">Pages</span><div class="chips">${b.pages.map(x => `<span class="chip" style="font-size:15px;padding:10px 16px">${x}</span>`).join('')}</div></div><div class="g2" style="gap:16px">${b.features.map(([t, d]) => `<div class="card rv" style="padding:22px"><b style="font-size:18px">${t}</b><p style="margin-top:6px;font-size:14px;color:var(--muted)">${d}</p></div>`).join('')}</div><div style="font-size:14px;color:var(--muted)"><span class="eyebrow" style="display:inline-flex;margin-right:12px">Built with</span>${b.tech}</div></div></div></section>`;
       case 'flow': return `<section class="sec alt wrap"><h2 class="h2" style="margin-bottom:48px">${b.title}</h2><div class="g4">${b.items.map(([t, d], i) => `<div class="metric rv${i === 0 ? ' hl' : ''}" style="min-height:230px"><span>0${i + 1}</span><div><b style="font-size:22px;letter-spacing:-.02em;line-height:1.2">${t}</b><p style="margin-top:8px;font-size:14px;${i === 0 ? 'color:var(--accent-soft)' : 'color:var(--muted)'}">${d}</p></div></div>`).join('')}</div></section>`;
       case 'gallery': return `<section class="sec wrap"><div class="g2" style="gap:24px">${b.lead ? `<div class="rv" style="grid-column:1/-1;border-radius:28px;overflow:hidden;background:#EDEDED;aspect-ratio:2.1"><img src="${I(b.lead)}" alt="Design screens" style="width:100%;height:100%;object-fit:cover" loading="lazy"></div>` : ''}${b.items.map((x, i) => `<div class="ph rv" style="${!b.lead && i === 0 ? 'grid-column:1/-1;height:clamp(260px,40vw,560px)' : 'height:clamp(220px,30vw,420px)'}">${x}</div>`).join('')}</div></section>`;
+      case 'shots': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="g2" style="gap:24px">${[['hero', 1], ['collage', 0], ['desktop', 0], ['page', 1]].map(([k, wide]) => `<div class="rv" style="${wide ? 'grid-column:1/-1;' : ''}border-radius:28px;overflow:hidden;border:1px solid var(--line);background:#111"><img src="${I('demos/' + b.slug + '-' + k + '.webp')}" alt="${b.title} — ${k} view" loading="lazy" style="width:100%;height:auto;display:block"></div>`).join('')}</div></section>`;
       case 'metrics': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="${b.items.length === 4 ? 'g4' : 'g3'}">${b.items.map(([l, v, hl]) => `<div class="metric rv${hl ? ' hl' : ''}"><span>${l}</span><b>${v}</b></div>`).join('')}</div></section>`;
       case 'strip': return `<section class="wrap" style="margin-top:calc(-1 * clamp(52px,7vw,90px));padding-bottom:clamp(72px,9vw,110px)"><div style="display:flex;flex-wrap:wrap;gap:16px 48px;padding:22px 26px;border-radius:18px;border:1px solid var(--line);font-size:14px;color:var(--muted)">${b.items.map(([v, l]) => `<span><strong style="color:#fff">${v}</strong> ${l}</span>`).join('')}</div></section>`;
       case 'dashboard': return `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)"><div class="panel rv"><div class="panel-head"><b>${b.title}</b><span>${b.note}</span></div><div class="shotbox"><img src="${I(b.img)}" alt="${b.title}" loading="lazy"></div></div></section>`;
@@ -866,7 +920,7 @@ legend{padding:0;margin-bottom:12px;font-size:13px;font-weight:600;color:#B8BDBA
     const s = svcBySlug[p.svc];
     const idx = PROJECTS.indexOf(p), nx = PROJECTS[(idx + 1) % PROJECTS.length];
     const cover = p.noCover ? '' : `<section class="wrap" style="padding-bottom:clamp(72px,9vw,110px)">${p.img ? `<div class="cover${p.light ? ' light' : ''}"><img src="${I(p.img)}" alt="${p.title}"></div>` : `<div class="ph cover" style="border-radius:32px">[Hero visual]</div>`}</section>`;
-    return phero(`<div class="crumb"><a href="#work">Work</a><span>/</span><a href="#service-${s.slug}"><b>${s.name}</b></a></div><h1>${p.h1}</h1><p class="lead">${p.lead}</p>`, `<div class="meta">${p.meta.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`) + cover + p.blocks.map(b => block(p, b)).join('') + `
+    return phero(`<div class="crumb"><a href="#work">Work</a><span>/</span><a href="#service-${s.slug}"><b>${s.name}</b></a></div><h1>${p.h1}</h1><p class="lead">${p.lead}</p>${p.demo ? `<div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px">${btn('Open live demo', p.demo, 'green').replace('<a ', '<a target="_blank" rel="noopener" ')}<span class="chip" style="font-size:13px">Concept project</span></div>` : ''}`, `<div class="meta">${p.meta.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`) + cover + p.blocks.map(b => block(p, b)).join('') + `
   <section class="sec wrap"><a class="next" href="#project-${nx.slug}"><div class="l"><span>NEXT PROJECT</span><div><b>${nx.title}</b><small>${nx.service} · ${nx.sub.split(' · ').pop()}</small></div></div><div class="pic" style="background:${nx.bg || '#151515'}">${nx.img ? `<img src="${I(nx.img)}" alt="" loading="lazy" style="${nx.contain || nx.light ? 'object-fit:contain' : ''}">` : '<div class="ph" style="height:100%">[Project cover]</div>'}</div></a></section>
   ${cta('Want results', 'like', 'these?')}`;
   }

@@ -11,3 +11,6 @@ npm-debug.log*
 .env.production
 # os
 .DS_Store
+
+# concept demos, pulled from organoostudio/Dummy-Project at build time
+public/demos/
