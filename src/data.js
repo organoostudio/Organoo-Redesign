@@ -108,8 +108,8 @@ const PROJECTS = [
       { type: 'video' }, { type: 'metrics', items: [['Videos delivered', '[XX]', true], ['Average watch time', '[+X%]'], ['Turnaround', '[X] days']] }, { type: 'quote' }] }
 ];
 /* ---------- concept demos: live sites served from /demos/<slug>/, synced from organoostudio/Dummy-Project at build ---------- */
-const demo = o => ({ svc: 'web', cat: 'concept', service: 'Concept · Live demo', img: `demos/${o.slug}-card.webp`, full: true, demo: `/demos/${o.slug}/`, ...o,
-  tags: ['Concept', o.category, 'Live demo'],
+const demo = o => ({ svc: 'web', service: 'Website Development', img: `demos/${o.slug}-card.webp`, full: true, demo: `/demos/${o.slug}/`, ...o,
+  tags: ['Website', o.category, 'Live demo'],
   meta: [['Client', o.client || 'Concept — fictional brand'], ['Category', o.category], ['Type', 'Concept project'], ['Year', '2026'], ['Live demo', `organoostudio.com/demos/${o.slug}`]],
   blocks: [{ type: 'shots', slug: o.slug, title: o.title }, { type: 'overview', items: o.overview }, { type: 'scope', pages: o.pages, features: o.features, tech: o.tech || 'HTML, CSS, vanilla JavaScript · fully client-side' }] });
 const DEMOS = [

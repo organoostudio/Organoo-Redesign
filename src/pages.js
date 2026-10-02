@@ -595,7 +595,7 @@ function pageService(slug) {
 
 /* ===================== WORK ===================== */
 function pageWork() {
-  const cats = [['all', 'All'], ['web', 'Website'], ['uiux', 'UI/UX'], ['ads', 'Ads'], ['graphic', 'Graphic'], ['video', 'Video'], ['concept', 'Concept demos']];
+  const cats = [['all', 'All'], ['web', 'Website'], ['uiux', 'UI/UX'], ['ads', 'Ads'], ['graphic', 'Graphic'], ['video', 'Video']];
   return `
   <section class="ph-hero" style="min-height:76vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Work</span></div>
     <h1 class="split">Selected <em class="s">work</em></h1>
