@@ -19,10 +19,17 @@ If the owner asks to **preview first**, push to a separate branch instead of `ma
 
 - `src/` — the site: `head.html`, `style.css`, `shell.html`, `data.js` (services, cases, demos, posts, team),
   `engine.js` (router, loader, scroll engine), `pages.js` (all pages + home scenes).
+- Pages use real URLs (`/work/`, `/work/<slug>/`, `/services/<slug>/`, `/about/`, `/contact/`), routed with the
+  History API. `scripts/build.mjs` pre-renders every route to `dist/<path>/index.html` with its own title,
+  description, canonical and breadcrumb schema; titles/descriptions live in `routeMeta()` in `src/engine.js`.
+  Internal links are `href="/path/" data-link`. Old `#…` links redirect on load. CSS/JS ship as hashed files in `/assets/`.
 - `public/` — copied to the site root (images in `public/img/`).
 - `scripts/build.mjs` builds `dist/`; `scripts/sync-demos.mjs` pulls the concept demos from
   `organoostudio/Dummy-Project` into `/demos/<slug>/` at build time.
 - `wrangler.jsonc` — `name` must stay `organoo-redesign` (must match the Cloudflare Worker name).
+- `content/blog/*.md` — the Journal. Built by `scripts/blog.mjs` into static pages at `/blog/<slug>/`
+  (plus `/blog/`, RSS, `sitemap.xml`, `llms.txt`). How to write and publish an article:
+  `content/blog/README.md`; topic queue: `content/blog/_topics.md`. Covers: `scripts/blog-cover.mjs`.
 - `archive/prototypes/` — old design rounds, not deployed.
 
 ## Content rules

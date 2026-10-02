@@ -164,17 +164,9 @@ const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
 /* cases shown in the home TV viewer (real imagery only) */
 const SHOWCASE = ['lumetric', 'kinetik-studio', 'pelni', 'dasindo', 'bowlful', 'arbor-and-co', 'batu-panorama', 'rimba-roastery', 'halden-and-rowe', 'bank-sampah', 'tabung', 'strata-atelier', 'sangkarloka', 'lumea'];
 
-const g = (x, y, a) => `radial-gradient(ellipse at ${x}% ${y}%, rgba(31,174,94,${a}), transparent 62%)`;
-const POSTS = [
-  { slug: 'landing-vs-profile', cat: 'Website', word: 'Landing <em class="s">vs</em> Profile', title: 'Landing page vs company profile: which one does your business need?', time: '6 min read', glow: g(30, 110, .7), excerpt: 'Both are "websites", but they do very different jobs. Here\'s how to choose based on your goal, budget and where your traffic comes from.' },
-  { slug: 'website-cost', cat: 'Website', word: 'Budget', title: 'How much does a website cost in Indonesia in 2026?', time: '8 min read', glow: g(80, 110, .6), excerpt: 'What actually drives the price of a website — and how to scope one so you pay for what moves the needle.' },
-  { slug: 'google-vs-meta', cat: 'Ads', word: 'Google <em class="s">vs</em> Meta', title: 'Google Ads vs Meta Ads: where should local businesses spend first?', time: '7 min read', glow: g(20, 100, .55), excerpt: 'Intent vs discovery: a simple way to decide where your first rupiah of ad budget should go.' },
-  { slug: 'losing-customers', cat: 'Website', word: '5 signs', title: '5 signs your website is quietly losing you customers', time: '5 min read', glow: g(50, 120, .6), excerpt: 'Slow pages, buried contact buttons and three other leaks we see on almost every audit.' },
-  { slug: 'what-is-uiux', cat: 'UI/UX', word: 'Usability', title: 'What is UI/UX design — and why does it affect sales?', time: '6 min read', glow: g(90, 40, .5), excerpt: 'Good UX is invisible. Bad UX shows up in your conversion rate. Here\'s the link.' },
-  { slug: 'short-form-video', cat: 'Video', word: 'First 3s', title: 'Short-form video: how to edit reels people watch to the end', time: '6 min read', glow: g(10, 20, .5), excerpt: 'Hooks, pacing and captions — the editing choices that decide whether a reel gets watched or skipped.' },
-  { slug: 'brand-consistency', cat: 'Design', word: 'Consistency', title: 'Brand consistency: why a logo alone is not enough', time: '4 min read', glow: g(60, 0, .5), excerpt: 'Colors, type, tone and templates — the quiet system that makes a brand recognizable.' }
-];
-const postBySlug = Object.fromEntries(POSTS.map(p => [p.slug, p]));
+// Journal articles live in content/blog/*.md and are built to /blog/ by scripts/blog.mjs;
+// build.mjs injects BLOG_POSTS (the newest few) for the home page strip.
+const POSTS = BLOG_POSTS;
 
 const CLIENTS = [['PUPR', 'font-weight:800;letter-spacing:.08em'], ['PT PELNI', 'font-weight:800'], ['Cazmilk', 'font-weight:300;font-style:italic'], ['JWAHER', 'font-weight:800;letter-spacing:.24em;font-size:.82em'], ['WP Malang', 'font-weight:600'], ['Dasindo Media', 'font-family:var(--mono);font-weight:500;font-size:.8em'], ['Artiland Group', 'font-weight:300'], ['Dale Carnegie', 'font-weight:500']];
 
