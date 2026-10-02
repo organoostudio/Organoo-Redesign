@@ -1,0 +1,73 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gChrome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f8f6"/><stop offset=".16" stop-color="#97a39d"/><stop offset=".3" stop-color="#ffffff"/>
+      <stop offset=".47" stop-color="#58635d"/><stop offset=".6" stop-color="#d3dcd7"/><stop offset=".78" stop-color="#39423d"/><stop offset="1" stop-color="#e9efec"/>
+    </linearGradient>
+    <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e2fcee"/><stop offset=".3" stop-color="#96E1B9"/><stop offset=".72" stop-color="#1FAE5E"/><stop offset="1" stop-color="#0a5f33"/>
+    </linearGradient>
+    <linearGradient id="gLeaf2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#96E1B9"/><stop offset="1" stop-color="#1FAE5E"/></linearGradient>
+    <filter id="fChrome" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="b"/>
+      <feSpecularLighting in="b" surfaceScale="7" specularConstant="1.3" specularExponent="24" lighting-color="#ffffff" result="s">
+        <fePointLight id="lp" x="40" y="12" z="170"/>
+      </feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="si"/>
+      <feComposite in="SourceGraphic" in2="si" operator="arithmetic" k1="0" k2="1" k3=".95" k4="0"/>
+    </filter>
+    <symbol id="mkChrome" viewBox="0 0 200 200">
+      <g filter="url(#fChrome)">
+        <path d="M146 70 A58 58 0 1 0 114 162" fill="none" stroke="url(#gChrome)" stroke-width="40" stroke-linecap="round"/>
+        <path d="M134 130c14-9 35-4 37 13 3 14-11 27-26 24-14-2-23-16-21-26 1-5 5-8 10-11z" fill="url(#gLeaf)"/>
+      </g>
+    </symbol>
+    <symbol id="mkFlat" viewBox="0 0 160 160">
+      <circle cx="80" cy="80" r="80" fill="#0B0D0C"/>
+      <path d="M114 58 A44 44 0 1 0 92 124" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round"/>
+      <path d="M106 102c9-6 23-3 25 9 2 9-7 18-18 16-9-1-16-11-14-18 1-3 4-5 7-7z" fill="url(#gLeaf2)"/>
+    </symbol>
+    <symbol id="arr" viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- preloader -->
+<div class="loader" id="loader" aria-hidden="true">
+  <canvas id="lcv"></canvas>
+  <svg class="lmark" viewBox="0 0 200 200"><use href="#mkChrome"/></svg>
+  <div class="lcount" id="lNum">000</div>
+  <div class="lbar"><i id="lBar"></i></div>
+</div>
+
+<!-- page transition -->
+<div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#mkFlat"/></svg><div class="pt-name" id="ptName"></div></div>
+
+<!-- nav -->
+<header class="nav" id="nav">
+  <a class="home" href="#home" data-link aria-label="Organoo Studio — home"><svg viewBox="0 0 160 160"><use href="#mkFlat"/></svg></a>
+  <a class="it" href="#work" data-link data-nav="work">Work</a>
+  <a class="it" href="#services" data-link data-nav="services">Services</a>
+  <a class="it" href="#about" data-link data-nav="about">About</a>
+  <a class="it" href="#journal" data-link data-nav="journal">Journal</a>
+  <a class="it" href="#contact" data-link data-nav="contact">Contact</a>
+  <span class="lang" title="Bahasa Indonesia coming soon"><b>EN</b> / ID</span>
+  <button class="mbtn" id="mbtn" type="button" aria-expanded="false" aria-controls="menu"><span><i></i><i></i></span>Menu</button>
+  <a class="go" href="#contact" data-link><span class="t">Start a project</span><i><svg><use href="#arr"/></svg></i></a>
+</header>
+<nav class="menu" id="menu" aria-label="Menu">
+  <nav>
+    <a class="big" href="#home" data-link><small>00</small><span>Home</span></a>
+    <a class="big" href="#work" data-link><small>01</small><span>Work</span></a>
+    <a class="big" href="#services" data-link><small>02</small><span>Services</span></a>
+    <a class="big" href="#about" data-link><small>03</small><span>About</span></a>
+    <a class="big" href="#journal" data-link><small>04</small><span>Journal</span></a>
+    <a class="big" href="#contact" data-link><small>05</small><span>Contact</span></a>
+  </nav>
+  <div class="mfoot"><span>organoostudio@gmail.com</span><span>@organoostudio</span><span>Jakarta, Indonesia</span></div>
+</nav>
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="cring" id="cring" aria-hidden="true"><b id="clab">View</b></div>
+<div class="hovprev" id="hovprev" aria-hidden="true"><img alt=""></div>
+
+<main id="app"></main>

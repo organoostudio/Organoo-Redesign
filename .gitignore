@@ -14,3 +14,4 @@ npm-debug.log*
 
 # concept demos, pulled from organoostudio/Dummy-Project at build time
 public/demos/
+dist/
