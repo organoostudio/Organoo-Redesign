@@ -49,4 +49,4 @@ If the project is created as a **Worker** instead (Import a repository), keep bu
 
 ## Content still to fill in
 
-Text in `[brackets]` is placeholder: prices, years, live URLs, testimonials, team names/photos and the Graphic/Social case studies.
+Text in `[brackets]` is placeholder: prices, years, live URLs, testimonials, team names/photos and the Video case study.

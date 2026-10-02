@@ -843,3 +843,14 @@ h1,h2,.sphere .big,.ring .mq-big,.slide .ln,.wmk,.xwin .w1,.xwin .w2,.srow .t,.m
 
 /* graphic design case pages */
 .gd-sec .gd-wide{border-radius:18px;overflow:hidden;background:var(--panel)}.gd-sec .gd-wide img{display:block;width:100%;height:auto}.gd-sec .gd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gd-sec .gd-grid.p6{grid-template-columns:repeat(6,1fr)}.gd-sec figure{margin:0}.gd-sec figure img{display:block;width:100%;height:auto;border-radius:14px;background:var(--panel)}.gd-sec figcaption{font:500 13px/1.4 var(--sans);color:var(--muted);margin-top:8px}.gd-sec .gd-note{font:500 12px/1.5 var(--mono);color:var(--dim);margin-top:18px}@media(max-width:900px){.gd-sec .gd-grid{grid-template-columns:repeat(2,1fr)}.gd-sec .gd-grid.p6{grid-template-columns:repeat(3,1fr)}}@media(max-width:560px){.gd-sec .gd-grid{grid-template-columns:1fr}.gd-sec .gd-grid.p6{grid-template-columns:repeat(2,1fr)}}
+
+/* graphic design covers across portfolio displays */
+.fo .card.sq{width:clamp(170px,15vw,240px);background:#111}
+.fo .card.sq img,.svis .card.gd img,.pc .ph img.gd,.mini-gd img{-webkit-mask-image:none;mask-image:none}
+.svis .card.gd{position:absolute;background:#111;border:1px solid rgba(255,255,255,.08)}
+.svis .card.gd img{display:block}
+.mini-gd{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(78%,260px)}
+.mini-gd img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.wc .fr.gdc{background:var(--panel)}
+.wc .fr.gdc .pv{inset:-5% 0}
+.wc .fr.gdc img{width:86%;border-radius:12px;-webkit-mask-image:none;mask-image:none;box-shadow:0 26px 60px rgba(0,0,0,.5)}

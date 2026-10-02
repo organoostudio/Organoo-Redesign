@@ -31,29 +31,29 @@ function footer() {
     <div class="legal"><span>© 2026 Organoo Studio</span><span>Jakarta, Indonesia · <b id="clock">--:--</b> WIB</span><span>Move your cursor over the name ↑</span></div>
   </footer>`;
 }
-const caseCard = p => `<a class="wc rv" href="#work-${p.slug}" data-link data-f="${p.cat || p.svc}" data-cur="View"><div class="fr${p.light ? ' lt' : ''}${p.full ? ' full' : ''}"><div class="pv">${p.img ? imgTag(p.img, false) : `<div class="ph0">[Project cover]</div>`}</div><span class="tag">${p.service}</span></div><div class="ft"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="ar">${ARR}</span></div></a>`;
+const caseCard = p => `<a class="wc rv" href="#work-${p.slug}" data-link data-f="${p.cat || p.svc}" data-cur="View"><div class="fr${p.light ? ' lt' : ''}${p.full ? ' full' : ''}${p.svc === 'graphic' && p.img ? ' gdc' : ''}"><div class="pv">${p.img ? imgTag(p.img, false) : `<div class="ph0">[Project cover]</div>`}</div><span class="tag">${p.service}</span></div><div class="ft"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="ar">${ARR}</span></div></a>`;
 const postCard = p => `<a class="post rv" href="#post-${p.slug}" data-link data-cur="Read" style="--glow:${p.glow}"><div class="art"><b>${p.word}</b></div><div class="meta"><div class="k"><span>${p.cat}</span><span>${p.time}</span></div><h3>${p.title}</h3></div></a>`;
 
 /* service mini visual for cards / previews */
 function miniVis(s) {
-  if (s.kind === 'graphic') return `<div class="mini-brand"><b>Aa</b><span><i style="background:#0B0D0C"></i><i style="background:#1FAE5E"></i><i style="background:#96E1B9"></i><i style="background:#C0F408"></i></span></div>`;
+  if (s.kind === 'graphic') return `<div class="mini-gd">${['gd-kinetik-studio-post-1', 'gd-bowlful-post-2', 'gd-lumea-post-1', 'gd-kelana-post-1'].map(x => `<img src="${I(x + '.webp')}" alt="" loading="lazy">`).join('')}</div>`;
   if (s.kind === 'video') return `<div class="mini-video"><div class="scr"><i class="play"></i></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i></div></div>`;
   return imgTag(s.pic, s.light);
 }
 
 /* ===================== HOME ===================== */
 function pageHome() {
-  const fly = FLY.map(([k, s, x, y, z]) => {
+  const fly = FLY.map(([k, s, x, y, z, v]) => {
     let inner = '';
     if (k === 'lap') inner = `<img class="lap" src="${I(s)}" alt="">`;
-    else if (k === 'card') inner = `<div class="card"><img src="${I(s)}" alt=""></div>`;
+    else if (k === 'card') inner = `<div class="card${v ? ' ' + v : ''}"><img src="${I(s)}" alt=""></div>`;
     else if (k === 'shot') inner = `<div class="card shot"><img src="${I(s)}" alt=""></div>`;
     else if (k === 'wide') inner = `<div class="card wide"><img src="${I(s)}" alt=""></div>`;
     else if (k === 'chip') inner = `<div class="chip"><b>${s[0]}</b><div>${s[1]}<small>${s[2]}</small></div></div>`;
     else if (k === 'chrome') inner = chromeSvg('chrome');
     return `<div class="fo" data-x="${x}" data-y="${y}" data-z="${z}">${inner}</div>`;
   }).join('');
-  const tvLayout = [[12, 22, 230, -120, 18, -4, 'img:demos/tandem-card.webp'], [31, 10, 170, -300, 10, 3, 'bars'], [71, 13, 200, -200, -14, 4, 'img:demos/forma-card.webp'], [89, 30, 240, -60, -22, -3, 'static'], [7, 60, 210, -40, 24, 5, 'static'], [24, 82, 190, -260, 14, -6, 'img:pelni.webp|ct'], [50, 86, 160, -420, 0, 2, 'bars'], [77, 66, 230, -100, -18, -5, 'img:demos/aurelle-estates-card.webp'], [93, 84, 170, -320, -10, 6, 'img:google-charts.webp|ct'], [38, 46, 150, -600, 6, -2, 'static'], [63, 48, 150, -560, -6, 3, 'img:demos/stockroom-card.webp']];
+  const tvLayout = [[12, 22, 230, -120, 18, -4, 'img:demos/tandem-card.webp'], [31, 10, 170, -300, 10, 3, 'img:gd-lumea-cover.webp'], [71, 13, 200, -200, -14, 4, 'img:demos/forma-card.webp'], [89, 30, 240, -60, -22, -3, 'img:gd-kinetik-studio-cover.webp'], [7, 60, 210, -40, 24, 5, 'static'], [24, 82, 190, -260, 14, -6, 'img:pelni.webp|ct'], [50, 86, 160, -420, 0, 2, 'img:gd-bowlful-post-2.webp'], [77, 66, 230, -100, -18, -5, 'img:demos/aurelle-estates-card.webp'], [93, 84, 170, -320, -10, 6, 'img:google-charts.webp|ct'], [38, 46, 150, -600, 6, -2, 'img:gd-rimba-roastery-post-1.webp'], [63, 48, 150, -560, -6, 3, 'img:demos/stockroom-card.webp']];
   const tvs = tvLayout.map(([x, y, w, z, ry, rz, c]) => {
     let scr;
     if (c === 'bars') scr = '<div class="bars"></div>';
@@ -61,7 +61,7 @@ function pageHome() {
     else { const [src, f] = c.slice(4).split('|'); scr = `<img class="${f || ''}" src="${I(src)}" alt="">`; }
     return `<div class="crt" style="--x:${x}%;--y:${y}%;--w:${w}px;--z:${z}px;--ry:${ry}deg;--rz:${rz}deg" data-z="${z}"><div class="body"><div class="scr">${scr}</div></div></div>`;
   }).join('');
-  const polas = [['demos/lumetric-card.webp', 'Lumetric · concept'], ['pelni.webp|ct', 'PT Pelni — Docs'], ['w:PUPR', 'Kementerian PUPR', ''], ['demos/arbor-and-co-card.webp', 'Arbor & Co. · concept'], ['demos/halden-and-rowe-card.webp', 'Halden & Rowe · concept'], ['w:Dale<br>Carnegie', 'Dasindo Media', 'g'], ['banksampah.webp|ct', 'Bank Sampah'], ['demos/sangkarloka-card.webp', 'Sangkarloka'], ['google-charts.webp|ct', '11× ROAS'], ['w:Artiland', 'Batu Panorama', 'm'], ['demos/strata-atelier-card.webp', 'Strata Atelier · concept'], ['demos/tandem-card.webp', 'Tandem · concept'], ['meta-table.webp|ct', '1,200+ conversions'], ['uiux.webp|ct', 'UI/UX systems']];
+  const polas = [['demos/lumetric-card.webp', 'Lumetric · concept'], ['gd-bowlful-post-2.webp|gd', 'Bowlful · identity'], ['pelni.webp|ct', 'PT Pelni — Docs'], ['w:PUPR', 'Kementerian PUPR', ''], ['gd-kinetik-studio-post-1.webp|gd', 'Kinetik Studio · identity'], ['demos/arbor-and-co-card.webp', 'Arbor & Co. · concept'], ['gd-lumea-post-1.webp|gd', 'Lumea · identity'], ['w:Dale<br>Carnegie', 'Dasindo Media', 'g'], ['banksampah.webp|ct', 'Bank Sampah'], ['gd-kelana-post-1.webp|gd', 'Kelana · identity'], ['google-charts.webp|ct', '11× ROAS'], ['w:Artiland', 'Batu Panorama', 'm'], ['gd-tabung-post-1.webp|gd', 'Tabung · identity'], ['demos/sangkarloka-card.webp', 'Sangkarloka']];
   const polaHtml = polas.map(([src, cap, col], i) => {
     let ph;
     if (src.startsWith('w:')) ph = `<div class="ph word ${col || ''}">${src.slice(2)}</div>`;
@@ -566,7 +566,7 @@ function svis(s) {
   if (s.kind === 'uiux') return `<div class="svis"><div class="card" style="width:58%;left:2%;top:4%" data-px="-30"><img src="${I('pelni.webp')}" alt=""></div><div class="card" style="width:60%;right:0;bottom:8%" data-px="40"><img src="${I('banksampah.webp')}" alt=""></div><div class="kpi" style="left:6%;bottom:6%" data-px="18"><b>4</b><span>core flows · Pelni Docs</span></div></div>`;
   if (s.kind === 'web') return `<div class="svis"><div class="card" style="width:66%;left:0;top:2%" data-px="-30"><img src="${I('demos/lumetric-card.webp')}" alt=""></div><div class="card" style="width:62%;right:0;bottom:6%" data-px="40"><img src="${I('demos/arbor-and-co-card.webp')}" alt=""></div><div class="kpi" style="right:2%;top:6%" data-px="16"><b>9</b><span>live concept demos</span></div></div>`;
   if (s.kind === 'ads') return `<div class="svis"><div class="card" style="width:86%;left:6%;top:22%;padding:8px" data-px="-24"><img src="${I('google-charts.webp')}" alt=""></div><div class="card" style="width:78%;right:0;bottom:12%;padding:8px" data-px="34"><img src="${I('meta-table.webp')}" alt=""></div><div class="kpi" style="left:0;top:2%" data-px="14"><b>11×</b><span>ROAS · Dasindo Media</span></div><div class="kpi" style="right:4%;bottom:0" data-px="22"><b>1,200+</b><span>conversions · Batu Panorama</span></div></div>`;
-  if (s.kind === 'graphic') return `<div class="svis"><div class="spec" style="left:4%;top:4%" data-px="-24">Aa<em>.</em></div><div class="sw" style="left:6%;bottom:12%" data-px="26"><i style="background:#0B0D0C;border:1px solid rgba(255,255,255,.15)"></i><i style="background:#1FAE5E"></i><i style="background:#96E1B9"></i><i style="background:#C0F408"></i><i style="background:#F4F7F5"></i></div><div style="right:2%;top:16%;width:46%" data-px="34">${chromeSvg('', '')}</div></div>`;
+  if (s.kind === 'graphic') return `<div class="svis"><div class="card gd" style="width:62%;left:0;top:12%" data-px="-30"><img src="${I('gd-kinetik-studio-cover.webp')}" alt="Kinetik Studio identity"></div><div class="card gd" style="width:58%;right:0;bottom:6%" data-px="40"><img src="${I('gd-tabung-cover.webp')}" alt="Tabung identity"></div><div class="card gd" style="width:28%;left:8%;bottom:4%" data-px="22"><img src="${I('gd-bowlful-post-2.webp')}" alt="Bowlful post"></div><div class="kpi" style="right:0;top:0" data-px="16"><b>10</b><span>brand identities · concepts</span></div></div>`;
   return `<div class="svis"><div class="vframe" style="left:0;top:4%;width:74%" data-px="-26"><div class="scr"><i class="play"></i><span class="rec">00:00:14:08</span></div><div class="tl"><i style="flex:3"></i><i style="flex:2" class="g"></i><i style="flex:4"></i><i style="flex:1.5" class="g"></i><i style="flex:2.5"></i></div></div><div class="vphone" style="right:2%;bottom:2%" data-px="38"><div class="scr"><i class="play"></i><span class="cap">Captions that<br>read on mute</span></div></div><div class="kpi" style="left:4%;bottom:6%" data-px="18"><b>9:16</b><span>1:1 · 16:9 · every platform</span></div></div>`;
 }
 function pageService(slug) {

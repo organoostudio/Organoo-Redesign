@@ -162,7 +162,7 @@ const DEMOS = [
 PROJECTS.push(...DEMOS);
 const projBySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
 /* cases shown in the home TV viewer (real imagery only) */
-const SHOWCASE = ['lumetric', 'pelni', 'dasindo', 'arbor-and-co', 'batu-panorama', 'halden-and-rowe', 'bank-sampah', 'strata-atelier', 'sangkarloka'];
+const SHOWCASE = ['lumetric', 'kinetik-studio', 'pelni', 'dasindo', 'bowlful', 'arbor-and-co', 'batu-panorama', 'rimba-roastery', 'halden-and-rowe', 'bank-sampah', 'tabung', 'strata-atelier', 'sangkarloka', 'lumea'];
 
 const g = (x, y, a) => `radial-gradient(ellipse at ${x}% ${y}%, rgba(31,174,94,${a}), transparent 62%)`;
 const POSTS = [
@@ -198,16 +198,21 @@ const PROCESS = [
 /* items floating in the 3D flythrough hero: [kind, src/label, x(vw), y(vh), z(px), extra] */
 const FLY = [
   ['shot', 'demos/lumetric-card.webp', -30, -14, -350],
-  ['card', 'pelni.webp', 28, -18, -700],
+  ['card', 'gd-bowlful-post-2.webp', 30, -20, -620, 'sq'],
   ['chip', ['1,200+', 'conversions', 'Batu Panorama'], -16, 22, -520],
-  ['shot', 'demos/arbor-and-co-card.webp', 32, 20, -1050],
+  ['card', 'pelni.webp', 28, 16, -820],
+  ['shot', 'gd-kinetik-studio-cover.webp', -34, 10, -1000],
+  ['shot', 'demos/arbor-and-co-card.webp', 32, 20, -1250],
   ['chrome', '', -2, -4, -1400],
-  ['card', 'banksampah.webp', -34, 16, -1250],
-  ['chip', ['11×', 'ROAS', 'Dale Carnegie'], 18, -26, -1500],
-  ['shot', 'demos/halden-and-rowe-card.webp', -26, -24, -1800],
-  ['wide', 'google-charts.webp', 26, 26, -1950],
-  ['shot', 'demos/strata-atelier-card.webp', 30, -6, -2300],
-  ['card', 'uiux.webp', -30, 4, -2450],
-  ['chip', ['+97.8%', 'website leads', 'after optimization'], -6, 30, -2200],
-  ['shot', 'demos/sangkarloka-card.webp', 4, -30, -2700]
+  ['card', 'gd-kelana-post-1.webp', -30, -26, -1300, 'sq'],
+  ['chip', ['11×', 'ROAS', 'Dale Carnegie'], 18, -26, -1550],
+  ['card', 'banksampah.webp', -34, 16, -1700],
+  ['shot', 'gd-tabung-cover.webp', 30, -8, -1850],
+  ['shot', 'demos/halden-and-rowe-card.webp', -26, -24, -2000],
+  ['wide', 'google-charts.webp', 26, 26, -2150],
+  ['card', 'gd-rimba-roastery-post-1.webp', -6, 30, -2250, 'sq'],
+  ['chip', ['+97.8%', 'website leads', 'after optimization'], -30, 2, -2350],
+  ['shot', 'demos/strata-atelier-card.webp', 30, -6, -2500],
+  ['shot', 'gd-lumea-cover.webp', -28, -18, -2650],
+  ['shot', 'demos/sangkarloka-card.webp', 4, -30, -2800]
 ];
