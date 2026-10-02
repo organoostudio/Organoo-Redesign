@@ -23,6 +23,9 @@ If the owner asks to **preview first**, push to a separate branch instead of `ma
 - `scripts/build.mjs` builds `dist/`; `scripts/sync-demos.mjs` pulls the concept demos from
   `organoostudio/Dummy-Project` into `/demos/<slug>/` at build time.
 - `wrangler.jsonc` — `name` must stay `organoo-redesign` (must match the Cloudflare Worker name).
+- `content/blog/*.md` — the Journal. Built by `scripts/blog.mjs` into static pages at `/blog/<slug>/`
+  (plus `/blog/`, RSS, `sitemap.xml`, `llms.txt`). How to write and publish an article:
+  `content/blog/README.md`; topic queue: `content/blog/_topics.md`. Covers: `scripts/blog-cover.mjs`.
 - `archive/prototypes/` — old design rounds, not deployed.
 
 ## Content rules

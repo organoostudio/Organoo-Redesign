@@ -185,14 +185,14 @@ mbtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
 addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
 
 /* ---------- router ---------- */
-const PAGE_NAMES = { home: 'Home', work: 'Work', case: 'Case study', services: 'Services', service: 'Service', about: 'About', journal: 'Journal', post: 'Article', contact: 'Contact' };
+const PAGE_NAMES = { home: 'Home', work: 'Work', case: 'Case study', services: 'Services', service: 'Service', about: 'About', contact: 'Contact' };
 function parseRoute(h) {
   h = (h || '').replace(/^#\/?/, '');
   if (!h || h === 'home' || h === 'top') return { page: 'home' };
   if (h.startsWith('work-') && projBySlug[h.slice(5)]) return { page: 'case', arg: h.slice(5) };
   if (h.startsWith('service-') && svcBySlug[h.slice(8)]) return { page: 'service', arg: h.slice(8) };
-  if (h.startsWith('post-') && postBySlug[h.slice(5)]) return { page: 'post', arg: h.slice(5) };
-  if (['work', 'services', 'about', 'journal', 'contact'].includes(h)) return { page: h };
+  if (h === 'journal' || h.startsWith('post-')) { location.replace('/blog/'); return { page: 'home' }; } // the journal moved to real URLs under /blog/
+  if (['work', 'services', 'about', 'contact'].includes(h)) return { page: h };
   return { page: 'home' };
 }
 function render(route) {
@@ -201,7 +201,7 @@ function render(route) {
   app.innerHTML = PAGES[route.page](route.arg);
   S.route = route;
   document.title = (route.page === 'home' ? 'Organoo Studio — Digital agency in Jakarta' : `${pageTitle(route)} — Organoo Studio`);
-  $$('.nav .it').forEach(a => a.classList.toggle('on', a.dataset.nav === route.page || (a.dataset.nav === 'work' && route.page === 'case') || (a.dataset.nav === 'services' && route.page === 'service') || (a.dataset.nav === 'journal' && route.page === 'post')));
+  $$('.nav .it').forEach(a => a.classList.toggle('on', a.dataset.nav === route.page || (a.dataset.nav === 'work' && route.page === 'case') || (a.dataset.nav === 'services' && route.page === 'service')));
   window.scrollTo(0, 0); if (S.lenis) S.lenis.scrollTo(0, { immediate: true });
   INIT[route.page] && INIT[route.page](route.arg);
   initCommon(app);
@@ -212,7 +212,6 @@ function render(route) {
 function pageTitle(r) {
   if (r.page === 'case') return projBySlug[r.arg].title;
   if (r.page === 'service') return svcBySlug[r.arg].name;
-  if (r.page === 'post') return postBySlug[r.arg].title;
   return PAGE_NAMES[r.page];
 }
 const ptr = $('#ptr'), ptName = $('#ptName');

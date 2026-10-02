@@ -23,7 +23,7 @@ function footer() {
     <div class="ask"><h2 class="split">Have an idea?<br>Let's <em class="s">grow</em> it.</h2>${btn('Start a project', '#contact')}</div>
     <div class="cols">
       <div><div class="brandline"><svg viewBox="0 0 200 200"><use href="#mkFlat"/></svg>organoo <span>studio</span></div><p>A digital agency from Jakarta designing brands, websites and campaigns that keep growing.</p></div>
-      <div><h4>STUDIO</h4><a href="#about" data-link>About</a><a href="#work" data-link>Work</a><a href="#journal" data-link>Journal</a><a href="#contact" data-link>Contact</a></div>
+      <div><h4>STUDIO</h4><a href="#about" data-link>About</a><a href="#work" data-link>Work</a><a href="/blog/">Journal</a><a href="#contact" data-link>Contact</a></div>
       <div><h4>SERVICES</h4>${SERVICES.map(s => `<a href="#service-${s.slug}" data-link>${s.name}</a>`).join('')}</div>
       <div><h4>CONNECT</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="#contact" data-link>organoostudio@gmail.com</a></div>
     </div>
@@ -32,7 +32,7 @@ function footer() {
   </footer>`;
 }
 const caseCard = p => `<a class="wc rv" href="#work-${p.slug}" data-link data-f="${p.cat || p.svc}" data-cur="View"><div class="fr${p.light ? ' lt' : ''}${p.full ? ' full' : ''}${p.svc === 'graphic' && p.img ? ' gdc' : ''}"><div class="pv">${p.img ? imgTag(p.img, false) : `<div class="ph0">[Project cover]</div>`}</div><span class="tag">${p.service}</span></div><div class="ft"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="ar">${ARR}</span></div></a>`;
-const postCard = p => `<a class="post rv" href="#post-${p.slug}" data-link data-cur="Read" style="--glow:${p.glow}"><div class="art"><b>${p.word}</b></div><div class="meta"><div class="k"><span>${p.cat}</span><span>${p.time}</span></div><h3>${p.title}</h3></div></a>`;
+const postCard = p => `<a class="post rv" href="${p.url}" data-cur="Read" style="--glow:${p.glow}"><div class="art">${p.cover ? `<img src="${p.cover}" alt="${p.alt}" width="640" height="336" loading="lazy" decoding="async">` : `<b>${p.word}</b>`}</div><div class="meta"><div class="k"><span>${p.cat}</span><span>${p.time}</span></div><h3>${p.title}</h3></div></a>`;
 
 /* service mini visual for cards / previews */
 function miniVis(s) {
@@ -153,8 +153,8 @@ function pageHome() {
     </div>
   </section>
   ${teamBlock()}
-  <section class="jr"><div class="hd"><div><span class="lbl">Journal</span><h2 class="split" style="margin-top:16px">Notes on <em class="s">growth</em></h2></div>${btn('All articles', '#journal', 'b-ghost b-sm')}</div>
-    <div class="jgrid">${POSTS.slice(0, 3).map(postCard).join('')}</div></section>
+  ${POSTS.length >= 3 ? `<section class="jr"><div class="hd"><div><span class="lbl">Journal</span><h2 class="split" style="margin-top:16px">Notes on <em class="s">growth</em></h2></div>${btn('All articles', '/blog/', 'b-ghost b-sm')}</div>
+    <div class="jgrid">${POSTS.slice(0, 3).map(postCard).join('')}</div></section>` : ''}
   ${noteCta()}
   ${footer()}`;
 }
@@ -712,26 +712,6 @@ function initCase() {
   scene($('#cover'), p => { const k = eIO(range(p, 0, .7)); cv.style.setProperty('--cw', lerp(innerWidth < 760 ? 88 : 62, 94, k) + 'vw'); cv.style.setProperty('--cr', lerp(26, 12, k) + 'px'); });
 }
 
-/* ===================== JOURNAL ===================== */
-function pageJournal() {
-  return `
-  <section class="ph-hero" style="min-height:70vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Journal</span></div>
-    <h1 class="split">Notes on <em class="s">growth</em></h1><p class="lead rv">Practical guides on websites, ads, design and video — written for business owners, not designers.</p></section>
-  <section class="sec" style="padding-top:4vh"><div class="jgrid">${POSTS.map(postCard).join('')}</div></section>
-  ${footer()}`;
-}
-function pagePost(slug) {
-  const p = postBySlug[slug], more = POSTS.filter(x => x !== p).slice(0, 3);
-  return `
-  <section class="ph-hero post-hero" style="min-height:90vh;justify-content:center;--glow:${p.glow}"><div class="glow"></div>
-    <div class="crumbs"><a href="#journal" data-link>Journal</a><span>/</span><span>${p.cat}</span><span>·</span><span>${p.time}</span></div>
-    <h1 class="split word" style="font-size:clamp(70px,14vw,240px)">${p.word}</h1>
-    <p class="lead rv" style="font-size:clamp(20px,2.2vw,30px);font-weight:700;letter-spacing:-.03em;color:#fff;max-width:28ch">${p.title}</p></section>
-  <section class="sec"><div class="prose rv"><p>${p.excerpt}</p><p class="ph1">[Full article coming soon — this page shows the article template.]</p></div></section>
-  <section class="jr"><div class="hd"><h2 class="split">Keep <em class="s">reading</em></h2>${btn('All articles', '#journal', 'b-ghost b-sm')}</div><div class="jgrid">${more.map(postCard).join('')}</div></section>
-  ${footer()}`;
-}
-
 /* ===================== CONTACT ===================== */
 function pageContact() {
   return `
@@ -773,5 +753,5 @@ function initContact() {
   });
 }
 
-const PAGES = { home: pageHome, about: pageAbout, services: pageServices, service: pageService, work: pageWork, case: pageCase, journal: pageJournal, post: pagePost, contact: pageContact };
-const INIT = { home: initHome, about: initAbout, services: initServices, service: () => {}, work: initWork, case: initCase, journal: () => {}, post: () => {}, contact: initContact };
+const PAGES = { home: pageHome, about: pageAbout, services: pageServices, service: pageService, work: pageWork, case: pageCase, contact: pageContact };
+const INIT = { home: initHome, about: initAbout, services: initServices, service: () => {}, work: initWork, case: initCase, contact: initContact };

@@ -14,14 +14,19 @@ src/
   data.js       services, case studies, concept demos, journal posts, team
   engine.js     router, page transitions, loader, smooth scroll, scene engine
   pages.js      every page + the home scroll scenes
-public/         copied as-is to the site root (images, favicon, og.jpg, robots, sitemap, _headers)
+content/blog/   Journal articles (Markdown) -> static pages at /blog/<slug>/ — see content/blog/README.md
+public/         copied as-is to the site root (images, favicon, og.jpg, robots, _headers)
 scripts/
   build.mjs       assembles dist/index.html and copies public/ — no dependencies
+  blog.mjs        builds /blog/, article pages, RSS, sitemap.xml and llms.txt from content/blog/
+  blog-cover.mjs  turns a stock photo into the compressed WebP/JPEG cover set
+  blog-check.mjs  article quality gate (`npm run blog:check`)
+  blog-ping.mjs   IndexNow ping for new URLs
   sync-demos.mjs  pulls the nine concept demos from organoostudio/Dummy-Project into public/demos/
 archive/prototypes/   earlier design rounds (not deployed)
 ```
 
-Pages: Home · Work (+ case studies) · Services (+ 5 service pages) · About · Journal · Contact. Concept demos are served at `/demos/<slug>/`.
+Pages: Home · Work (+ case studies) · Services (+ 5 service pages) · About · Contact (hash-routed), and the Journal as static pages at `/blog/`. Concept demos are served at `/demos/<slug>/`.
 
 ## Build
 
