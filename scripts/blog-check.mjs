@@ -28,7 +28,7 @@ for (const p of posts) {
   if (kw && !p.title.toLowerCase().includes(kw.split(' ').slice(0, 3).join(' '))) warn(`title does not contain the keyword "${p.keyword}"`);
   if (kw && !p.body.split(/\s+/).slice(0, 120).join(' ').toLowerCase().includes(kw)) warn(`keyword "${p.keyword}" not in the first 120 words`);
   const links = [...p.body.matchAll(/\]\(([^)\s]+)\)/g)].map(m => m[1]);
-  if (links.filter(u => u.startsWith('/')).length < 2) err('needs ≥ 2 internal links (other /blog/ articles or /#service-… pages)');
+  if (links.filter(u => u.startsWith('/')).length < 2) err('needs ≥ 2 internal links (other /blog/ articles, /services/<slug>/ or /contact/)');
   if (links.filter(u => /^https?:\/\//.test(u)).length < 1) warn('no external source cited — link at least one authoritative source');
   for (const u of links.filter(u => u.startsWith('/blog/') && !u.startsWith('/blog/img/'))) {
     const s = u.replace(/^\/blog\/|\/(#.*)?$/g, '');

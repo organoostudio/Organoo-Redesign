@@ -86,7 +86,7 @@ Start from the goal, not the page list. A website that exists to collect WhatsAp
 5. **Ask for the running costs in writing,** including renewal prices, not only first-year promos.
 6. **Insist on owning your domain and accounts.** They should be registered in your company's name.
 
-Whoever builds your site, agree on this goal-first brief before design starts, because it decides where the budget should go: design, content, speed, or the integrations behind the scenes. It is also the first thing we ask about in every [Organoo website project](/#service-web).
+Whoever builds your site, agree on this goal-first brief before design starts, because it decides where the budget should go: design, content, speed, or the integrations behind the scenes. It is also the first thing we ask about in every [Organoo website project](/services/web/).
 
 ## Is a cheap website worth it?
 
@@ -118,4 +118,4 @@ You should. Register the domain and hosting accounts in your company's name, and
 
 ## The bottom line
 
-In Indonesia, a good business website in 2026 costs anywhere from a few million rupiah for a landing page to well over Rp100 million for a custom platform. The right budget is the one that matches the single job your site has to do, with honest running costs and full ownership of what you pay for. If you would like a clear, itemised estimate for your own project, [tell us what you're building](/#contact) and we'll send a free plan.
+In Indonesia, a good business website in 2026 costs anywhere from a few million rupiah for a landing page to well over Rp100 million for a custom platform. The right budget is the one that matches the single job your site has to do, with honest running costs and full ownership of what you pay for. If you would like a clear, itemised estimate for your own project, [tell us what you're building](/contact/) and we'll send a free plan.

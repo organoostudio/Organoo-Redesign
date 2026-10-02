@@ -218,8 +218,8 @@ ${ld.map(jsonLd).join('\n')}
 </head>
 <body>
 <header class="top"><a class="logo" href="/" aria-label="Organoo Studio home"><img src="/favicon.svg" alt="" width="30" height="30">organoo <span>studio</span></a>
-<nav aria-label="Main"><a href="/#work">Work</a><a href="/#services">Services</a><a href="/#about">About</a><a class="j" href="/blog/"${path.startsWith('/blog/') ? ' aria-current="page"' : ''}>Journal</a><a href="/#contact">Contact</a></nav>
-<a class="go" href="/#contact">Start a project</a></header>
+<nav aria-label="Main"><a href="/work/">Work</a><a href="/services/">Services</a><a href="/about/">About</a><a class="j" href="/blog/"${path.startsWith('/blog/') ? ' aria-current="page"' : ''}>Journal</a><a href="/contact/">Contact</a></nav>
+<a class="go" href="/contact/">Start a project</a></header>
 ${body}
 <footer class="foot"><span>© ${new Date().getUTCFullYear()} Organoo Studio · Digital agency in Jakarta, Indonesia</span><span><a href="/blog/rss.xml">RSS</a> · <a href="mailto:organoostudio@gmail.com">organoostudio@gmail.com</a> · <a href="https://www.instagram.com/organoo.studio/" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/company/organoo-studio" rel="noopener">LinkedIn</a></span></footer>
 </body>
@@ -283,7 +283,7 @@ ${h2s.length >= 3 ? `<details class="toc" open><summary>In this article</summary
 <div class="prose">
 ${p.html}
 </div></article>
-<aside class="cta"><h2>Want this done for your business?</h2><p>Organoo Studio designs websites, runs ads and creates content for growing brands. Tell us what you're building and we'll come back with a clear, free plan.</p><a class="btn" href="/#contact">Start a project</a></aside>
+<aside class="cta"><h2>Want this done for your business?</h2><p>Organoo Studio designs websites, runs ads and creates content for growing brands. Tell us what you're building and we'll come back with a clear, free plan.</p><a class="btn" href="/contact/">Start a project</a></aside>
 ${related.length ? `<section class="more"><h2>Keep reading</h2><div class="grid">${related.map(r => card(r, false, 'h3')).join('')}</div></section>` : ''}
 </main>`
   });
@@ -301,9 +301,9 @@ ${items}
 `;
 }
 
-function sitemap(posts) {
+function sitemap(posts, pages) {
   const today = new Date().toISOString().slice(0, 10);
-  const urls = [[`${SITE}/`, today], [`${SITE}/blog/`, posts[0]?.updated || today], ...posts.map(p => [SITE + p.url, p.updated])];
+  const urls = [...pages.map(p => [SITE + p.path, today]), [`${SITE}/blog/`, posts[0]?.updated || today], ...posts.map(p => [SITE + p.url, p.updated])];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(([u, d]) => `  <url><loc>${u}</loc><lastmod>${d}</lastmod></url>`).join('\n')}
@@ -312,14 +312,24 @@ ${urls.map(([u, d]) => `  <url><loc>${u}</loc><lastmod>${d}</lastmod></url>`).jo
 }
 
 // llms.txt — a plain map of the site for AI answer engines (https://llmstxt.org)
-function llms(posts) {
+function llms(posts, pages) {
+  const top = pages.filter(p => !/^\/(work|services)\/./.test(p.path)), svc = pages.filter(p => p.path.startsWith('/services/') && p.path !== '/services/'), work = pages.filter(p => p.path.startsWith('/work/') && p.path !== '/work/');
+  const list = ps => ps.map(p => `- [${p.title.split(/ [—|] /)[0]}](${SITE}${p.path}): ${p.description}`).join('\n');
   return `# Organoo Studio
 
-> Organoo Studio is a digital agency from Jakarta, Indonesia, for UI/UX and web design, website development, performance marketing (Meta, Google, Amazon and marketplace ads), graphic design and video editing.
+> Organoo Studio is a digital agency from Jakarta, Indonesia, for UI/UX and web design, website development, performance marketing (Meta, Google, Amazon and marketplace ads), graphic design and video editing. Contact: organoostudio@gmail.com.
 
-- Website: ${SITE}/
-- Contact: organoostudio@gmail.com
-- Services: UI/UX design, website development, performance ads, graphic design and branding, video editing
+## Pages
+
+${list(top)}
+
+## Services
+
+${list(svc)}
+
+## Work
+
+${list(work)}
 
 ## Journal
 
@@ -335,8 +345,12 @@ export function buildBlog(root, dist) {
   for (let n = 1; n <= pages; n++) out(n === 1 ? 'blog/index.html' : `blog/page/${n}/index.html`, renderIndex(posts, n, pages));
   for (const p of posts) out(`blog/${p.slug}/index.html`, renderPost(p, posts));
   out('blog/rss.xml', rss(posts));
-  out('sitemap.xml', sitemap(posts));
-  out('llms.txt', llms(posts));
   // the slim list the home page's Journal strip reads
-  return posts.slice(0, 6).map(p => ({ slug: p.slug, url: p.url, title: p.title, cat: p.category, time: `${p.minutes} min read`, word: esc(p.word), glow: p.glow, cover: p.cover ? p.cover.sm : null, alt: p.coverAlt }));
+  return { posts, strip: posts.slice(0, 6).map(p => ({ slug: p.slug, url: p.url, title: p.title, cat: p.category, time: `${p.minutes} min read`, word: esc(p.word), glow: p.glow, cover: p.cover ? p.cover.sm : null, alt: p.coverAlt })) };
+}
+
+// sitemap.xml + llms.txt cover the whole site: `pages` are the pre-rendered routes ({ path, title, description })
+export function writeSiteIndexes(dist, posts, pages) {
+  writeFileSync(join(dist, 'sitemap.xml'), sitemap(posts, pages));
+  writeFileSync(join(dist, 'llms.txt'), llms(posts, pages));
 }

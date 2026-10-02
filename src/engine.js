@@ -12,7 +12,7 @@ const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const html = document.documentElement;
 if (fine) html.classList.add('fine');
 if (reduce) html.classList.add('rm');
-const I = n => 'img/' + n;
+const I = n => '/img/' + n;
 const ARR = '<svg viewBox="0 0 16 16" aria-hidden="true"><use href="#arr"/></svg>';
 const btn = (label, href, cls = 'b-em') => `<a class="btn ${cls}" href="${href}" data-link><span>${label}</span><span class="ic">${ARR}</span></a>`;
 const scrollBtn = (label, target, cls = 'b-ghost') => `<a class="btn ${cls}" href="#${target}" data-scroll="${target}"><span>${label}</span></a>`;
@@ -184,23 +184,57 @@ function setMenu(open) {
 mbtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
 addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
 
-/* ---------- router ---------- */
+/* ---------- router (real URLs; build.mjs pre-renders every route to /<path>/index.html) ---------- */
 const PAGE_NAMES = { home: 'Home', work: 'Work', case: 'Case study', services: 'Services', service: 'Service', about: 'About', contact: 'Contact' };
-function parseRoute(h) {
+const SITE_DESC = 'Organoo Studio is a digital agency from Jakarta for UI/UX & web design, website development, performance marketing on Meta, Google, Amazon and marketplaces, graphic design and video editing.';
+const txt = h => String(h).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+function parseRoute(path) {
+  const [a, b, c] = (path || '/').replace(/^\/+|\/+$/g, '').split('/');
+  if (!a || c) return { page: a ? 'missing' : 'home' };
+  if (a === 'work' && b) return projBySlug[b] ? { page: 'case', arg: b } : { page: 'missing' };
+  if (a === 'services' && b) return svcBySlug[b] ? { page: 'service', arg: b } : { page: 'missing' };
+  if (!b && ['work', 'services', 'about', 'contact'].includes(a)) return { page: a };
+  return { page: 'missing' };
+}
+// links from the old hash-routed site (#work-x, #service-x, #contact, #journal …) -> their real URLs
+function legacyPath(h) {
   h = (h || '').replace(/^#\/?/, '');
-  if (!h || h === 'home' || h === 'top') return { page: 'home' };
-  if (h.startsWith('work-') && projBySlug[h.slice(5)]) return { page: 'case', arg: h.slice(5) };
-  if (h.startsWith('service-') && svcBySlug[h.slice(8)]) return { page: 'service', arg: h.slice(8) };
-  if (h === 'journal' || h.startsWith('post-')) { location.replace('/blog/'); return { page: 'home' }; } // the journal moved to real URLs under /blog/
-  if (['work', 'services', 'about', 'contact'].includes(h)) return { page: h };
-  return { page: 'home' };
+  if (!h) return null;
+  if (h.startsWith('work-') && projBySlug[h.slice(5)]) return `/work/${h.slice(5)}/`;
+  if (h.startsWith('service-') && svcBySlug[h.slice(8)]) return `/services/${h.slice(8)}/`;
+  if (h === 'journal' || h.startsWith('post-')) return '/blog/';
+  if (['work', 'services', 'about', 'contact'].includes(h)) return `/${h}/`;
+  if (h === 'home' || h === 'top') return '/';
+  return null;
+}
+const routePath = r => r.page === 'home' ? '/' : r.page === 'case' ? `/work/${r.arg}/` : r.page === 'service' ? `/services/${r.arg}/` : `/${r.page}/`;
+function routeMeta(r) {
+  const s = r.page === 'service' && svcBySlug[r.arg], p = r.page === 'case' && projBySlug[r.arg];
+  const m = {
+    home: ['Organoo Studio — Digital agency in Jakarta', SITE_DESC],
+    work: ['Work — Websites, UI/UX, Ads & Branding Projects | Organoo Studio', 'Selected work by Organoo Studio: UI/UX design, websites, performance ad campaigns, brand identities and live concept demos.'],
+    services: ['Services — Web Design, Development, Ads, Design & Video | Organoo Studio', 'UI/UX and web design, website development, performance marketing, graphic design and video editing: one Jakarta team from first idea to measurable growth.'],
+    about: ['About Organoo Studio — Digital Agency in Jakarta', 'Meet Organoo Studio, a digital agency from Jakarta designing brands, websites and campaigns that keep growing.'],
+    contact: ['Contact Organoo Studio — Start a Project', 'Tell Organoo Studio about your project and get a free 15-minute call and a clear plan for your website, ads, design or video.'],
+    missing: ['Page not found — Organoo Studio', SITE_DESC],
+    service: s && [`${s.name} in Jakarta | Organoo Studio`, txt(s.lead)],
+    case: p && [`${p.title} — ${p.service} Case Study | Organoo Studio`, txt(p.lead)]
+  }[r.page];
+  return { title: m[0], description: m[1], path: routePath(r) };
+}
+function setMeta(r) {
+  const m = routeMeta(r), url = 'https://organoostudio.com' + m.path;
+  document.title = m.title;
+  const set = (sel, attr, v) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, v); };
+  set('meta[name="description"]', 'content', m.description); set('link[rel="canonical"]', 'href', url);
+  set('meta[property="og:title"]', 'content', m.title); set('meta[property="og:description"]', 'content', m.description); set('meta[property="og:url"]', 'content', url);
 }
 function render(route) {
   S.scenes = []; S.ticks = [];
   const app = $('#app');
   app.innerHTML = PAGES[route.page](route.arg);
   S.route = route;
-  document.title = (route.page === 'home' ? 'Organoo Studio — Digital agency in Jakarta' : `${pageTitle(route)} — Organoo Studio`);
+  setMeta(route);
   $$('.nav .it').forEach(a => a.classList.toggle('on', a.dataset.nav === route.page || (a.dataset.nav === 'work' && route.page === 'case') || (a.dataset.nav === 'services' && route.page === 'service')));
   window.scrollTo(0, 0); if (S.lenis) S.lenis.scrollTo(0, { immediate: true });
   INIT[route.page] && INIT[route.page](route.arg);
@@ -212,28 +246,27 @@ function render(route) {
 function pageTitle(r) {
   if (r.page === 'case') return projBySlug[r.arg].title;
   if (r.page === 'service') return svcBySlug[r.arg].name;
-  return PAGE_NAMES[r.page];
+  return PAGE_NAMES[r.page] || 'Organoo';
 }
 const ptr = $('#ptr'), ptName = $('#ptName');
-let ignoreHash = false;
-function go(hash, x = innerWidth / 2, y = innerHeight / 2) {
-  const route = parseRoute(hash);
+function go(path, x = innerWidth / 2, y = innerHeight / 2) {
+  const route = parseRoute(path);
   if (menu.classList.contains('open')) setMenu(false);
   if (S.busy) return;
   if (S.route && route.page === S.route.page && route.arg === S.route.arg) { S.lenis ? S.lenis.scrollTo(0) : scrollTo({ top: 0, behavior: 'smooth' }); return; }
-  if (reduce) { ignoreHash = true; location.hash = hash; render(route); return; }
+  if (reduce) { history.pushState(null, '', routePath(route)); render(route); return; }
   S.busy = true;
   ptr.style.setProperty('--tx', x + 'px'); ptr.style.setProperty('--ty', y + 'px');
   ptName.textContent = pageTitle(route);
   ptr.classList.remove('leave'); void ptr.offsetWidth; ptr.classList.add('cover');
   setTimeout(() => {
-    ignoreHash = true; location.hash = hash;
+    history.pushState(null, '', routePath(route));
     render(route);
     ptr.classList.add('leave');
     setTimeout(() => { ptr.classList.remove('cover', 'leave'); S.busy = false; }, 850);
   }, 760);
 }
-addEventListener('hashchange', () => { if (ignoreHash) { ignoreHash = false; return; } render(parseRoute(location.hash)); });
+addEventListener('popstate', () => render(parseRoute(location.pathname)));
 document.addEventListener('click', e => {
   const sc = e.target.closest('[data-scroll]');
   if (sc) {
@@ -241,7 +274,7 @@ document.addEventListener('click', e => {
     S.lenis ? S.lenis.scrollTo(el, { offset: -20 }) : el.scrollIntoView({ behavior: 'smooth' }); return;
   }
   const a = e.target.closest('a[data-link]');
-  if (a && a.getAttribute('href').startsWith('#')) { e.preventDefault(); go(a.getAttribute('href'), e.clientX || innerWidth / 2, e.clientY || innerHeight / 2); }
+  if (a && a.getAttribute('href').startsWith('/') && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) { e.preventDefault(); go(a.getAttribute('href'), e.clientX || innerWidth / 2, e.clientY || innerHeight / 2); }
 });
 
 /* ---------- main loop ---------- */
@@ -272,7 +305,10 @@ function boot() {
     S.lenis = new Lenis({ lerp: .1, wheelMultiplier: 1, smoothWheel: true });
     html.classList.add('lenis');
   }
-  render(parseRoute(location.hash));
+  const legacy = legacyPath(location.hash);
+  if (legacy === '/blog/') { location.replace(legacy); return; }
+  if (legacy) history.replaceState(null, '', legacy);
+  render(parseRoute(location.pathname));
   requestAnimationFrame(loop);
   runLoader(() => {
     S.loaded = true;

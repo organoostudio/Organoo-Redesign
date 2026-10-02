@@ -1,6 +1,6 @@
 # Organoo Studio — organoostudio.com
 
-The company-profile website for Organoo Studio, a digital agency from Jakarta. A static, single-page site (hash-routed pages) with cinematic scroll scenes, deployed on Cloudflare.
+The company-profile website for Organoo Studio, a digital agency from Jakarta. A static site with real, pre-rendered URLs for every page (History API routing on top) with cinematic scroll scenes, deployed on Cloudflare.
 
 Brand: ink `#0B0D0C`, emerald `#1FAE5E`, mint `#96E1B9`, paper `#FFFFFF`. Type: Plus Jakarta Sans + IBM Plex Mono.
 
@@ -17,7 +17,7 @@ src/
 content/blog/   Journal articles (Markdown) -> static pages at /blog/<slug>/ — see content/blog/README.md
 public/         copied as-is to the site root (images, favicon, og.jpg, robots, _headers)
 scripts/
-  build.mjs       assembles dist/index.html and copies public/ — no dependencies
+  build.mjs       pre-renders every route to dist/<path>/index.html, writes hashed /assets/ CSS+JS, copies public/ — no dependencies
   blog.mjs        builds /blog/, article pages, RSS, sitemap.xml and llms.txt from content/blog/
   blog-cover.mjs  turns a stock photo into the compressed WebP/JPEG cover set
   blog-check.mjs  article quality gate (`npm run blog:check`)
@@ -26,7 +26,7 @@ scripts/
 archive/prototypes/   earlier design rounds (not deployed)
 ```
 
-Pages: Home · Work (+ case studies) · Services (+ 5 service pages) · About · Contact (hash-routed), and the Journal as static pages at `/blog/`. Concept demos are served at `/demos/<slug>/`.
+Pages: `/` · `/work/` (+ `/work/<slug>/` case studies) · `/services/` (+ 5 `/services/<slug>/` pages) · `/about/` · `/contact/`, and the Journal at `/blog/`. Concept demos are served at `/demos/<slug>/`.
 
 ## Build
 

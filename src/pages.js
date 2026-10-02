@@ -16,22 +16,22 @@ function teamBlock() {
 function noteCta() {
   return `<section class="note-cta" id="notecta"><div class="fog"></div><div class="hill"></div>
     <div class="hd"><span class="lbl">Start a project</span><h2 class="split" style="margin-top:16px">Plan your <em class="s">next move</em></h2></div>
-    <div class="note" id="note"><span class="pin"></span><p>Tell us what you're building.<br>We'll shape the <em>plan</em>.</p><div style="text-align:center">${btn('Start planning', '#contact', 'b-ink b-sm')}<small>Free 15-minute call</small></div></div></section>`;
+    <div class="note" id="note"><span class="pin"></span><p>Tell us what you're building.<br>We'll shape the <em>plan</em>.</p><div style="text-align:center">${btn('Start planning', '/contact/', 'b-ink b-sm')}<small>Free 15-minute call</small></div></div></section>`;
 }
 function footer() {
   return `<footer class="foot">
-    <div class="ask"><h2 class="split">Have an idea?<br>Let's <em class="s">grow</em> it.</h2>${btn('Start a project', '#contact')}</div>
+    <div class="ask"><h2 class="split">Have an idea?<br>Let's <em class="s">grow</em> it.</h2>${btn('Start a project', '/contact/')}</div>
     <div class="cols">
       <div><div class="brandline"><svg viewBox="0 0 200 200"><use href="#mkFlat"/></svg>organoo <span>studio</span></div><p>A digital agency from Jakarta designing brands, websites and campaigns that keep growing.</p></div>
-      <div><h4>STUDIO</h4><a href="#about" data-link>About</a><a href="#work" data-link>Work</a><a href="/blog/">Journal</a><a href="#contact" data-link>Contact</a></div>
-      <div><h4>SERVICES</h4>${SERVICES.map(s => `<a href="#service-${s.slug}" data-link>${s.name}</a>`).join('')}</div>
-      <div><h4>CONNECT</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="#contact" data-link>organoostudio@gmail.com</a></div>
+      <div><h4>STUDIO</h4><a href="/about/" data-link>About</a><a href="/work/" data-link>Work</a><a href="/blog/">Journal</a><a href="/contact/" data-link>Contact</a></div>
+      <div><h4>SERVICES</h4>${SERVICES.map(s => `<a href="/services/${s.slug}/" data-link>${s.name}</a>`).join('')}</div>
+      <div><h4>CONNECT</h4><a href="https://www.instagram.com/organoo.studio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/organoo-studio" target="_blank" rel="noopener">LinkedIn ↗</a><a href="/contact/" data-link>organoostudio@gmail.com</a></div>
     </div>
     <div class="wmk" id="wmk"><div class="base">organoo <em>studio</em></div><div class="lit" aria-hidden="true">organoo <em>studio</em></div></div>
     <div class="legal"><span>© 2026 Organoo Studio</span><span>Jakarta, Indonesia · <b id="clock">--:--</b> WIB</span><span>Move your cursor over the name ↑</span></div>
   </footer>`;
 }
-const caseCard = p => `<a class="wc rv" href="#work-${p.slug}" data-link data-f="${p.cat || p.svc}" data-cur="View"><div class="fr${p.light ? ' lt' : ''}${p.full ? ' full' : ''}${p.svc === 'graphic' && p.img ? ' gdc' : ''}"><div class="pv">${p.img ? imgTag(p.img, false) : `<div class="ph0">[Project cover]</div>`}</div><span class="tag">${p.service}</span></div><div class="ft"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="ar">${ARR}</span></div></a>`;
+const caseCard = p => `<a class="wc rv" href="/work/${p.slug}/" data-link data-f="${p.cat || p.svc}" data-cur="View"><div class="fr${p.light ? ' lt' : ''}${p.full ? ' full' : ''}${p.svc === 'graphic' && p.img ? ' gdc' : ''}"><div class="pv">${p.img ? imgTag(p.img, false) : `<div class="ph0">[Project cover]</div>`}</div><span class="tag">${p.service}</span></div><div class="ft"><div><b>${p.title}</b><small>${p.sub}</small></div><span class="ar">${ARR}</span></div></a>`;
 const postCard = p => `<a class="post rv" href="${p.url}" data-cur="Read" style="--glow:${p.glow}"><div class="art">${p.cover ? `<img src="${p.cover}" alt="${p.alt}" width="640" height="336" loading="lazy" decoding="async">` : `<b>${p.word}</b>`}</div><div class="meta"><div class="k"><span>${p.cat}</span><span>${p.time}</span></div><h3>${p.title}</h3></div></a>`;
 
 /* service mini visual for cards / previews */
@@ -80,7 +80,7 @@ function pageHome() {
         <span class="lbl rv">Digital agency · Jakarta, Indonesia</span>
         <h1 class="split" id="flyH">Ideas that <em class="s">grow</em><span class="seed"></span><br>into digital brands.</h1>
         <p class="sub rv" style="--d:.5s">Organoo Studio designs and builds websites, runs ads on Meta, Google, Amazon and marketplaces, and creates graphics and video — one team, from idea to growth.</p>
-        <div class="ctas rv" style="--d:.7s">${btn('Start a project', '#contact')}${btn('See our work', '#work', 'b-ghost')}</div>
+        <div class="ctas rv" style="--d:.7s">${btn('Start a project', '/contact/')}${btn('See our work', '/work/', 'b-ghost')}</div>
       </div>
       <div class="fly-mid" id="flyMid"><div><h2>Step inside<br>the <em class="s">work</em>.</h2><p>${PROJECTS.length} cases · ${SERVICES.length} services · one studio</p></div></div>
       <div class="cue" id="cue"><i></i>Scroll</div>
@@ -94,7 +94,7 @@ function pageHome() {
       <div class="big b2" id="sb2">that <em>grow.</em></div>
       <div class="spark"></div>
       <div class="nums" id="snums"><div><b data-count>11×</b><span>ROAS · Google Ads</span></div><div><b data-count>1,200+</b><span>Conversions · Meta Ads</span></div><div><b data-count>+97.8%</b><span>Website leads growth</span></div></div>
-      <div class="about" id="sabout"><span class="lbl">About the studio</span><p style="margin-top:16px">We're not just a vendor. We're a <b>growth partner</b> working side by side with your team — blending strategy, design and data. Great design only matters when it moves the numbers.</p><a class="link" href="#about" data-link>More about us ${ARR}</a></div>
+      <div class="about" id="sabout"><span class="lbl">About the studio</span><p style="margin-top:16px">We're not just a vendor. We're a <b>growth partner</b> working side by side with your team — blending strategy, design and data. Great design only matters when it moves the numbers.</p><a class="link" href="/about/" data-link>More about us ${ARR}</a></div>
     </div>
   </section>
   <section class="sc ring paper" id="ring" aria-label="Services">
@@ -102,7 +102,7 @@ function pageHome() {
       <div class="mq-big r1" id="rq1">${'Websites that work<span class="o"></span>Ads that convert<span class="o"></span>Brands people remember<span class="o"></span>'.repeat(2)}</div>
       <div class="mq-big r2" id="rq2">${'Interfaces people love<span class="o"></span>Videos people finish<span class="o"></span>'.repeat(3)}</div>
       <div class="head"><span class="lbl">What we do</span><h2>Five ways we help you <em class="s">grow</em></h2></div>
-      <div class="stage"><div class="wheel" id="wheel">${SERVICES.map((s, i) => `<figure class="scard" data-i="${i}"><a class="in" href="#service-${s.slug}" data-link data-cur="Open"><div class="top"><span>${s.n}</span><span>/ 05</span></div><div class="vis">${miniVis(s)}</div><div><h3>${s.name}</h3><p>${s.short}</p></div></a></figure>`).join('')}</div></div>
+      <div class="stage"><div class="wheel" id="wheel">${SERVICES.map((s, i) => `<figure class="scard" data-i="${i}"><a class="in" href="/services/${s.slug}/" data-link data-cur="Open"><div class="top"><span>${s.n}</span><span>/ 05</span></div><div class="vis">${miniVis(s)}</div><div><h3>${s.name}</h3><p>${s.short}</p></div></a></figure>`).join('')}</div></div>
       <div class="side" id="rside"></div>
       <div class="dots" id="rdots">${SERVICES.map((s, i) => `<i data-i="${i}"></i>`).join('')}</div>
     </div>
@@ -112,7 +112,7 @@ function pageHome() {
       <div class="wall" id="wall">${tvs}</div>
       <div class="copy"><span class="lbl">Selected work</span><h2 class="split" style="margin-top:18px">We make brands<br><em>feel new</em></h2></div>
       <i class="plus"></i>
-      <div class="bottom"><p>Identity, interfaces, websites and campaigns built to hold attention — tuned until the last pixel holds still.</p><div class="ctas">${btn('Start a project', '#contact', 'b-em b-sm')}${btn('See all work', '#work', 'b-ghost b-sm')}</div></div>
+      <div class="bottom"><p>Identity, interfaces, websites and campaigns built to hold attention — tuned until the last pixel holds still.</p><div class="ctas">${btn('Start a project', '/contact/', 'b-em b-sm')}${btn('See all work', '/work/', 'b-ghost b-sm')}</div></div>
     </div>
     <div class="cases">
       <h2 class="split">Our cases</h2><div class="count brk" id="vcount">[01 / ${pad(SHOWCASE.length)}]</div>
@@ -244,7 +244,7 @@ function initHome() {
   let active = -1;
   const setSide = i => {
     if (i === active) return; active = i; const s = SERVICES[i];
-    side.innerHTML = `<span class="n">${s.n} / 05</span><h3>${s.name}</h3><p>${s.short}</p><div class="chips">${s.chips.map(c => `<span>${c}</span>`).join('')}</div>${btn('Explore service', '#service-' + s.slug, 'b-ink b-sm')}`;
+    side.innerHTML = `<span class="n">${s.n} / 05</span><h3>${s.name}</h3><p>${s.short}</p><div class="chips">${s.chips.map(c => `<span>${c}</span>`).join('')}</div>${btn('Explore service', '/services/' + s.slug + '/', 'b-ink b-sm')}`;
     dots.forEach((d, j) => d.classList.toggle('on', j === i));
   };
   setSide(0);
@@ -371,7 +371,7 @@ function initViewer() {
       set(vr, projBySlug[SHOWCASE[(i + 1) % SHOWCASE.length]]);
       $('#vtitle').textContent = p.title; $('#vsub').textContent = p.lead;
       $('#vtags').innerHTML = p.tags.map(t => `<span>[${t}]</span>`).join('');
-      $('#vlink').innerHTML = btn('Explore case', '#work-' + p.slug, 'b-em b-sm');
+      $('#vlink').innerHTML = btn('Explore case', '/work/' + p.slug + '/', 'b-em b-sm');
       $('#vchan').textContent = 'CH ' + pad(i + 1); $('#vcount').textContent = `[${pad(i + 1)} / ${pad(SHOWCASE.length)}]`;
     };
     if (instant || reduce) { apply(); return; }
@@ -495,7 +495,7 @@ function pageAbout() {
   const keys = ['growth', 'partner', 'strategy,', 'design', 'data.', 'moves', 'numbers:', 'remember.'];
   const words = stmt.split(' ').map(w => `<span class="wd${keys.includes(w) ? ' k' : ''}">${w}</span>`).join(' ');
   return `
-  <section class="ph-hero"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>About</span></div>
+  <section class="ph-hero"><div class="glow"></div><div class="crumbs"><a href="/" data-link>Home</a><span>/</span><span>About</span></div>
     <h1 class="split">A studio built<br>to <em class="s">grow</em> brands.</h1>
     <p class="lead rv">Organoo Studio is a digital agency from Jakarta. We design brands, build websites and run campaigns — one team from first idea to measurable growth.</p></section>
   <section class="sc stmt" id="stmt"><div class="stick"><p id="stmtP">${words}</p></div></section>
@@ -541,14 +541,14 @@ function initAbout() {
 /* ===================== SERVICES ===================== */
 function pageServices() {
   return `
-  <section class="ph-hero"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Services</span></div>
+  <section class="ph-hero"><div class="glow"></div><div class="crumbs"><a href="/" data-link>Home</a><span>/</span><span>Services</span></div>
     <h1 class="split">Five ways we<br>help you <em class="s">grow</em>.</h1>
     <p class="lead rv">Pick one or stack them. Strategy, design, build and growth — under one roof, with the same team from brief to results.</p></section>
-  <section class="sec" style="padding-top:4vh"><div class="slist" id="slist">${SERVICES.map(s => `<a class="srow rv" href="#service-${s.slug}" data-link data-svc="${s.slug}" data-cur="Open"><span class="n">${s.n}</span><span class="t">${s.name}</span><span class="d">${s.short}</span><span class="ar">${ARR}</span></a>`).join('')}</div></section>
+  <section class="sec" style="padding-top:4vh"><div class="slist" id="slist">${SERVICES.map(s => `<a class="srow rv" href="/services/${s.slug}/" data-link data-svc="${s.slug}" data-cur="Open"><span class="n">${s.n}</span><span class="t">${s.name}</span><span class="d">${s.short}</span><span class="ar">${ARR}</span></a>`).join('')}</div></section>
   ${processStrips()}
   <section class="sc ring paper" id="ring2" style="height:auto"><div class="sec" style="text-align:center">
     <span class="lbl">Not sure where to start?</span><h2 class="split" style="font-size:clamp(34px,5vw,80px);margin:18px auto 22px;max-width:16ch">Book a free <em class="s">15-minute</em> call.</h2>
-    <p style="color:var(--pmuted);max-width:480px;margin:0 auto 30px">We'll look at your goals and tell you honestly which service — or combination — will move the needle first.</p>${btn('Book a 15-min call', '#contact', 'b-ink')}</div></section>
+    <p style="color:var(--pmuted);max-width:480px;margin:0 auto 30px">We'll look at your goals and tell you honestly which service — or combination — will move the needle first.</p>${btn('Book a 15-min call', '/contact/', 'b-ink')}</div></section>
   ${footer()}`;
 }
 function initServices() {
@@ -577,23 +577,23 @@ function pageService(slug) {
   const s = svcBySlug[slug], projs = s.projects.map(x => projBySlug[x]).filter(Boolean);
   return `
   <section class="ph-hero" style="min-height:100vh"><div class="glow"></div>
-    <div class="crumbs"><a href="#services" data-link>Services</a><span>/</span><span>${s.n}</span></div>
+    <div class="crumbs"><a href="/services/" data-link>Services</a><span>/</span><span>${s.n}</span></div>
     <h1 class="split" style="max-width:9.5ch;font-size:clamp(50px,8vw,140px)">${s.h1}</h1>
     <p class="lead rv">${s.lead}</p>
-    <div class="row rv">${btn(s.cta, '#contact')}${scrollBtn('See pricing', 'plans')}</div>
+    <div class="row rv">${btn(s.cta, '/contact/')}${scrollBtn('See pricing', 'plans')}</div>
     ${svis(s)}
   </section>
   <section class="sec"><div class="shd"><h2 class="split">${s.delivTitle}</h2><p>${s.delivNote}</p></div>
     <div class="deliv">${s.deliv.map((d, i) => `<div class="rv" style="--d:${i * .06}s"><span class="n">${pad(i + 1)}</span><h3>${d[0]}</h3><p>${d[1]}</p></div>`).join('')}</div></section>
   <section class="sec"><div class="shd"><h2 class="split">How it <em class="s">works</em></h2><p>Four clear stages, reviewed with you at every step.</p></div>
     <div class="steps"><div class="bar"><i></i></div>${s.steps.map((st, i) => `<div class="step"><span class="n">${pad(i + 1)}</span><h3>${st[0]}</h3><p>${st[1]}</p></div>`).join('')}</div></section>
-  <section class="sec"><div class="shd"><h2 class="split">${s.projTitle}</h2>${btn('All work', '#work', 'b-ghost b-sm')}</div>
+  <section class="sec"><div class="shd"><h2 class="split">${s.projTitle}</h2>${btn('All work', '/work/', 'b-ghost b-sm')}</div>
     <div class="wgrid">${projs.map(caseCard).join('')}</div></section>
   <section class="sec paper" id="plans"><div class="shd"><h2 class="split">Simple <em class="s">pricing</em></h2><p>${s.priceNote}</p></div>
-    <div class="plans">${s.plans.map(([n, d, pr, list, hot]) => `<div class="plan rv${hot ? ' hot' : ''}">${hot ? '<span class="tg">MOST POPULAR</span>' : ''}<h3>${n}</h3><p class="ds">${d}</p><div class="pr">${pr}<small>${pr === 'Custom' ? '' : s.per}</small></div><ul>${list.map(l => `<li>${l}</li>`).join('')}</ul>${btn('Choose ' + n, '#contact', hot ? 'b-em b-sm' : 'b-ink b-sm')}</div>`).join('')}</div>
+    <div class="plans">${s.plans.map(([n, d, pr, list, hot]) => `<div class="plan rv${hot ? ' hot' : ''}">${hot ? '<span class="tg">MOST POPULAR</span>' : ''}<h3>${n}</h3><p class="ds">${d}</p><div class="pr">${pr}<small>${pr === 'Custom' ? '' : s.per}</small></div><ul>${list.map(l => `<li>${l}</li>`).join('')}</ul>${btn('Choose ' + n, '/contact/', hot ? 'b-em b-sm' : 'b-ink b-sm')}</div>`).join('')}</div>
     <p class="pricenote">Prices in [brackets] are placeholders until final pricing is confirmed.</p></section>
   <section class="sec"><div class="faq"><h2 class="split">Questions,<br><em class="s">answered</em></h2><div>${s.faqs.map(([q, a], i) => `<details class="q"${i === 0 ? ' open' : ''}><summary>${q}<i>+</i></summary><p>${a}</p></details>`).join('')}</div></div></section>
-  <section class="bigcta"><h2 class="split">${s.ctaWords[0]}<br>${s.ctaWords[1]}<br><span class="l3">${s.ctaWords[2]}</span></h2><p>Tell us about your goals. We'll come back with a clear, free plan built to grow your business.</p>${btn('Book a 15-min call', '#contact')}</section>
+  <section class="bigcta"><h2 class="split">${s.ctaWords[0]}<br>${s.ctaWords[1]}<br><span class="l3">${s.ctaWords[2]}</span></h2><p>Tell us about your goals. We'll come back with a clear, free plan built to grow your business.</p>${btn('Book a 15-min call', '/contact/')}</section>
   ${footer()}`;
 }
 
@@ -601,7 +601,7 @@ function pageService(slug) {
 function pageWork() {
   const cats = [['all', 'All'], ['web', 'Website'], ['uiux', 'UI/UX'], ['ads', 'Ads'], ['graphic', 'Graphic'], ['video', 'Video']];
   return `
-  <section class="ph-hero" style="min-height:76vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Work</span></div>
+  <section class="ph-hero" style="min-height:76vh"><div class="glow"></div><div class="crumbs"><a href="/" data-link>Home</a><span>/</span><span>Work</span></div>
     <h1 class="split">Selected <em class="s">work</em></h1>
     <p class="lead rv">Websites, product design, ad campaigns and brand work. Every case is presented the way its service lives — live sites, device flows, ad dashboards and brand boards.</p>
     <div class="filters rv" id="wf">${cats.map(([k, l], i) => `<button type="button" data-f="${k}" class="${i === 0 ? 'on' : ''}">${l}<sup>${k === 'all' ? PROJECTS.length : PROJECTS.filter(p => (p.cat || p.svc) === k).length}</sup></button>`).join('')}</div></section>
@@ -663,14 +663,14 @@ function pageCase(slug) {
   const cover = p.img ? `<img src="${I(p.img)}" alt="${p.title}"${p.wide ? ' style="width:88%"' : ''}>` : `<div class="ph0">[Project cover]</div>`;
   return `
   <section class="ph-hero case-hero"><div class="glow"></div>
-    <div class="crumbs"><a href="#work" data-link>Work</a><span>/</span><a href="#service-${p.svc}" data-link>${p.service}</a></div>
+    <div class="crumbs"><a href="/work/" data-link>Work</a><span>/</span><a href="/services/${p.svc}/" data-link>${p.service}</a></div>
     <h1 class="split">${p.h1}</h1><p class="lead rv">${p.demo ? p.lead : p.sub}</p>
     ${p.demo ? `<div class="row rv"><a class="btn b-em" href="${p.demo}" target="_blank" rel="noopener"><span>Open live demo</span><span class="ic">${ARR}</span></a><span class="pill" style="align-self:center">Concept project</span></div>` : ''}
     <div class="cmeta rv">${p.meta.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('')}</div></section>
   ${p.demo ? '' : `<section class="sc cover" id="cover"><div class="stick"><div class="cv${p.light ? ' lt' : ''}" id="cv">${cover}</div></div></section>
   <section class="sec"><p class="clead split">${p.lead}</p></section>`}
   ${p.blocks.map(b => block(b, p)).join('')}
-  <a class="next" href="#work-${n.slug}" data-link data-cur="Next"><span class="k">Next case · ${n.service}</span><h2>${n.title}</h2>${n.img ? `<div class="im"><img src="${I(n.img)}" alt=""></div>` : ''}</a>
+  <a class="next" href="/work/${n.slug}/" data-link data-cur="Next"><span class="k">Next case · ${n.service}</span><h2>${n.title}</h2>${n.img ? `<div class="im"><img src="${I(n.img)}" alt=""></div>` : ''}</a>
   ${footer()}`;
 }
 function initDemoShow() {
@@ -715,7 +715,7 @@ function initCase() {
 /* ===================== CONTACT ===================== */
 function pageContact() {
   return `
-  <section class="ph-hero" style="min-height:74vh"><div class="glow"></div><div class="crumbs"><a href="#home" data-link>Home</a><span>/</span><span>Contact</span></div>
+  <section class="ph-hero" style="min-height:74vh"><div class="glow"></div><div class="crumbs"><a href="/" data-link>Home</a><span>/</span><span>Contact</span></div>
     <h1 class="split">Let's build<br>what's <em class="s">next</em>.</h1><p class="lead rv">Tell us about your goals. We'll come back with a clear, free plan built to grow your business.</p></section>
   <section class="sec" style="padding-top:4vh"><div class="cform">
     <form id="cf" novalidate>
@@ -753,5 +753,14 @@ function initContact() {
   });
 }
 
-const PAGES = { home: pageHome, about: pageAbout, services: pageServices, service: pageService, work: pageWork, case: pageCase, contact: pageContact };
-const INIT = { home: initHome, about: initAbout, services: initServices, service: () => {}, work: initWork, case: initCase, contact: initContact };
+/* ===================== 404 ===================== */
+function pageMissing() {
+  return `
+  <section class="ph-hero" style="min-height:80vh"><div class="glow"></div><div class="crumbs"><a href="/" data-link>Home</a><span>/</span><span>404</span></div>
+    <h1 class="split">This page <em class="s">moved</em>.</h1><p class="lead rv">The link may be old or mistyped. Try the work, our services or the journal instead.</p>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">${btn('See our work', '/work/')}${btn('Services', '/services/', 'b-ghost')}${btn('Journal', '/blog/', 'b-ghost')}</div></section>
+  ${footer()}`;
+}
+
+const PAGES = { missing: pageMissing, home: pageHome, about: pageAbout, services: pageServices, service: pageService, work: pageWork, case: pageCase, contact: pageContact };
+const INIT = { missing: () => {}, home: initHome, about: initAbout, services: initServices, service: () => {}, work: initWork, case: initCase, contact: initContact };

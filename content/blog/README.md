@@ -63,8 +63,8 @@ labelled as an estimate with a date ("as of October 2026, typical Jakarta agency
 IDR with the USD equivalent in brackets when useful.
 
 **Links.** 2–4 internal links to other `/blog/<slug>/` articles where relevant (check the files exist),
-plus one link to the matching service: `/#service-uiux`, `/#service-web`, `/#service-ads`,
-`/#service-graphic`, `/#service-video`, or `/#contact`. At least one external source. Descriptive anchor
+plus one link to the matching service: `/services/uiux/`, `/services/web/`, `/services/ads/`,
+`/services/graphic/`, `/services/video/`, or `/contact/`. At least one external source. Descriptive anchor
 text, never "click here".
 
 **Length.** 1,500–2,500 words of substance. Longer only when the topic needs it.
